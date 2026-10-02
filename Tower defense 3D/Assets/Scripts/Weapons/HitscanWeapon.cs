@@ -3,9 +3,14 @@
 public abstract class HitscanWeapon : Weapon
 {
     [Header("Recoil Cámara")]
-    [SerializeField] protected CameraEffects cameraEffects;
-    [SerializeField] protected float recoilVertical = 2f;
-    [SerializeField] protected float recoilHorizontal = 0.5f;
+    [SerializeField]
+    protected CameraEffects cameraEffects;
+
+    [SerializeField]
+    protected float recoilVertical = 2f;
+
+    [SerializeField]
+    protected float recoilHorizontal = 0.5f;
 
     private CharacterController jugadorController;
 
@@ -14,23 +19,53 @@ public abstract class HitscanWeapon : Weapon
         base.Awake();
 
         GameObject jugador =
-            GameObject.FindGameObjectWithTag("Player");
+            GameObject.FindGameObjectWithTag(
+                "Player"
+            );
 
         if (jugador != null)
         {
             jugadorController =
-                jugador.GetComponent<CharacterController>();
+                jugador.GetComponent<
+                    CharacterController
+                >();
         }
     }
 
+    // =====================================================
+    // COMPROBAR SI PUEDE DISPARAR
+    // =====================================================
+
     protected bool PuedeDisparar()
     {
+        // No disparar durante la recarga
+        if (recargando)
+            return false;
+
+        // Tiempo entre disparos
         if (Time.time < siguienteDisparo)
             return false;
 
-        siguienteDisparo =
-            Time.time + tiempoEntreDisparos;
+        // Comprobar munición
+        if (!TieneMunicion())
+        {
+            Debug.Log(
+                "Sin munición en el cargador."
+            );
 
+            return false;
+        }
+
+        // Consumir una bala
+        if (!ConsumirMunicion())
+            return false;
+
+        // Próximo disparo
+        siguienteDisparo =
+            Time.time +
+            tiempoEntreDisparos;
+
+        // Retroceso de cámara
         if (cameraEffects != null)
         {
             cameraEffects.AgregarRecoil(
@@ -42,17 +77,27 @@ public abstract class HitscanWeapon : Weapon
         return true;
     }
 
-    protected void DispararRayo(Vector3 direccion)
+    // =====================================================
+    // RAYCAST
+    // =====================================================
+
+    protected void DispararRayo(
+        Vector3 direccion)
     {
-        Ray ray = new Ray(
-            camara.transform.position,
-            direccion
-        );
+        if (camara == null)
+            return;
+
+        Ray ray =
+            new Ray(
+                camara.transform.position,
+                direccion
+            );
 
         if (Physics.Raycast(
             ray,
             out RaycastHit hit,
-            distancia))
+            distancia
+        ))
         {
             Debug.DrawLine(
                 ray.origin,
@@ -77,23 +122,32 @@ public abstract class HitscanWeapon : Weapon
         }
     }
 
+    // =====================================================
+    // IMPACTO
+    // =====================================================
+
     protected virtual void ProcesarImpacto(
         RaycastHit hit,
         Vector3 direccionDisparo)
     {
-        // Solo buscamos enemigos
         EnemyHealth enemigo =
-            hit.collider.GetComponentInParent<EnemyHealth>();
+            hit.collider.GetComponentInParent<
+                EnemyHealth
+            >();
 
         if (enemigo == null)
             return;
 
-        // Aplicar daño
-        enemigo.RecibirDanio(dańo);
+        // Daño
+        enemigo.RecibirDanio(
+            dańo
+        );
 
-        // Aplicar empuje al enemigo
+        // Empuje
         EnemyController enemyController =
-            enemigo.GetComponent<EnemyController>();
+            enemigo.GetComponent<
+                EnemyController
+            >();
 
         if (enemyController != null)
         {
@@ -107,9 +161,16 @@ public abstract class HitscanWeapon : Weapon
         AplicarRetrocesoJugador();
     }
 
+    // =====================================================
+    // RETROCESO DEL JUGADOR
+    // =====================================================
+
     protected void AplicarRetrocesoJugador()
     {
         if (jugadorController == null)
+            return;
+
+        if (camara == null)
             return;
 
         Vector3 direccionRetroceso =
@@ -117,8 +178,11 @@ public abstract class HitscanWeapon : Weapon
 
         direccionRetroceso.y = 0f;
 
-        if (direccionRetroceso.sqrMagnitude < 0.01f)
+        if (direccionRetroceso.sqrMagnitude <
+            0.01f)
+        {
             return;
+        }
 
         direccionRetroceso.Normalize();
 

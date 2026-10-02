@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8573108599505607942
+--- !u!1 &8162292602104240015
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4296150106002249924}
-  - component: {fileID: 5918519744163131894}
-  - component: {fileID: 5676290928957300450}
-  - component: {fileID: 5391329325976102104}
-  - component: {fileID: 7074743712428763589}
-  - component: {fileID: 6032933307001916394}
+  - component: {fileID: 2022486405397316742}
+  - component: {fileID: 5731346983649994598}
+  - component: {fileID: 2518775922249906743}
+  - component: {fileID: 3685762800470751592}
+  - component: {fileID: 3564533800523141632}
+  - component: {fileID: 1874912936985988720}
   m_Layer: 0
-  m_Name: RPG_Proyectil
+  m_Name: bala enemiga
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4296150106002249924
+--- !u!4 &2022486405397316742
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78237, y: 0, z: -14.3336}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -18.87, y: 3.73726, z: 11.40345}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5918519744163131894
+--- !u!33 &5731346983649994598
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5676290928957300450
+--- !u!23 &2518775922249906743
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5391329325976102104
+--- !u!135 &3685762800470751592
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,13 +113,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7074743712428763589
+--- !u!54 &3564533800523141632
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -140,19 +140,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6032933307001916394
+--- !u!114 &1874912936985988720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573108599505607942}
+  m_GameObject: {fileID: 8162292602104240015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f15e308174eda459ad3ab86cc23f71, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c77ccd71d523f34ba6a4f98bfded2d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPGProjectile
-  visualExplosion: {fileID: 1315864133459443833, guid: da590b30c906e594cadc5026a259a60b, type: 3}
-  duracionVisualExplosion: 0.5
-  sfxManager: {fileID: 0}
-  tiempoMaximo: 10
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile

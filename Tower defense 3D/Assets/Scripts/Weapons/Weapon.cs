@@ -21,39 +21,57 @@ public abstract class Weapon : MonoBehaviour
     protected AmmoType tipoMunicion =
         AmmoType.Pistola;
 
-    public AmmoType TipoMunicion => tipoMunicion;
+    public AmmoType TipoMunicion =>
+        tipoMunicion;
 
     [Header("Modo de Disparo")]
     [SerializeField]
     protected FireMode fireMode =
         FireMode.SemiAuto;
 
-    public FireMode FireMode => fireMode;
+    public FireMode FireMode =>
+        fireMode;
 
     [Header("Disparo")]
     public float dańo = 10f;
+
     public float tiempoEntreDisparos = 1f;
+
     public float distancia = 100f;
 
     [Header("Retroceso del jugador")]
-    [SerializeField] protected float fuerzaRetrocesoJugador = 1f;
+    [SerializeField]
+    protected float fuerzaRetrocesoJugador = 1f;
 
     [Header("Empuje al enemigo")]
-    [SerializeField] protected float fuerzaEmpujeEnemigo = 2f;
+    [SerializeField]
+    protected float fuerzaEmpujeEnemigo = 2f;
 
     [Header("Munición")]
-    [SerializeField] protected int capacidadCargador = 12;
-    [SerializeField] protected int municionInicial = 12;
-    [SerializeField] protected int reservaMaxima = 60;
-    [SerializeField] protected int municionReservaInicial = 60;
+    [SerializeField]
+    protected int capacidadCargador = 12;
+
+    [SerializeField]
+    protected int municionInicial = 12;
+
+    [SerializeField]
+    protected int reservaMaxima = 60;
+
+    [SerializeField]
+    protected int municionReservaInicial = 60;
 
     [Header("Recarga")]
-    [SerializeField] protected float tiempoRecarga = 1.5f;
+    [SerializeField]
+    protected float tiempoRecarga = 1.5f;
 
     protected Camera camara;
+
     protected float siguienteDisparo;
+
     protected int municionActual;
+
     protected int municionReserva;
+
     protected bool recargando;
 
     protected virtual void Awake()
@@ -78,6 +96,10 @@ public abstract class Weapon : MonoBehaviour
     public virtual void Disparar()
     {
     }
+
+    // =====================================================
+    // MUNICIÓN
+    // =====================================================
 
     public bool TieneMunicion()
     {
@@ -116,6 +138,10 @@ public abstract class Weapon : MonoBehaviour
         return municionReserva >
                municionAntes;
     }
+
+    // =====================================================
+    // RECARGA
+    // =====================================================
 
     public void Recargar()
     {
@@ -172,6 +198,10 @@ public abstract class Weapon : MonoBehaviour
             municionReserva
         );
     }
+
+    // =====================================================
+    // PROPIEDADES
+    // =====================================================
 
     public int MunicionActual =>
         municionActual;

@@ -35,7 +35,7 @@ public class Shotgun : HitscanWeapon
         if (enemigo == null)
             return;
 
-        // Repartimos el daño total
+        // Repartir daño total
         // entre los perdigones
         float danoPorPerdigon =
             dańo / perdigones;
@@ -50,7 +50,7 @@ public class Shotgun : HitscanWeapon
 
         if (enemyController != null)
         {
-            // También repartimos el empuje
+            // Repartir empuje
             float empujePorPerdigon =
                 fuerzaEmpujeEnemigo /
                 perdigones;

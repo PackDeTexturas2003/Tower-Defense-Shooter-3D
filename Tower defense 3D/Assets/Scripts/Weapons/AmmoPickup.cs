@@ -7,10 +7,12 @@ public class AmmoPickup : MonoBehaviour
     private AmmoType tipoMunicion =
         AmmoType.Pistola;
 
-    [SerializeField] private int cantidadMunicion = 12;
+    [SerializeField]
+    private int cantidadMunicion = 12;
 
     [Header("Audio")]
-    [SerializeField] private SFXManager sfxManager;
+    [SerializeField]
+    private SFXManager sfxManager;
 
     private void Start()
     {
@@ -21,21 +23,41 @@ public class AmmoPickup : MonoBehaviour
         }
     }
 
+    // =====================================================
+    // CONFIGURAR DROP
+    // =====================================================
+
     public void Configurar(
         AmmoType tipo,
         int cantidad)
     {
         tipoMunicion = tipo;
+
         cantidadMunicion = cantidad;
     }
 
-    private void OnTriggerEnter(Collider other)
+    // =====================================================
+    // RECOGER MUNICIÓN
+    // =====================================================
+
+    private void OnTriggerEnter(
+        Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
 
         WeaponManager weaponManager =
-            other.GetComponentInChildren<WeaponManager>();
+            other.GetComponentInChildren<
+                WeaponManager
+            >();
+
+        if (weaponManager == null)
+        {
+            weaponManager =
+                other.GetComponentInParent<
+                    WeaponManager
+                >();
+        }
 
         if (weaponManager == null)
         {
@@ -52,8 +74,6 @@ public class AmmoPickup : MonoBehaviour
                 cantidadMunicion
             );
 
-        // Si la reserva está llena,
-        // no recogemos la caja.
         if (!recogida)
         {
             Debug.Log(
@@ -65,9 +85,9 @@ public class AmmoPickup : MonoBehaviour
             return;
         }
 
-        // -----------------------------------------
+        // =================================================
         // SONIDO
-        // -----------------------------------------
+        // =================================================
 
         if (sfxManager == null)
         {

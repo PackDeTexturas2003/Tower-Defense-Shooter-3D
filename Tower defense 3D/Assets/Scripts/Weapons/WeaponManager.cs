@@ -3,19 +3,20 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [Header("Armas")]
-    [SerializeField] private Weapon[] armas;
-    [SerializeField] private int armaInicial = 0;
+    [SerializeField]
+    private Weapon[] armas;
+
+    [SerializeField]
+    private int armaInicial = 0;
 
     [Header("Audio")]
-    [SerializeField] private SFXManager sfxManager;
+    [SerializeField]
+    private SFXManager sfxManager;
 
     private Weapon armaActual;
 
     private int indiceArmaActual;
 
-    // Evita repetir continuamente el sonido
-    // de "sin munición" mientras se mantiene
-    // presionado el gatillo.
     private bool avisoSinMunicionReproducido;
 
     private void Start()
@@ -37,17 +38,18 @@ public class WeaponManager : MonoBehaviour
         CambiarArma();
 
         ManejarRecarga();
+
         ManejarDisparo();
     }
+
+    // =====================================================
+    // CAMBIO DE ARMA
+    // =====================================================
 
     private void CambiarArma()
     {
         if (armaActual.EstaRecargando)
             return;
-
-        // ========================================
-        // TECLAS 1 - 6
-        // ========================================
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             EquiparArma(0);
@@ -67,10 +69,6 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha6))
             EquiparArma(5);
 
-        // ========================================
-        // RUEDA DEL MOUSE
-        // ========================================
-
         float rueda =
             Input.mouseScrollDelta.y;
 
@@ -84,33 +82,34 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    // =====================================================
+    // CAMBIO CON RUEDA
+    // =====================================================
+
     private void CambiarArmaPorRueda(
         int direccion)
     {
         if (armas == null ||
             armas.Length == 0)
+        {
             return;
+        }
 
         int nuevoIndice =
             indiceArmaActual +
             direccion;
 
-        // Si pasamos de la última arma,
-        // volvemos a la primera.
         if (nuevoIndice >= armas.Length)
         {
             nuevoIndice = 0;
         }
 
-        // Si pasamos de la primera,
-        // vamos a la última.
         if (nuevoIndice < 0)
         {
             nuevoIndice =
                 armas.Length - 1;
         }
 
-        // Buscamos un arma válida.
         for (int i = 0;
              i < armas.Length;
              i++)
@@ -139,12 +138,21 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    // =====================================================
+    // EQUIPAR ARMA
+    // =====================================================
+
     private void EquiparArma(
         int indice)
     {
+        if (armas == null)
+            return;
+
         if (indice < 0 ||
             indice >= armas.Length)
+        {
             return;
+        }
 
         if (armas[indice] == null)
             return;
@@ -174,7 +182,8 @@ public class WeaponManager : MonoBehaviour
             true
         );
 
-        avisoSinMunicionReproducido = false;
+        avisoSinMunicionReproducido =
+            false;
 
         Debug.Log(
             "Arma equipada: " +
@@ -182,15 +191,26 @@ public class WeaponManager : MonoBehaviour
         );
     }
 
+    // =====================================================
+    // OBTENER ARMA ACTUAL
+    // =====================================================
+
     public Weapon GetArmaActual()
     {
         return armaActual;
     }
 
+    // =====================================================
+    // AGREGAR MUNICIÓN
+    // =====================================================
+
     public bool AgregarMunicion(
         AmmoType tipoMunicion,
         int cantidad)
     {
+        if (armas == null)
+            return false;
+
         for (int i = 0;
              i < armas.Length;
              i++)
@@ -200,7 +220,9 @@ public class WeaponManager : MonoBehaviour
 
             if (armas[i].TipoMunicion !=
                 tipoMunicion)
+            {
                 continue;
+            }
 
             bool agregada =
                 armas[i].AgregarMunicion(
@@ -219,12 +241,18 @@ public class WeaponManager : MonoBehaviour
         return false;
     }
 
+    // =====================================================
+    // DISPARO
+    // =====================================================
+
     private void ManejarDisparo()
     {
         switch (armaActual.FireMode)
         {
             case FireMode.SemiAuto:
+
             case FireMode.Pump:
+
             case FireMode.Bolt:
 
                 if (Input.GetMouseButtonDown(0))
@@ -301,6 +329,10 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    // =====================================================
+    // RECARGA
+    // =====================================================
+
     private void ManejarRecarga()
     {
         if (!Input.GetKeyDown(KeyCode.R))
@@ -311,7 +343,9 @@ public class WeaponManager : MonoBehaviour
 
         if (armaActual.MunicionActual >=
             armaActual.CapacidadCargador)
+        {
             return;
+        }
 
         if (armaActual.MunicionReserva <= 0)
             return;
