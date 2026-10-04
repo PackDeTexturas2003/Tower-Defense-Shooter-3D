@@ -475,7 +475,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1308598688}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GamePhaseManager, Assembly-CSharp
         m_MethodName: ConfirmarPlanificacion
         m_Mode: 1
@@ -2942,13 +2942,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseManager
   camaraPlanificacion: {fileID: 28860827}
   camaraFPS: {fileID: 330585543}
-  movimiento: {fileID: 2116711667}
-  esquive: {fileID: 2116711673}
-  salto: {fileID: 2116711674}
-  mouseLook: {fileID: 0}
-  weaponManager: {fileID: 0}
-  cameraEffects: {fileID: 0}
   colocacionTorretas: {fileID: 206853867}
+  waveManager: {fileID: 1627921631}
+  botonContinuar: {fileID: 165343905}
 --- !u!4 &1308598689
 Transform:
   m_ObjectHideFlags: 0

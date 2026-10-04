@@ -28,14 +28,10 @@ public class WaveManager : MonoBehaviour
 
     private int spawnersTerminados;
 
-    // Enemigos que deben eliminarse para considerar
-    // completada la horda actual.
     private int enemigosGeneradosActual;
 
     private int enemigosMuertosActual;
 
-    // Todos los enemigos vivos del escenario,
-    // incluyendo sobrevivientes de hordas anteriores.
     private int enemigosVivosTotal;
 
     private float tiempoInicio;
@@ -46,9 +42,7 @@ public class WaveManager : MonoBehaviour
     private bool todasLasOleadasGeneradas;
     private bool juegoGanado;
 
-    // =========================================
-    // PROPIEDADES
-    // =========================================
+    private bool juegoIniciado;
 
     public int OleadaActual
     {
@@ -80,8 +74,6 @@ public class WaveManager : MonoBehaviour
     {
         get
         {
-            // Ahora muestra TODOS los enemigos vivos,
-            // incluyendo sobrevivientes de hordas anteriores.
             return Mathf.Max(
                 0,
                 enemigosVivosTotal
@@ -138,24 +130,15 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    // =========================================
-    // INICIO
-    // =========================================
-
-    private void Start()
-    {
-        StartCoroutine(
-            Inicio()
-        );
-    }
-
     private void Update()
     {
+        if (!juegoIniciado)
+            return;
+
         if (!oleadaActiva)
             return;
 
-        tiempoRestante -=
-            Time.deltaTime;
+        tiempoRestante -= Time.deltaTime;
 
         if (tiempoRestante <= 0f)
         {
@@ -163,6 +146,23 @@ public class WaveManager : MonoBehaviour
 
             TiempoAgotado();
         }
+    }
+
+    public void IniciarJuego()
+    {
+        if (juegoIniciado)
+            return;
+
+        juegoIniciado = true;
+
+        Debug.Log("================================");
+        Debug.Log("WAVE MANAGER INICIADO");
+        Debug.Log("Esperando " + esperaPrimeraOleada + " segundos para la primera horda.");
+        Debug.Log("================================");
+
+        StartCoroutine(
+            Inicio()
+        );
     }
 
     private IEnumerator Inicio()
@@ -182,10 +182,6 @@ public class WaveManager : MonoBehaviour
 
         IniciarSiguienteOleada();
     }
-
-    // =========================================
-    // NUEVA HORDA
-    // =========================================
 
     private void IniciarSiguienteOleada()
     {
@@ -226,24 +222,6 @@ public class WaveManager : MonoBehaviour
 
         spawnersTerminados = 0;
 
-        // =====================================
-        // IMPORTANTE
-        // =====================================
-        //
-        // Los enemigos que sobrevivieron de la
-        // horda anterior pasan a formar parte
-        // de la nueva horda.
-        //
-        // Ejemplo:
-        //
-        // Horda 1:
-        // 5 enemigos
-        // queda 1
-        //
-        // Horda 2:
-        // empieza con 1 enemigo
-        // + enemigos nuevos
-        //
         enemigosGeneradosActual =
             enemigosVivosTotal;
 
@@ -315,18 +293,11 @@ public class WaveManager : MonoBehaviour
         RevisarOleada();
     }
 
-    // =========================================
-    // REGISTRAR ENEMIGO
-    // =========================================
-
     public void RegistrarEnemigo(
         int indiceOleada)
     {
         enemigosVivosTotal++;
 
-        // Todo enemigo nuevo que aparece durante
-        // la horda actual se suma a la cantidad
-        // que debe ser eliminada.
         if (indiceOleada == oleadaActual)
         {
             enemigosGeneradosActual++;
@@ -343,10 +314,6 @@ public class WaveManager : MonoBehaviour
         );
     }
 
-    // =========================================
-    // REGISTRAR MUERTE
-    // =========================================
-
     public void RegistrarMuerteEnemigo(
         int indiceOleada)
     {
@@ -357,16 +324,6 @@ public class WaveManager : MonoBehaviour
             enemigosVivosTotal = 0;
         }
 
-        // =====================================
-        // IMPORTANTE
-        // =====================================
-        //
-        // Ya no comprobamos que el enemigo
-        // pertenezca a la oleada actual.
-        //
-        // Esto permite que un sobreviviente de
-        // la horda anterior cuente al morir.
-        //
         if (oleadaActiva)
         {
             enemigosMuertosActual++;
@@ -397,10 +354,6 @@ public class WaveManager : MonoBehaviour
         ComprobarFinalDelJuego();
     }
 
-    // =========================================
-    // SPAWNER TERMINÓ
-    // =========================================
-
     public void GeneradorTermino(
         int indiceOleada)
     {
@@ -419,10 +372,6 @@ public class WaveManager : MonoBehaviour
         RevisarOleada();
     }
 
-    // =========================================
-    // REVISAR HORDA
-    // =========================================
-
     private void RevisarOleada()
     {
         if (!oleadaActiva)
@@ -434,9 +383,6 @@ public class WaveManager : MonoBehaviour
         if (spawnersTerminados < spawners.Length)
             return;
 
-        // Si no existen enemigos vivos y no se
-        // generaron enemigos en esta horda,
-        // la horda se considera completada.
         if (enemigosGeneradosActual == 0)
         {
             Debug.Log(
@@ -458,10 +404,6 @@ public class WaveManager : MonoBehaviour
             OleadaCompletada();
         }
     }
-
-    // =========================================
-    // HORDA COMPLETADA
-    // =========================================
 
     private void OleadaCompletada()
     {
@@ -498,10 +440,6 @@ public class WaveManager : MonoBehaviour
             espera
         );
     }
-
-    // =========================================
-    // TIEMPO AGOTADO
-    // =========================================
 
     private void TiempoAgotado()
     {
@@ -540,10 +478,6 @@ public class WaveManager : MonoBehaviour
         );
     }
 
-    // =========================================
-    // ESPERAR SIGUIENTE HORDA
-    // =========================================
-
     private void PrepararSiguiente(
         float tiempo)
     {
@@ -566,14 +500,8 @@ public class WaveManager : MonoBehaviour
             tiempo
         );
 
-        // Los enemigos sobrevivientes permanecen
-        // vivos y pasan a la siguiente horda.
         IniciarSiguienteOleada();
     }
-
-    // =========================================
-    // FINAL DEL JUEGO
-    // =========================================
 
     private void ComprobarFinalDelJuego()
     {

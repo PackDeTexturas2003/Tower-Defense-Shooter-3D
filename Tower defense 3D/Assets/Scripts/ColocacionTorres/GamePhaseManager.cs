@@ -1,109 +1,281 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
+[DefaultExecutionOrder(-1000)]
 public class GamePhaseManager : MonoBehaviour
 {
     [Header("Cámaras")]
     [SerializeField] private GameObject camaraPlanificacion;
     [SerializeField] private GameObject camaraFPS;
 
-    [Header("Scripts del jugador")]
-    [SerializeField] private Movimiento movimiento;
-    [SerializeField] private Esquive esquive;
-    [SerializeField] private Salto salto;
-    [SerializeField] private MouseLook mouseLook;
-    [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private CameraEffects cameraEffects;
-
     [Header("Sistema de torretas")]
     [SerializeField] private ColocacionTorretas colocacionTorretas;
 
-    private bool fasePlanificacion = true;
+    [Header("Sistema de oleadas")]
+    [SerializeField] private WaveManager waveManager;
+
+    [Header("Interfaz")]
+    [SerializeField] private GameObject botonContinuar;
+
+    private bool fasePlanificacion;
+    private bool transicionRealizada;
+
+    private float escalaTiempoOriginal;
 
     private void Start()
     {
+        escalaTiempoOriginal = Time.timeScale;
+
+        ConfigurarBotonContinuar();
         IniciarPlanificacion();
+    }
+
+    private void ConfigurarBotonContinuar()
+    {
+        if (botonContinuar == null)
+        {
+            Debug.LogError("GamePhaseManager: No se asignó el botón Continuar.");
+            return;
+        }
+
+        Button boton = botonContinuar.GetComponent<Button>();
+
+        if (boton == null)
+        {
+            Debug.LogError("GamePhaseManager: El objeto asignado como botón Continuar no tiene un componente Button.");
+            return;
+        }
+
+        boton.onClick.AddListener(ConfirmarPlanificacion);
     }
 
     private void IniciarPlanificacion()
     {
         fasePlanificacion = true;
+        transicionRealizada = false;
 
-        // Activar cámara de planificación
-        if (camaraPlanificacion != null)
-            camaraPlanificacion.SetActive(true);
+        Time.timeScale = 0f;
 
-        // Desactivar cámara FPS
+        ActivarCamaraPlanificacion();
+
+        CongelarGameplay();
+
+        if (colocacionTorretas != null)
+        {
+            colocacionTorretas.enabled = true;
+            colocacionTorretas.IniciarColocacion();
+        }
+
+        if (botonContinuar != null)
+            botonContinuar.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Debug.Log("GamePhaseManager: Fase de planificación iniciada.");
+    }
+
+    private void ActivarCamaraPlanificacion()
+    {
         if (camaraFPS != null)
             camaraFPS.SetActive(false);
 
-        // Desactivar controles del jugador
-        if (movimiento != null)
-            movimiento.enabled = false;
+        if (camaraPlanificacion != null)
+            camaraPlanificacion.SetActive(true);
+    }
 
-        if (esquive != null)
-            esquive.enabled = false;
+    private void CongelarGameplay()
+    {
+        MonoBehaviour[] scripts = FindObjectsByType<MonoBehaviour>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
 
-        if (salto != null)
-            salto.enabled = false;
+        int cantidadCongelada = 0;
 
-        if (mouseLook != null)
-            mouseLook.enabled = false;
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script == null)
+                continue;
 
-        if (weaponManager != null)
-            weaponManager.enabled = false;
+            if (!script.enabled)
+                continue;
 
-        if (cameraEffects != null)
-            cameraEffects.enabled = false;
+            if (DebePermanecerActivoDurantePlanificacion(script))
+                continue;
 
-        // Mostrar cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            script.enabled = false;
+            cantidadCongelada++;
+        }
+
+        Debug.Log(
+            "GamePhaseManager: Se desactivaron " +
+            cantidadCongelada +
+            " scripts para la planificación."
+        );
+    }
+
+    private bool DebePermanecerActivoDurantePlanificacion(MonoBehaviour script)
+    {
+        if (script == this)
+            return true;
+
+        if (script == colocacionTorretas)
+            return true;
+
+        if (script is EventSystem)
+            return true;
+
+        if (script is BaseInputModule)
+            return true;
+
+        if (script is GraphicRaycaster)
+            return true;
+
+        if (script is Selectable)
+            return true;
+
+        if (botonContinuar != null)
+        {
+            Transform transformScript = script.transform;
+            Transform transformBoton = botonContinuar.transform;
+
+            if (transformScript == transformBoton)
+                return true;
+
+            if (transformScript.IsChildOf(transformBoton))
+                return true;
+        }
+
+        return false;
     }
 
     public void ConfirmarPlanificacion()
     {
-        if (!fasePlanificacion)
-            return;
+        Debug.Log("GamePhaseManager: Se recibió el clic de Continuar.");
 
+        if (!fasePlanificacion)
+        {
+            Debug.LogWarning("GamePhaseManager: La fase de planificación ya terminó.");
+            return;
+        }
+
+        if (transicionRealizada)
+        {
+            Debug.LogWarning("GamePhaseManager: La transición ya fue realizada.");
+            return;
+        }
+
+        transicionRealizada = true;
         fasePlanificacion = false;
 
-        // Detener colocación de torretas
-        if (colocacionTorretas != null)
-            colocacionTorretas.DetenerColocacion();
+        DetenerColocacion();
 
-        // Desactivar cámara de planificación
+        if (botonContinuar != null)
+            botonContinuar.SetActive(false);
+
+        CambiarACamaraFPS();
+
+        Time.timeScale = escalaTiempoOriginal;
+
+        ReactivarGameplay();
+
+        IniciarOleadas();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Debug.Log("GamePhaseManager: Fase de combate iniciada.");
+    }
+
+    private void DetenerColocacion()
+    {
+        if (colocacionTorretas == null)
+            return;
+
+        colocacionTorretas.DetenerColocacion();
+        colocacionTorretas.enabled = false;
+    }
+
+    private void CambiarACamaraFPS()
+    {
         if (camaraPlanificacion != null)
             camaraPlanificacion.SetActive(false);
 
-        // Activar cámara FPS
         if (camaraFPS != null)
             camaraFPS.SetActive(true);
+    }
 
-        // Activar controles del jugador
-        if (movimiento != null)
-            movimiento.enabled = true;
+    private void ReactivarGameplay()
+    {
+        MonoBehaviour[] scripts = FindObjectsByType<MonoBehaviour>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
 
-        if (esquive != null)
-            esquive.enabled = true;
+        int cantidadReactivada = 0;
 
-        if (salto != null)
-            salto.enabled = true;
-
-        if (mouseLook != null)
-            mouseLook.enabled = true;
-
-        if (weaponManager != null)
-            weaponManager.enabled = true;
-
-        if (cameraEffects != null)
+        foreach (MonoBehaviour script in scripts)
         {
-            cameraEffects.enabled = true;
-            cameraEffects.ReiniciarRecoil();
+            if (script == null)
+                continue;
+
+            if (script == this)
+                continue;
+
+            if (script == colocacionTorretas)
+                continue;
+
+            if (script is EventSystem)
+                continue;
+
+            if (script is BaseInputModule)
+                continue;
+
+            if (script is GraphicRaycaster)
+                continue;
+
+            if (script is Selectable)
+                continue;
+
+            if (botonContinuar != null)
+            {
+                Transform transformScript = script.transform;
+                Transform transformBoton = botonContinuar.transform;
+
+                if (transformScript == transformBoton)
+                    continue;
+
+                if (transformScript.IsChildOf(transformBoton))
+                    continue;
+            }
+
+            if (!script.enabled)
+            {
+                script.enabled = true;
+                cantidadReactivada++;
+            }
         }
 
-        // Ocultar y bloquear cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Debug.Log(
+            "GamePhaseManager: Se reactivaron " +
+            cantidadReactivada +
+            " scripts para la fase de combate."
+        );
+    }
+
+    private void IniciarOleadas()
+    {
+        if (waveManager == null)
+        {
+            Debug.LogError("GamePhaseManager: No se asignó el WaveManager.");
+            return;
+        }
+
+        waveManager.IniciarJuego();
+
+        Debug.Log("GamePhaseManager: Oleadas iniciadas.");
     }
 
     private void LateUpdate()
@@ -111,8 +283,12 @@ public class GamePhaseManager : MonoBehaviour
         if (!fasePlanificacion)
             return;
 
-        // Mantener cursor libre durante planificación
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = escalaTiempoOriginal;
     }
 }

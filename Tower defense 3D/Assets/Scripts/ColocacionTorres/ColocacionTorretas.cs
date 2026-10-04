@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class ColocacionTorretas : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ColocacionTorretas : MonoBehaviour
     [SerializeField] private Camera camaraPlanificacion;
     [SerializeField] private LayerMask capaSuelo;
 
-    private bool puedeColocar = true;
+    private bool puedeColocar;
 
     private void Update()
     {
@@ -23,11 +24,16 @@ public class ColocacionTorretas : MonoBehaviour
         if (camaraPlanificacion == null)
             return;
 
-        // Clic izquierdo del mouse
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (!Mouse.current.leftButton.wasPressedThisFrame)
+            return;
+
+        if (EventSystem.current != null &&
+            EventSystem.current.IsPointerOverGameObject())
         {
-            ColocarTorre();
+            return;
         }
+
+        ColocarTorre();
     }
 
     private void ColocarTorre()
@@ -38,15 +44,20 @@ public class ColocacionTorretas : MonoBehaviour
 
         if (Physics.Raycast(rayo, out RaycastHit impacto, 1000f, capaSuelo))
         {
-            if (prefabTorre != null)
-            {
-                Instantiate(
-                    prefabTorre,
-                    impacto.point,
-                    Quaternion.identity
-                );
-            }
+            if (prefabTorre == null)
+                return;
+
+            Instantiate(
+                prefabTorre,
+                impacto.point,
+                Quaternion.identity
+            );
         }
+    }
+
+    public void IniciarColocacion()
+    {
+        puedeColocar = true;
     }
 
     public void DetenerColocacion()
