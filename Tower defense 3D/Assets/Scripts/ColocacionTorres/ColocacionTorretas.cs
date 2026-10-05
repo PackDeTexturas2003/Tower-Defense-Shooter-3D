@@ -4,8 +4,10 @@ using UnityEngine.EventSystems;
 
 public class ColocacionTorretas : MonoBehaviour
 {
-    [Header("Torre")]
-    [SerializeField] private GameObject prefabTorre;
+    [Header("Torres")]
+    [SerializeField] private GameObject[] prefabsTorres;
+
+    [SerializeField] private int indiceTorreSeleccionada = 0;
 
     [Header("Configuración")]
     [SerializeField] private Camera camaraPlanificacion;
@@ -44,11 +46,26 @@ public class ColocacionTorretas : MonoBehaviour
 
         if (Physics.Raycast(rayo, out RaycastHit impacto, 1000f, capaSuelo))
         {
-            if (prefabTorre == null)
+            if (prefabsTorres == null ||
+                prefabsTorres.Length == 0)
+            {
+                return;
+            }
+
+            if (indiceTorreSeleccionada < 0 ||
+                indiceTorreSeleccionada >= prefabsTorres.Length)
+            {
+                return;
+            }
+
+            GameObject prefabSeleccionado =
+                prefabsTorres[indiceTorreSeleccionada];
+
+            if (prefabSeleccionado == null)
                 return;
 
             Instantiate(
-                prefabTorre,
+                prefabSeleccionado,
                 impacto.point,
                 Quaternion.identity
             );
@@ -63,5 +80,22 @@ public class ColocacionTorretas : MonoBehaviour
     public void DetenerColocacion()
     {
         puedeColocar = false;
+    }
+
+    public void SeleccionarTorre(int indice)
+    {
+        if (prefabsTorres == null ||
+            prefabsTorres.Length == 0)
+        {
+            return;
+        }
+
+        if (indice < 0 ||
+            indice >= prefabsTorres.Length)
+        {
+            return;
+        }
+
+        indiceTorreSeleccionada = indice;
     }
 }

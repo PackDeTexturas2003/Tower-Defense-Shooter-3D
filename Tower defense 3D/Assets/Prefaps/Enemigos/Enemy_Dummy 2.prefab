@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3395478536732469088}
   m_Layer: 0
   m_Name: Enemy_Dummy 2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,8 +153,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   data: {fileID: 11400000, guid: b980deeb7e0c44846b9df6e7f9cf8292, type: 2}
+  tipoAtaque: 0
   tipoObjetivo: 0
   objetivo: {fileID: 0}
+  radioDeteccionJugador: 12
+  proyectilPrefab: {fileID: 0}
+  puntoDisparo: {fileID: 0}
+  radioDisparo: 10
+  velocidadProyectil: 18
+  danoProyectil: 10
+  tiempoEntreDisparos: 2
+  velocidadRotacion: 8
+  precisionParaDisparar: 0.9
+  tiempoVidaProyectil: 5
 --- !u!143 &7498611705232258914
 CharacterController:
   m_ObjectHideFlags: 0

@@ -554,7 +554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953c35b887f00ad4b923be43ccd6c882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColocacionTorretas
-  prefabTorre: {fileID: 1301285936691924948, guid: 95501147694fc9947825b192e442a712, type: 3}
+  prefabsTorres:
+  - {fileID: 1993637159303895854, guid: e6769b4d844792740a9fac49f250c065, type: 3}
+  - {fileID: 5411769711688448301, guid: ce9f80b74a600014dac41b9788a1b2ac, type: 3}
+  indiceTorreSeleccionada: 0
   camaraPlanificacion: {fileID: 28860828}
   capaSuelo:
     serializedVersion: 2
@@ -1045,9 +1048,9 @@ MonoBehaviour:
   recargaSniper: {fileID: 0}
   recargaRPG: {fileID: 0}
   sinMunicion: {fileID: 8300000, guid: 396bafd7fc0a1d248aab71c98b18d409, type: 3}
-  impactoEnemigo: {fileID: 0}
-  golpeJugador: {fileID: 0}
-  recogerMunicion: {fileID: 0}
+  impactoEnemigo: {fileID: 8300000, guid: 7af6f3f38de891644aed578ccc0f14fd, type: 3}
+  golpeJugador: {fileID: 8300000, guid: 52b95088fd9a20e46a04d5b92fe57169, type: 3}
+  recogerMunicion: {fileID: 8300000, guid: 98ffe1ff2ce86a54c8faa3027fc6e243, type: 3}
   explosionRPG: {fileID: 0}
   volumen: 1
   volumenImpactoEnemigo: 1.5
