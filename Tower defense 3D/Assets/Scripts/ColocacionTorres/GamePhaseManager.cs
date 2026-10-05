@@ -18,6 +18,9 @@ public class GamePhaseManager : MonoBehaviour
     [Header("Interfaz")]
     [SerializeField] private GameObject botonContinuar;
 
+    [Header("Imágenes de selección de torres")]
+    [SerializeField] private Image[] imagenesTorres;
+
     private bool fasePlanificacion;
     private bool transicionRealizada;
 
@@ -146,6 +149,23 @@ public class GamePhaseManager : MonoBehaviour
 
             if (transformScript.IsChildOf(transformBoton))
                 return true;
+        }
+
+        if (imagenesTorres != null)
+        {
+            for (int i = 0; i < imagenesTorres.Length; i++)
+            {
+                if (imagenesTorres[i] == null)
+                    continue;
+
+                Transform transformImagen = imagenesTorres[i].transform;
+
+                if (script.transform == transformImagen)
+                    return true;
+
+                if (script.transform.IsChildOf(transformImagen))
+                    return true;
+            }
         }
 
         return false;

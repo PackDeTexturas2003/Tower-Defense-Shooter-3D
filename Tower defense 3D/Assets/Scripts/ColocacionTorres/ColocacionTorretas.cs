@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ColocacionTorretas : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class ColocacionTorretas : MonoBehaviour
     [SerializeField] private GameObject[] prefabsTorres;
 
     [SerializeField] private int indiceTorreSeleccionada = 0;
+
+    [Header("Imágenes de selección")]
+    [SerializeField] private Image[] imagenesTorres;
 
     [Header("Configuración")]
     [SerializeField] private Camera camaraPlanificacion;
@@ -29,6 +33,9 @@ public class ColocacionTorretas : MonoBehaviour
         if (!Mouse.current.leftButton.wasPressedThisFrame)
             return;
 
+        if (SeleccionarTorreDesdeUI())
+            return;
+
         if (EventSystem.current != null &&
             EventSystem.current.IsPointerOverGameObject())
         {
@@ -36,6 +43,47 @@ public class ColocacionTorretas : MonoBehaviour
         }
 
         ColocarTorre();
+    }
+
+    private bool SeleccionarTorreDesdeUI()
+    {
+        if (imagenesTorres == null ||
+            imagenesTorres.Length == 0)
+        {
+            return false;
+        }
+
+        Vector2 posicionMouse = Mouse.current.position.ReadValue();
+
+        PointerEventData evento =
+            new PointerEventData(EventSystem.current);
+
+        evento.position = posicionMouse;
+
+        System.Collections.Generic.List<RaycastResult> resultados =
+            new System.Collections.Generic.List<RaycastResult>();
+
+        EventSystem.current.RaycastAll(evento, resultados);
+
+        for (int i = 0; i < resultados.Count; i++)
+        {
+            GameObject objetoImpactado = resultados[i].gameObject;
+
+            for (int j = 0; j < imagenesTorres.Length; j++)
+            {
+                if (imagenesTorres[j] == null)
+                    continue;
+
+                if (objetoImpactado == imagenesTorres[j].gameObject ||
+                    objetoImpactado.transform.IsChildOf(imagenesTorres[j].transform))
+                {
+                    SeleccionarTorre(j);
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private void ColocarTorre()
@@ -97,5 +145,10 @@ public class ColocacionTorretas : MonoBehaviour
         }
 
         indiceTorreSeleccionada = indice;
+
+        Debug.Log(
+            "Torre seleccionada: " +
+            indiceTorreSeleccionada
+        );
     }
 }
