@@ -143,6 +143,7 @@ MonoBehaviour:
   - tipoMunicion: 2
     probabilidad: 40
     prefab: {fileID: 2254340649296830931, guid: 54b7f037e49d4884d8a257ce7d33bdd1, type: 3}
+  dineroAlMorir: 25
 --- !u!114 &614390505775713585
 MonoBehaviour:
   m_ObjectHideFlags: 0

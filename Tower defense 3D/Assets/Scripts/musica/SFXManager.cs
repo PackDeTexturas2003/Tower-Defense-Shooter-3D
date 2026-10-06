@@ -32,6 +32,9 @@ public class SFXManager : MonoBehaviour
     [Header("Sonidos del RPG")]
     [SerializeField] private AudioClip explosionRPG;
 
+    [Header("Sonidos de interfaz")]
+    [SerializeField] private AudioClip sonidoContinuar;
+
     [Header("Configuración")]
     [Range(0f, 1f)]
     [SerializeField] private float volumen = 1f;
@@ -49,24 +52,21 @@ public class SFXManager : MonoBehaviour
     [Range(0f, 2f)]
     [SerializeField] private float volumenExplosionRPG = 1f;
 
+    [Range(0f, 2f)]
+    [SerializeField] private float volumenContinuar = 1f;
+
     private AudioSource audioSource;
 
     private void Awake()
     {
-        audioSource =
-            GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.volume = volumen;
     }
 
-    // =========================================
-    // DISPARO
-    // =========================================
-
-    public void ReproducirDisparo(
-        AmmoType tipoMunicion)
+    public void ReproducirDisparo(AmmoType tipoMunicion)
     {
         AudioClip sonido = null;
 
@@ -100,12 +100,7 @@ public class SFXManager : MonoBehaviour
         ReproducirSonido(sonido);
     }
 
-    // =========================================
-    // RECARGA
-    // =========================================
-
-    public void ReproducirRecarga(
-        AmmoType tipoMunicion)
+    public void ReproducirRecarga(AmmoType tipoMunicion)
     {
         AudioClip sonido = null;
 
@@ -139,18 +134,10 @@ public class SFXManager : MonoBehaviour
         ReproducirSonido(sonido);
     }
 
-    // =========================================
-    // SIN MUNICIÓN
-    // =========================================
-
     public void ReproducirSinMunicion()
     {
         ReproducirSonido(sinMunicion);
     }
-
-    // =========================================
-    // COMBATE
-    // =========================================
 
     public void ReproducirImpactoEnemigo()
     {
@@ -168,10 +155,6 @@ public class SFXManager : MonoBehaviour
         );
     }
 
-    // =========================================
-    // OBJETOS
-    // =========================================
-
     public void ReproducirRecogerMunicion()
     {
         ReproducirSonido(
@@ -179,10 +162,6 @@ public class SFXManager : MonoBehaviour
             volumenRecogerMunicion
         );
     }
-
-    // =========================================
-    // EXPLOSIÓN RPG
-    // =========================================
 
     public void ReproducirExplosionRPG()
     {
@@ -192,12 +171,15 @@ public class SFXManager : MonoBehaviour
         );
     }
 
-    // =========================================
-    // SONIDO NORMAL
-    // =========================================
+    public void ReproducirContinuar()
+    {
+        ReproducirSonido(
+            sonidoContinuar,
+            volumenContinuar
+        );
+    }
 
-    private void ReproducirSonido(
-        AudioClip clip)
+    private void ReproducirSonido(AudioClip clip)
     {
         if (clip == null)
             return;
@@ -208,10 +190,6 @@ public class SFXManager : MonoBehaviour
         );
     }
 
-    // =========================================
-    // SONIDO CON VOLUMEN
-    // =========================================
-
     private void ReproducirSonido(
         AudioClip clip,
         float multiplicadorVolumen)
@@ -221,22 +199,13 @@ public class SFXManager : MonoBehaviour
 
         audioSource.PlayOneShot(
             clip,
-            volumen *
-            multiplicadorVolumen
+            volumen * multiplicadorVolumen
         );
     }
 
-    // =========================================
-    // CAMBIAR VOLUMEN
-    // =========================================
-
-    public void CambiarVolumen(
-        float nuevoVolumen)
+    public void CambiarVolumen(float nuevoVolumen)
     {
-        volumen =
-            Mathf.Clamp01(nuevoVolumen);
-
-        audioSource.volume =
-            volumen;
+        volumen = Mathf.Clamp01(nuevoVolumen);
+        audioSource.volume = volumen;
     }
 }

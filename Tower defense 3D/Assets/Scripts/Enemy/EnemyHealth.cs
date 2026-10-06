@@ -17,6 +17,9 @@ public class EnemyHealth : Health
     [Header("Drops de Munición")]
     [SerializeField] private AmmoDrop[] dropsMunicion;
 
+    [Header("Recompensa de dinero")]
+    [SerializeField] private int dineroAlMorir = 50;
+
     private Color[] coloresOriginales;
     private Coroutine efectoDanio;
 
@@ -52,10 +55,6 @@ public class EnemyHealth : Health
         }
     }
 
-    // =========================================
-    // RECIBIR DAÑO
-    // =========================================
-
     public override void RecibirDanio(float cantidad)
     {
         if (yaMurio)
@@ -82,10 +81,6 @@ public class EnemyHealth : Health
                 StartCoroutine(EfectoDanio());
         }
     }
-
-    // =========================================
-    // EFECTO DE DAÑO
-    // =========================================
 
     private IEnumerator EfectoDanio()
     {
@@ -118,10 +113,6 @@ public class EnemyHealth : Health
         efectoDanio = null;
     }
 
-    // =========================================
-    // MORIR
-    // =========================================
-
     protected override void Morir()
     {
         if (yaMurio)
@@ -133,6 +124,7 @@ public class EnemyHealth : Health
             $"{gameObject.name} ha muerto."
         );
 
+        DarRecompensaDinero();
         GenerarDropMunicion();
 
         EnemyController enemyController =
@@ -162,9 +154,32 @@ public class EnemyHealth : Health
         );
     }
 
-    // =========================================
-    // ANIMACIÓN DE MUERTE
-    // =========================================
+    private void DarRecompensaDinero()
+    {
+        if (dineroAlMorir <= 0)
+            return;
+
+        DineroJugador dineroJugador =
+            FindFirstObjectByType<DineroJugador>();
+
+        if (dineroJugador == null)
+        {
+            Debug.LogWarning(
+                "EnemyHealth: No se encontró un DineroJugador en la escena."
+            );
+
+            return;
+        }
+
+        dineroJugador.AgregarDinero(
+            dineroAlMorir
+        );
+
+        Debug.Log(
+            "Recompensa por eliminar enemigo: +" +
+            dineroAlMorir
+        );
+    }
 
     private IEnumerator AnimacionMuerte()
     {
@@ -195,10 +210,6 @@ public class EnemyHealth : Health
 
         Destroy(gameObject);
     }
-
-    // =========================================
-    // GENERAR DROP
-    // =========================================
 
     private void GenerarDropMunicion()
     {
@@ -273,10 +284,6 @@ public class EnemyHealth : Health
         }
     }
 }
-
-// =============================================
-// CONFIGURACIÓN DEL DROP
-// =============================================
 
 [System.Serializable]
 public class AmmoDrop

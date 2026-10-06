@@ -8,10 +8,15 @@ public class ColocacionTorretas : MonoBehaviour
     [Header("Torres")]
     [SerializeField] private GameObject[] prefabsTorres;
 
+    [SerializeField] private int[] preciosTorres;
+
     [SerializeField] private int indiceTorreSeleccionada = 0;
 
     [Header("Imágenes de selección")]
     [SerializeField] private Image[] imagenesTorres;
+
+    [Header("Dinero")]
+    [SerializeField] private DineroJugador dineroJugador;
 
     [Header("Configuración")]
     [SerializeField] private Camera camaraPlanificacion;
@@ -67,7 +72,8 @@ public class ColocacionTorretas : MonoBehaviour
 
         for (int i = 0; i < resultados.Count; i++)
         {
-            GameObject objetoImpactado = resultados[i].gameObject;
+            GameObject objetoImpactado =
+                resultados[i].gameObject;
 
             for (int j = 0; j < imagenesTorres.Length; j++)
             {
@@ -75,7 +81,8 @@ public class ColocacionTorretas : MonoBehaviour
                     continue;
 
                 if (objetoImpactado == imagenesTorres[j].gameObject ||
-                    objetoImpactado.transform.IsChildOf(imagenesTorres[j].transform))
+                    objetoImpactado.transform.IsChildOf(
+                        imagenesTorres[j].transform))
                 {
                     SeleccionarTorre(j);
                     return true;
@@ -88,36 +95,93 @@ public class ColocacionTorretas : MonoBehaviour
 
     private void ColocarTorre()
     {
-        Vector2 posicionMouse = Mouse.current.position.ReadValue();
+        Vector2 posicionMouse =
+            Mouse.current.position.ReadValue();
 
-        Ray rayo = camaraPlanificacion.ScreenPointToRay(posicionMouse);
-
-        if (Physics.Raycast(rayo, out RaycastHit impacto, 1000f, capaSuelo))
-        {
-            if (prefabsTorres == null ||
-                prefabsTorres.Length == 0)
-            {
-                return;
-            }
-
-            if (indiceTorreSeleccionada < 0 ||
-                indiceTorreSeleccionada >= prefabsTorres.Length)
-            {
-                return;
-            }
-
-            GameObject prefabSeleccionado =
-                prefabsTorres[indiceTorreSeleccionada];
-
-            if (prefabSeleccionado == null)
-                return;
-
-            Instantiate(
-                prefabSeleccionado,
-                impacto.point,
-                Quaternion.identity
+        Ray rayo =
+            camaraPlanificacion.ScreenPointToRay(
+                posicionMouse
             );
+
+        if (!Physics.Raycast(
+            rayo,
+            out RaycastHit impacto,
+            1000f,
+            capaSuelo))
+        {
+            return;
         }
+
+        if (prefabsTorres == null ||
+            prefabsTorres.Length == 0)
+        {
+            return;
+        }
+
+        if (indiceTorreSeleccionada < 0 ||
+            indiceTorreSeleccionada >= prefabsTorres.Length)
+        {
+            return;
+        }
+
+        GameObject prefabSeleccionado =
+            prefabsTorres[indiceTorreSeleccionada];
+
+        if (prefabSeleccionado == null)
+            return;
+
+        int precio = ObtenerPrecioTorre(
+            indiceTorreSeleccionada
+        );
+
+        if (dineroJugador == null)
+        {
+            Debug.LogWarning(
+                "ColocacionTorretas: No se asignó DineroJugador."
+            );
+
+            return;
+        }
+
+        if (!dineroJugador.TieneDinero(precio))
+        {
+            Debug.Log(
+                "No tienes suficiente dinero para comprar esta torre. " +
+                "Precio: " + precio +
+                " | Dinero actual: " +
+                dineroJugador.ObtenerDinero()
+            );
+
+            return;
+        }
+
+        if (!dineroJugador.GastarDinero(precio))
+            return;
+
+        Instantiate(
+            prefabSeleccionado,
+            impacto.point,
+            Quaternion.identity
+        );
+
+        Debug.Log(
+            "Torre colocada. Precio: " + precio
+        );
+    }
+
+    private int ObtenerPrecioTorre(int indice)
+    {
+        if (preciosTorres == null ||
+            indice < 0 ||
+            indice >= preciosTorres.Length)
+        {
+            return 0;
+        }
+
+        return Mathf.Max(
+            0,
+            preciosTorres[indice]
+        );
     }
 
     public void IniciarColocacion()
