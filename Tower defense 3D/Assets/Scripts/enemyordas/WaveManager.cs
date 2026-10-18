@@ -24,6 +24,10 @@ public class WaveManager : MonoBehaviour
     [Header("Inicio")]
     [SerializeField] private float esperaPrimeraOleada = 2f;
 
+    [Header("Victoria")]
+    [SerializeField] private PanelVictoriaManager panelVictoria;
+    [SerializeField, Min(0f)] private float esperaAntesDeMostrarVictoria = 2.5f;
+
     private int oleadaActual = -1;
 
     private int spawnersTerminados;
@@ -535,5 +539,26 @@ public class WaveManager : MonoBehaviour
         Debug.Log(
             "================================"
         );
+
+        StartCoroutine(MostrarVictoriaConRetraso());
+    }
+
+    private IEnumerator MostrarVictoriaConRetraso()
+    {
+        yield return new WaitForSecondsRealtime(
+            esperaAntesDeMostrarVictoria
+        );
+
+        if (panelVictoria != null)
+        {
+            panelVictoria.MostrarPanelVictoria();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "WaveManager: No se asignó el PanelVictoriaManager. " +
+                "La victoria se detectó, pero no se puede mostrar el panel."
+            );
+        }
     }
 }
