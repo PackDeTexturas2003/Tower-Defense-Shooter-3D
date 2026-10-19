@@ -12,10 +12,12 @@ public class GamePhaseManager : MonoBehaviour
 
     [Header("Sistema de torretas")]
     [SerializeField] private ColocacionTorretas colocacionTorretas;
-    [SerializeField] private EstadisticasTorretaUI estadisticasTorretaUI;
 
     [Header("Sistema de oleadas")]
     [SerializeField] private WaveManager waveManager;
+
+    [Header("Indicadores de aparición enemiga")]
+    [SerializeField] private IndicadorPuntoSpawn[] indicadoresPuntosSpawn;
 
     [Header("Música de planificación")]
     [SerializeField] private AudioSource audioPlanificacion;
@@ -40,7 +42,6 @@ public class GamePhaseManager : MonoBehaviour
 
     private bool fasePlanificacion;
     private bool transicionRealizada;
-
     private float escalaTiempoOriginal;
 
     private void Start()
@@ -78,8 +79,7 @@ public class GamePhaseManager : MonoBehaviour
         if (boton == null)
         {
             Debug.LogError(
-                "GamePhaseManager: El objeto asignado como botón " +
-                "Continuar no tiene un componente Button."
+                "GamePhaseManager: El objeto asignado como botón Continuar no tiene un componente Button."
             );
             return;
         }
@@ -99,14 +99,14 @@ public class GamePhaseManager : MonoBehaviour
 
         CongelarGameplay();
 
+        // Mostrar los indicadores de aparición durante la planificación.
+        MostrarIndicadoresSpawn();
+
         if (colocacionTorretas != null)
         {
             colocacionTorretas.enabled = true;
             colocacionTorretas.IniciarColocacion();
         }
-
-        if (estadisticasTorretaUI != null)
-            estadisticasTorretaUI.enabled = true;
 
         if (botonContinuar != null)
             botonContinuar.SetActive(true);
@@ -119,6 +119,35 @@ public class GamePhaseManager : MonoBehaviour
         Debug.Log(
             "GamePhaseManager: Fase de planificación iniciada."
         );
+    }
+
+    private void MostrarIndicadoresSpawn()
+    {
+        if (indicadoresPuntosSpawn == null)
+            return;
+
+        foreach (IndicadorPuntoSpawn indicador in indicadoresPuntosSpawn)
+        {
+            if (indicador == null)
+                continue;
+
+            indicador.enabled = true;
+            indicador.MostrarIndicador();
+        }
+    }
+
+    private void OcultarIndicadoresSpawn()
+    {
+        if (indicadoresPuntosSpawn == null)
+            return;
+
+        foreach (IndicadorPuntoSpawn indicador in indicadoresPuntosSpawn)
+        {
+            if (indicador == null)
+                continue;
+
+            indicador.OcultarIndicador();
+        }
     }
 
     private void ReproducirMusicaPlanificacion()
@@ -134,8 +163,7 @@ public class GamePhaseManager : MonoBehaviour
         if (audioPlanificacion.clip == null)
         {
             Debug.LogWarning(
-                "GamePhaseManager: El AudioSource de planificación " +
-                "no tiene un AudioClip."
+                "GamePhaseManager: El AudioSource de planificación no tiene un AudioClip."
             );
             return;
         }
@@ -145,10 +173,8 @@ public class GamePhaseManager : MonoBehaviour
 
     private void DetenerMusicaPlanificacion()
     {
-        if (audioPlanificacion == null)
-            return;
-
-        audioPlanificacion.Stop();
+        if (audioPlanificacion != null)
+            audioPlanificacion.Stop();
     }
 
     private void ActivarCamaraPlanificacion()
@@ -183,10 +209,8 @@ public class GamePhaseManager : MonoBehaviour
 
         for (int i = 0; i < elementos.Length; i++)
         {
-            if (elementos[i] == null)
-                continue;
-
-            elementos[i].SetActive(estado);
+            if (elementos[i] != null)
+                elementos[i].SetActive(estado);
         }
     }
 
@@ -201,10 +225,7 @@ public class GamePhaseManager : MonoBehaviour
 
         foreach (MonoBehaviour script in scripts)
         {
-            if (script == null)
-                continue;
-
-            if (!script.enabled)
+            if (script == null || !script.enabled)
                 continue;
 
             if (DebePermanecerActivoDurantePlanificacion(script))
@@ -230,7 +251,7 @@ public class GamePhaseManager : MonoBehaviour
         if (script == colocacionTorretas)
             return true;
 
-        if (script == estadisticasTorretaUI)
+        if (script is IndicadorPuntoSpawn)
             return true;
 
         if (script is EventSystem)
@@ -253,10 +274,8 @@ public class GamePhaseManager : MonoBehaviour
             Transform transformScript = script.transform;
             Transform transformBoton = botonContinuar.transform;
 
-            if (transformScript == transformBoton)
-                return true;
-
-            if (transformScript.IsChildOf(transformBoton))
+            if (transformScript == transformBoton ||
+                transformScript.IsChildOf(transformBoton))
                 return true;
         }
 
@@ -267,12 +286,11 @@ public class GamePhaseManager : MonoBehaviour
                 if (imagenesTorres[i] == null)
                     continue;
 
-                Transform transformImagen = imagenesTorres[i].transform;
+                Transform transformImagen =
+                    imagenesTorres[i].transform;
 
-                if (script.transform == transformImagen)
-                    return true;
-
-                if (script.transform.IsChildOf(transformImagen))
+                if (script.transform == transformImagen ||
+                    script.transform.IsChildOf(transformImagen))
                     return true;
             }
         }
@@ -290,14 +308,10 @@ public class GamePhaseManager : MonoBehaviour
             if (elementosHUDCompartido[i] == null)
                 continue;
 
-            if (objeto == elementosHUDCompartido[i])
+            if (objeto == elementosHUDCompartido[i] ||
+                objeto.transform.IsChildOf(
+                    elementosHUDCompartido[i].transform))
                 return true;
-
-            if (objeto.transform.IsChildOf(
-                elementosHUDCompartido[i].transform))
-            {
-                return true;
-            }
         }
 
         return false;
@@ -309,18 +323,10 @@ public class GamePhaseManager : MonoBehaviour
             "GamePhaseManager: Se recibió el clic de Continuar."
         );
 
-        if (!fasePlanificacion)
+        if (!fasePlanificacion || transicionRealizada)
         {
             Debug.LogWarning(
-                "GamePhaseManager: La fase de planificación ya terminó."
-            );
-            return;
-        }
-
-        if (transicionRealizada)
-        {
-            Debug.LogWarning(
-                "GamePhaseManager: La transición ya fue realizada."
+                "GamePhaseManager: La planificación ya terminó o la transición ya se realizó."
             );
             return;
         }
@@ -330,6 +336,9 @@ public class GamePhaseManager : MonoBehaviour
 
         if (sfxManager != null)
             sfxManager.ReproducirContinuar();
+
+        // Ocultar los indicadores antes de comenzar el combate.
+        OcultarIndicadoresSpawn();
 
         DetenerMusicaPlanificacion();
         DetenerColocacion();
@@ -385,22 +394,13 @@ public class GamePhaseManager : MonoBehaviour
             if (script == null)
                 continue;
 
-            if (script == this)
+            if (script == this || script == colocacionTorretas)
                 continue;
 
-            if (script == colocacionTorretas)
-                continue;
-
-            if (script is EventSystem)
-                continue;
-
-            if (script is BaseInputModule)
-                continue;
-
-            if (script is GraphicRaycaster)
-                continue;
-
-            if (script is Selectable)
+            if (script is EventSystem ||
+                script is BaseInputModule ||
+                script is GraphicRaycaster ||
+                script is Selectable)
                 continue;
 
             if (botonContinuar != null)
@@ -408,10 +408,8 @@ public class GamePhaseManager : MonoBehaviour
                 Transform transformScript = script.transform;
                 Transform transformBoton = botonContinuar.transform;
 
-                if (transformScript == transformBoton)
-                    continue;
-
-                if (transformScript.IsChildOf(transformBoton))
+                if (transformScript == transformBoton ||
+                    transformScript.IsChildOf(transformBoton))
                     continue;
             }
 
