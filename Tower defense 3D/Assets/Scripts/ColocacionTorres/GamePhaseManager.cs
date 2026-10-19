@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class GamePhaseManager : MonoBehaviour
 
     [Header("Sistema de torretas")]
     [SerializeField] private ColocacionTorretas colocacionTorretas;
+    [SerializeField] private EstadisticasTorretaUI estadisticasTorretaUI;
 
     [Header("Sistema de oleadas")]
     [SerializeField] private WaveManager waveManager;
@@ -65,7 +67,9 @@ public class GamePhaseManager : MonoBehaviour
     {
         if (botonContinuar == null)
         {
-            Debug.LogError("GamePhaseManager: No se asignó el botón Continuar.");
+            Debug.LogError(
+                "GamePhaseManager: No se asignó el botón Continuar."
+            );
             return;
         }
 
@@ -73,7 +77,10 @@ public class GamePhaseManager : MonoBehaviour
 
         if (boton == null)
         {
-            Debug.LogError("GamePhaseManager: El objeto asignado como botón Continuar no tiene un componente Button.");
+            Debug.LogError(
+                "GamePhaseManager: El objeto asignado como botón " +
+                "Continuar no tiene un componente Button."
+            );
             return;
         }
 
@@ -98,6 +105,9 @@ public class GamePhaseManager : MonoBehaviour
             colocacionTorretas.IniciarColocacion();
         }
 
+        if (estadisticasTorretaUI != null)
+            estadisticasTorretaUI.enabled = true;
+
         if (botonContinuar != null)
             botonContinuar.SetActive(true);
 
@@ -106,7 +116,9 @@ public class GamePhaseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Debug.Log("GamePhaseManager: Fase de planificación iniciada.");
+        Debug.Log(
+            "GamePhaseManager: Fase de planificación iniciada."
+        );
     }
 
     private void ReproducirMusicaPlanificacion()
@@ -116,16 +128,15 @@ public class GamePhaseManager : MonoBehaviour
             Debug.LogWarning(
                 "GamePhaseManager: No se asignó el AudioSource de planificación."
             );
-
             return;
         }
 
         if (audioPlanificacion.clip == null)
         {
             Debug.LogWarning(
-                "GamePhaseManager: El AudioSource de planificación no tiene un AudioClip."
+                "GamePhaseManager: El AudioSource de planificación " +
+                "no tiene un AudioClip."
             );
-
             return;
         }
 
@@ -151,44 +162,21 @@ public class GamePhaseManager : MonoBehaviour
 
     private void ActivarHUDPlanificacion()
     {
-        CambiarEstadoElementos(
-            elementosHUDPlanificacion,
-            true
-        );
-
-        CambiarEstadoElementos(
-            elementosHUDCombate,
-            false
-        );
-
-        CambiarEstadoElementos(
-            elementosHUDCompartido,
-            true
-        );
+        CambiarEstadoElementos(elementosHUDPlanificacion, true);
+        CambiarEstadoElementos(elementosHUDCombate, false);
+        CambiarEstadoElementos(elementosHUDCompartido, true);
     }
 
     private void ActivarHUDCombate()
     {
-        CambiarEstadoElementos(
-            elementosHUDPlanificacion,
-            false
-        );
-
-        CambiarEstadoElementos(
-            elementosHUDCombate,
-            true
-        );
-
-        CambiarEstadoElementos(
-            elementosHUDCompartido,
-            true
-        );
+        CambiarEstadoElementos(elementosHUDPlanificacion, false);
+        CambiarEstadoElementos(elementosHUDCombate, true);
+        CambiarEstadoElementos(elementosHUDCompartido, true);
     }
 
     private void CambiarEstadoElementos(
         GameObject[] elementos,
-        bool estado
-    )
+        bool estado)
     {
         if (elementos == null)
             return;
@@ -234,13 +222,15 @@ public class GamePhaseManager : MonoBehaviour
     }
 
     private bool DebePermanecerActivoDurantePlanificacion(
-        MonoBehaviour script
-    )
+        MonoBehaviour script)
     {
         if (script == this)
             return true;
 
         if (script == colocacionTorretas)
+            return true;
+
+        if (script == estadisticasTorretaUI)
             return true;
 
         if (script is EventSystem)
@@ -277,8 +267,7 @@ public class GamePhaseManager : MonoBehaviour
                 if (imagenesTorres[i] == null)
                     continue;
 
-                Transform transformImagen =
-                    imagenesTorres[i].transform;
+                Transform transformImagen = imagenesTorres[i].transform;
 
                 if (script.transform == transformImagen)
                     return true;
@@ -305,8 +294,7 @@ public class GamePhaseManager : MonoBehaviour
                 return true;
 
             if (objeto.transform.IsChildOf(
-                elementosHUDCompartido[i].transform
-            ))
+                elementosHUDCompartido[i].transform))
             {
                 return true;
             }
@@ -317,14 +305,15 @@ public class GamePhaseManager : MonoBehaviour
 
     public void ConfirmarPlanificacion()
     {
-        Debug.Log("GamePhaseManager: Se recibió el clic de Continuar.");
+        Debug.Log(
+            "GamePhaseManager: Se recibió el clic de Continuar."
+        );
 
         if (!fasePlanificacion)
         {
             Debug.LogWarning(
                 "GamePhaseManager: La fase de planificación ya terminó."
             );
-
             return;
         }
 
@@ -333,7 +322,6 @@ public class GamePhaseManager : MonoBehaviour
             Debug.LogWarning(
                 "GamePhaseManager: La transición ya fue realizada."
             );
-
             return;
         }
 
@@ -344,7 +332,6 @@ public class GamePhaseManager : MonoBehaviour
             sfxManager.ReproducirContinuar();
 
         DetenerMusicaPlanificacion();
-
         DetenerColocacion();
 
         if (botonContinuar != null)
@@ -356,7 +343,6 @@ public class GamePhaseManager : MonoBehaviour
         Time.timeScale = escalaTiempoOriginal;
 
         ReactivarGameplay();
-
         IniciarOleadas();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -450,15 +436,12 @@ public class GamePhaseManager : MonoBehaviour
             Debug.LogError(
                 "GamePhaseManager: No se asignó el WaveManager."
             );
-
             return;
         }
 
         waveManager.IniciarJuego();
 
-        Debug.Log(
-            "GamePhaseManager: Oleadas iniciadas."
-        );
+        Debug.Log("GamePhaseManager: Oleadas iniciadas.");
     }
 
     private void LateUpdate()

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class TorretaCortoAlcance : MonoBehaviour
@@ -6,6 +7,10 @@ public class TorretaCortoAlcance : MonoBehaviour
     [SerializeField] private float rango = 6f;
     [SerializeField] private float daño = 40f;
     [SerializeField] private float tiempoEntreDisparos = 0.8f;
+
+    public float Rango => rango;
+    public float Daño => daño;
+    public float TiempoEntreDisparos => tiempoEntreDisparos;
 
     [Header("Bala")]
     [SerializeField] private GameObject balaTorreta;

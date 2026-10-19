@@ -2,25 +2,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ColocacionTorretas : MonoBehaviour
 {
     [Header("Torres")]
     [SerializeField] private GameObject[] prefabsTorres;
-
     [SerializeField] private int[] preciosTorres;
-
     [SerializeField] private int indiceTorreSeleccionada = 0;
 
     [Header("Imágenes de selección")]
     [SerializeField] private Image[] imagenesTorres;
+
+    [Header("Estadísticas de la torreta")]
+    [SerializeField] private EstadisticasTorretaUI estadisticasTorretaUI;
 
     [Header("Dinero")]
     [SerializeField] private DineroJugador dineroJugador;
 
     [Header("Configuración")]
     [SerializeField] private Camera camaraPlanificacion;
-
     [SerializeField] private LayerMask capaSuelo;
 
     [Header("Zonas de colocación")]
@@ -30,12 +31,7 @@ public class ColocacionTorretas : MonoBehaviour
     [SerializeField] private bool mostrarColores = true;
 
     private bool puedeColocar;
-
     private ZonaColocacionTorre zonaSeleccionadaActual;
-
-    // =====================================================
-    // UPDATE
-    // =====================================================
 
     private void Update()
     {
@@ -65,76 +61,40 @@ public class ColocacionTorretas : MonoBehaviour
         ColocarTorre();
     }
 
-    // =====================================================
-    // DETECTAR ZONA BAJO EL MOUSE
-    // =====================================================
-
     private void ActualizarZonaBajoMouse()
     {
-        ZonaColocacionTorre nuevaZona =
-            BuscarZonaDesdeMouse();
+        ZonaColocacionTorre nuevaZona = BuscarZonaDesdeMouse();
 
-        if (nuevaZona ==
-            zonaSeleccionadaActual)
+        if (nuevaZona == zonaSeleccionadaActual)
         {
             if (nuevaZona != null)
-            {
-                ActualizarColorZona(
-                    nuevaZona
-                );
-            }
+                ActualizarColorZona(nuevaZona);
 
             return;
         }
 
-        // Restaurar la zona anterior
         if (zonaSeleccionadaActual != null)
-        {
-            ActualizarColorZonaSinSeleccion(
-                zonaSeleccionadaActual
-            );
-        }
+            ActualizarColorZonaSinSeleccion(zonaSeleccionadaActual);
 
-        zonaSeleccionadaActual =
-            nuevaZona;
+        zonaSeleccionadaActual = nuevaZona;
 
-        // Colorear la nueva zona
         if (zonaSeleccionadaActual != null)
-        {
-            ActualizarColorZona(
-                zonaSeleccionadaActual
-            );
-        }
+            ActualizarColorZona(zonaSeleccionadaActual);
     }
-
-    // =====================================================
-    // BUSCAR ZONA DESDE EL MOUSE
-    // =====================================================
 
     private ZonaColocacionTorre BuscarZonaDesdeMouse()
     {
-        if (zonasColocacion == null ||
-            zonasColocacion.Length == 0)
-        {
+        if (zonasColocacion == null || zonasColocacion.Length == 0)
             return null;
-        }
 
-        Vector2 posicionMouse =
-            Mouse.current.position.ReadValue();
+        Vector2 posicionMouse = Mouse.current.position.ReadValue();
 
-        Ray rayo =
-            camaraPlanificacion.ScreenPointToRay(
-                posicionMouse
-            );
+        Ray rayo = camaraPlanificacion.ScreenPointToRay(posicionMouse);
 
         ZonaColocacionTorre zonaEncontrada = null;
+        float distanciaMasCercana = float.MaxValue;
 
-        float distanciaMasCercana =
-            float.MaxValue;
-
-        for (int i = 0;
-             i < zonasColocacion.Length;
-             i++)
+        for (int i = 0; i < zonasColocacion.Length; i++)
         {
             if (zonasColocacion[i] == null)
                 continue;
@@ -145,19 +105,12 @@ public class ColocacionTorretas : MonoBehaviour
             if (colliderZona == null)
                 continue;
 
-            if (colliderZona.Raycast(
-                rayo,
-                out RaycastHit hit,
-                1000f))
+            if (colliderZona.Raycast(rayo, out RaycastHit hit, 1000f))
             {
-                if (hit.distance <
-                    distanciaMasCercana)
+                if (hit.distance < distanciaMasCercana)
                 {
-                    distanciaMasCercana =
-                        hit.distance;
-
-                    zonaEncontrada =
-                        zonasColocacion[i];
+                    distanciaMasCercana = hit.distance;
+                    zonaEncontrada = zonasColocacion[i];
                 }
             }
         }
@@ -165,108 +118,65 @@ public class ColocacionTorretas : MonoBehaviour
         return zonaEncontrada;
     }
 
-    // =====================================================
-    // ACTUALIZAR COLOR
-    // =====================================================
-
-    private void ActualizarColorZona(
-        ZonaColocacionTorre zona)
+    private void ActualizarColorZona(ZonaColocacionTorre zona)
     {
-        if (!mostrarColores)
-            return;
-
-        if (zona == null)
+        if (!mostrarColores || zona == null)
             return;
 
         if (zona.EstaOcupada())
         {
             zona.MostrarColorOcupada();
-
             return;
         }
 
         zona.MostrarColorSeleccionada();
     }
 
-    private void ActualizarColorZonaSinSeleccion(
-        ZonaColocacionTorre zona)
+    private void ActualizarColorZonaSinSeleccion(ZonaColocacionTorre zona)
     {
-        if (!mostrarColores)
-            return;
-
-        if (zona == null)
+        if (!mostrarColores || zona == null)
             return;
 
         if (zona.EstaOcupada())
-        {
             zona.MostrarColorOcupada();
-        }
         else
-        {
             zona.MostrarColorDisponible();
-        }
     }
-
-    // =====================================================
-    // SELECCIONAR TORRE DESDE LA UI
-    // =====================================================
 
     private bool SeleccionarTorreDesdeUI()
     {
-        if (imagenesTorres == null ||
-            imagenesTorres.Length == 0)
-        {
+        if (imagenesTorres == null || imagenesTorres.Length == 0)
             return false;
-        }
 
         if (EventSystem.current == null)
             return false;
 
-        Vector2 posicionMouse =
-            Mouse.current.position.ReadValue();
+        Vector2 posicionMouse = Mouse.current.position.ReadValue();
 
         PointerEventData evento =
-            new PointerEventData(
-                EventSystem.current
-            );
+            new PointerEventData(EventSystem.current);
 
-        evento.position =
-            posicionMouse;
+        evento.position = posicionMouse;
 
-        System.Collections.Generic.List<RaycastResult>
-            resultados =
-            new System.Collections.Generic.List<RaycastResult>();
+        List<RaycastResult> resultados =
+            new List<RaycastResult>();
 
-        EventSystem.current.RaycastAll(
-            evento,
-            resultados
-        );
+        EventSystem.current.RaycastAll(evento, resultados);
 
-        for (int i = 0;
-             i < resultados.Count;
-             i++)
+        for (int i = 0; i < resultados.Count; i++)
         {
-            GameObject objetoImpactado =
-                resultados[i].gameObject;
+            GameObject objetoImpactado = resultados[i].gameObject;
 
-            for (int j = 0;
-                 j < imagenesTorres.Length;
-                 j++)
+            for (int j = 0; j < imagenesTorres.Length; j++)
             {
                 if (imagenesTorres[j] == null)
                     continue;
 
-                if (
-                    objetoImpactado ==
-                    imagenesTorres[j].gameObject
-                    ||
+                if (objetoImpactado == imagenesTorres[j].gameObject ||
                     objetoImpactado.transform.IsChildOf(
-                        imagenesTorres[j].transform
-                    )
-                )
+                        imagenesTorres[j].transform))
                 {
                     SeleccionarTorre(j);
-
                     return true;
                 }
             }
@@ -274,10 +184,6 @@ public class ColocacionTorretas : MonoBehaviour
 
         return false;
     }
-
-    // =====================================================
-    // COLOCAR TORRE
-    // =====================================================
 
     private void ColocarTorre()
     {
@@ -287,132 +193,70 @@ public class ColocacionTorretas : MonoBehaviour
                 "No puedes colocar una torre aquí. " +
                 "Selecciona una zona de colocación."
             );
-
             return;
         }
-
-        // =================================================
-        // COMPROBAR SI ESTÁ OCUPADA
-        // =================================================
 
         if (!zonaSeleccionadaActual.PuedeColocar())
         {
-            Debug.Log(
-                "Esta zona ya tiene una torre."
-            );
-
+            Debug.Log("Esta zona ya tiene una torre.");
             return;
         }
 
-        // =================================================
-        // COMPROBAR TORRES
-        // =================================================
-
-        if (prefabsTorres == null ||
-            prefabsTorres.Length == 0)
-        {
+        if (prefabsTorres == null || prefabsTorres.Length == 0)
             return;
-        }
 
-        if (
-            indiceTorreSeleccionada < 0 ||
-            indiceTorreSeleccionada >=
-            prefabsTorres.Length
-        )
-        {
+        if (indiceTorreSeleccionada < 0 ||
+            indiceTorreSeleccionada >= prefabsTorres.Length)
             return;
-        }
 
         GameObject prefabSeleccionado =
-            prefabsTorres[
-                indiceTorreSeleccionada
-            ];
+            prefabsTorres[indiceTorreSeleccionada];
 
         if (prefabSeleccionado == null)
             return;
 
-        // =================================================
-        // PRECIO
-        // =================================================
-
-        int precio =
-            ObtenerPrecioTorre(
-                indiceTorreSeleccionada
-            );
+        int precio = ObtenerPrecioTorre(indiceTorreSeleccionada);
 
         if (dineroJugador == null)
         {
             Debug.LogWarning(
-                "ColocacionTorretas: " +
-                "No se asignó DineroJugador."
+                "ColocacionTorretas: No se asignó DineroJugador."
             );
-
             return;
         }
 
-        if (!dineroJugador.TieneDinero(
-            precio
-        ))
+        if (!dineroJugador.TieneDinero(precio))
         {
             Debug.Log(
-                "No tienes suficiente dinero " +
-                "para comprar esta torre. " +
-                "Precio: " +
-                precio +
-                " | Dinero actual: " +
-                dineroJugador.ObtenerDinero()
+                "No tienes suficiente dinero para comprar esta torre. " +
+                "Precio: " + precio +
+                " | Dinero actual: " + dineroJugador.ObtenerDinero()
             );
-
             return;
         }
 
-        // =================================================
-        // GASTAR DINERO
-        // =================================================
-
-        if (!dineroJugador.GastarDinero(
-            precio
-        ))
-        {
+        if (!dineroJugador.GastarDinero(precio))
             return;
-        }
-
-        // =================================================
-        // POSICIÓN
-        // =================================================
 
         Vector3 posicionTorre =
             zonaSeleccionadaActual.transform.position;
 
-        GameObject torre =
-            Instantiate(
-                prefabSeleccionado,
-                posicionTorre,
-                Quaternion.identity
-            );
-
-        // =================================================
-        // REGISTRAR ZONA
-        // =================================================
-
-        zonaSeleccionadaActual.RegistrarTorre(
-            torre
+        GameObject torre = Instantiate(
+            prefabSeleccionado,
+            posicionTorre,
+            Quaternion.identity
         );
+
+        zonaSeleccionadaActual.RegistrarTorre(torre);
 
         Debug.Log(
             "Torre colocada en zona: " +
             zonaSeleccionadaActual.gameObject.name +
-            " | Precio: " +
-            precio
+            " | Precio: " + precio
         );
     }
 
-    // =====================================================
-    // PRECIO
-    // =====================================================
-
-    private int ObtenerPrecioTorre(
-        int indice)
+    private int ObtenerPrecioTorre(int indice)
     {
         if (preciosTorres == null ||
             indice < 0 ||
@@ -421,15 +265,27 @@ public class ColocacionTorretas : MonoBehaviour
             return 0;
         }
 
-        return Mathf.Max(
-            0,
-            preciosTorres[indice]
-        );
+        return Mathf.Max(0, preciosTorres[indice]);
     }
 
-    // =====================================================
-    // INICIAR COLOCACIÓN
-    // =====================================================
+    public int ObtenerPrecioTorreParaUI(GameObject prefabTorreta)
+    {
+        if (prefabTorreta == null || prefabsTorres == null)
+            return 0;
+
+        for (int i = 0; i < prefabsTorres.Length; i++)
+        {
+            if (prefabsTorres[i] == prefabTorreta)
+                return ObtenerPrecioTorre(i);
+        }
+
+        Debug.LogWarning(
+            "No se encontró el precio para la torreta: " +
+            prefabTorreta.name
+        );
+
+        return 0;
+    }
 
     public void IniciarColocacion()
     {
@@ -437,106 +293,67 @@ public class ColocacionTorretas : MonoBehaviour
 
         PrepararVisualesZonas();
 
-        Debug.Log(
-            "Sistema de colocación iniciado."
-        );
+        Debug.Log("Sistema de colocación iniciado.");
     }
-
-    // =====================================================
-    // DETENER COLOCACIÓN
-    // =====================================================
 
     public void DetenerColocacion()
     {
         puedeColocar = false;
-
         zonaSeleccionadaActual = null;
 
         RestaurarVisualesZonas();
 
-        Debug.Log(
-            "Sistema de colocación detenido."
-        );
+        Debug.Log("Sistema de colocación detenido.");
     }
-
-    // =====================================================
-    // PREPARAR VISUALES
-    // =====================================================
 
     private void PrepararVisualesZonas()
     {
-        if (!mostrarColores)
+        if (!mostrarColores || zonasColocacion == null)
             return;
 
-        if (zonasColocacion == null)
-            return;
-
-        for (int i = 0;
-             i < zonasColocacion.Length;
-             i++)
+        for (int i = 0; i < zonasColocacion.Length; i++)
         {
             if (zonasColocacion[i] == null)
                 continue;
 
             if (zonasColocacion[i].EstaOcupada())
-            {
-                zonasColocacion[i]
-                    .MostrarColorOcupada();
-            }
+                zonasColocacion[i].MostrarColorOcupada();
             else
-            {
-                zonasColocacion[i]
-                    .MostrarColorDisponible();
-            }
+                zonasColocacion[i].MostrarColorDisponible();
         }
     }
-
-    // =====================================================
-    // RESTAURAR VISUALES
-    // =====================================================
 
     private void RestaurarVisualesZonas()
     {
         if (zonasColocacion == null)
             return;
 
-        for (int i = 0;
-             i < zonasColocacion.Length;
-             i++)
+        for (int i = 0; i < zonasColocacion.Length; i++)
         {
             if (zonasColocacion[i] == null)
                 continue;
 
-            zonasColocacion[i]
-                .RestaurarColorOriginal();
+            zonasColocacion[i].RestaurarColorOriginal();
         }
     }
 
-    // =====================================================
-    // SELECCIONAR TORRE
-    // =====================================================
-
-    public void SeleccionarTorre(
-        int indice)
+    public void SeleccionarTorre(int indice)
     {
-        if (prefabsTorres == null ||
-            prefabsTorres.Length == 0)
-        {
+        if (prefabsTorres == null || prefabsTorres.Length == 0)
             return;
+
+        if (indice < 0 || indice >= prefabsTorres.Length)
+            return;
+
+        indiceTorreSeleccionada = indice;
+
+        if (estadisticasTorretaUI != null)
+        {
+            estadisticasTorretaUI.MostrarEstadisticas(
+                prefabsTorres[indiceTorreSeleccionada]
+            );
         }
 
-        if (indice < 0 ||
-            indice >= prefabsTorres.Length)
-        {
-            return;
-        }
-
-        indiceTorreSeleccionada =
-            indice;
-
-        Debug.Log(
-            "Torre seleccionada: " +
-            indiceTorreSeleccionada
-        );
+        Debug.Log("Torre seleccionada: " + indiceTorreSeleccionada);
     }
 }

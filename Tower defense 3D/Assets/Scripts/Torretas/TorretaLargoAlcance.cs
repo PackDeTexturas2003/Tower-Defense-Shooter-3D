@@ -7,6 +7,10 @@ public class TorretaLargoAlcance : MonoBehaviour
     [SerializeField] private float daño = 15f;
     [SerializeField] private float tiempoEntreDisparos = 2.5f;
 
+    public float Rango => rango;
+    public float Daño => daño;
+    public float TiempoEntreDisparos => tiempoEntreDisparos;
+
     [Header("Bala")]
     [SerializeField] private GameObject balaTorreta;
     [SerializeField] private Transform puntoDisparo;
