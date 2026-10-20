@@ -8,6 +8,9 @@ public class MenuPausa : MonoBehaviour
     [Header("Panel de pausa")]
     [SerializeField] private GameObject panelPausa;
 
+    [Header("Orden visual")]
+    [SerializeField] private bool ponerPanelAlFrente = true;
+
     [Header("Botones")]
     [SerializeField] private Button botonContinuar;
     [SerializeField] private Button botonConfiguraciones;
@@ -24,16 +27,20 @@ public class MenuPausa : MonoBehaviour
     private void Start()
     {
         juegoPausado = false;
-
         Time.timeScale = 1f;
 
-        panelPausa.SetActive(false);
+        if (panelPausa != null)
+            panelPausa.SetActive(false);
 
-        botonContinuar.onClick.AddListener(Continuar);
+        if (botonContinuar != null)
+            botonContinuar.onClick.AddListener(Continuar);
 
-        botonConfiguraciones.onClick.AddListener(
-            IrAConfiguraciones
-        );
+        if (botonConfiguraciones != null)
+        {
+            botonConfiguraciones.onClick.AddListener(
+                IrAConfiguraciones
+            );
+        }
     }
 
     private void Update()
@@ -41,111 +48,125 @@ public class MenuPausa : MonoBehaviour
         if (Keyboard.current == null)
             return;
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            if (juegoPausado)
-            {
-                Continuar();
-            }
-            else
-            {
-                Pausar();
-            }
-        }
-    }
+        if (!Keyboard.current.escapeKey.wasPressedThisFrame)
+            return;
 
-    // =========================
-    // PAUSAR
-    // =========================
+        if (juegoPausado)
+            Continuar();
+        else
+            Pausar();
+    }
 
     private void Pausar()
     {
         juegoPausado = true;
-
         Time.timeScale = 0f;
 
-        movimiento.enabled = false;
-        esquive.enabled = false;
-        salto.enabled = false;
-        mouseLook.enabled = false;
-        weaponManager.enabled = false;
+        if (movimiento != null)
+            movimiento.enabled = false;
 
-        UnityEngine.Cursor.visible = true;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        if (esquive != null)
+            esquive.enabled = false;
 
-        panelPausa.SetActive(true);
+        if (salto != null)
+            salto.enabled = false;
+
+        if (mouseLook != null)
+            mouseLook.enabled = false;
+
+        if (weaponManager != null)
+            weaponManager.enabled = false;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (panelPausa != null)
+        {
+            panelPausa.SetActive(true);
+            PonerPanelAlFrente();
+        }
     }
 
-    // =========================
-    // CONTINUAR
-    // =========================
+    private void PonerPanelAlFrente()
+    {
+        if (!ponerPanelAlFrente || panelPausa == null)
+            return;
+
+        Canvas canvasPanel = panelPausa.GetComponentInParent<Canvas>();
+
+        if (canvasPanel == null)
+            return;
+
+        canvasPanel = canvasPanel.rootCanvas;
+
+        if (canvasPanel.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            panelPausa.transform.SetAsLastSibling();
+        }
+        else
+        {
+            panelPausa.transform.SetAsLastSibling();
+
+            canvasPanel.overrideSorting = true;
+            canvasPanel.sortingOrder = 100;
+        }
+    }
 
     private void Continuar()
     {
         juegoPausado = false;
-
         Time.timeScale = 1f;
 
-        movimiento.enabled = true;
-        esquive.enabled = true;
-        salto.enabled = true;
-        mouseLook.enabled = true;
-        weaponManager.enabled = true;
+        if (movimiento != null)
+            movimiento.enabled = true;
 
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        if (esquive != null)
+            esquive.enabled = true;
 
-        panelPausa.SetActive(false);
+        if (salto != null)
+            salto.enabled = true;
+
+        if (mouseLook != null)
+            mouseLook.enabled = true;
+
+        if (weaponManager != null)
+            weaponManager.enabled = true;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (panelPausa != null)
+            panelPausa.SetActive(false);
     }
-
-    // =========================
-    // CONFIGURACIONES
-    // =========================
 
     private void IrAConfiguraciones()
     {
-        // Ocultamos únicamente el panel de pausa
-        panelPausa.SetActive(false);
+        if (panelPausa != null)
+            panelPausa.SetActive(false);
 
-        // El juego continúa pausado
         Time.timeScale = 0f;
 
-        // Dejamos el cursor libre para utilizar la interfaz
-        UnityEngine.Cursor.visible = true;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
-        // Cargamos Configuraciones sin descargar Nivel
         SceneManager.LoadSceneAsync(
             "Configuraciones",
             LoadSceneMode.Additive
         );
     }
+
     public void ReanudarDesdeConfiguraciones()
     {
-        juegoPausado = false;
-
-        Time.timeScale = 1f;
-
-        movimiento.enabled = true;
-        esquive.enabled = true;
-        salto.enabled = true;
-        mouseLook.enabled = true;
-        weaponManager.enabled = true;
-
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-
-        panelPausa.SetActive(false);
+        Continuar();
     }
+
     public void VolverAlMenuPrincipal()
     {
         Time.timeScale = 1f;
 
-        UnityEngine.Cursor.visible = true;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            "MenuPrincipal"
-        );
+        SceneManager.LoadScene("MenuPrincipal");
     }
 }

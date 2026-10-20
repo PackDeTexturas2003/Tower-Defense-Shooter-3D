@@ -16,5 +16,5 @@ MonoBehaviour:
   velocidad: 3
   radioDeteccion: 10
   distanciaAtaque: 2
-  dano: 10
+  dano: 5
   tiempoEntreAtaques: 1

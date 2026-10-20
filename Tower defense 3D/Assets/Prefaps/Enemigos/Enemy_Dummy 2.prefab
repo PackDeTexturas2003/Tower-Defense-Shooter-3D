@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429d299b24233ec45ae75c6df16068a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  vidaMaxima: 100
+  vidaMaxima: 60
   renderersEnemigo: []
   colorDanio: {r: 1, g: 0, b: 0, a: 1}
   duracionColor: 0.15
@@ -172,6 +172,7 @@ MonoBehaviour:
   - tipoMunicion: 1
     probabilidad: 60
     prefab: {fileID: 2254340649296830931, guid: 54b7f037e49d4884d8a257ce7d33bdd1, type: 3}
+  dineroAlMorir: 6
 --- !u!114 &614390505775713585
 MonoBehaviour:
   m_ObjectHideFlags: 0

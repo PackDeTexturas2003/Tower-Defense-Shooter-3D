@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -40,9 +40,15 @@ public class GamePhaseManager : MonoBehaviour
     [Header("Imágenes de selección de torres")]
     [SerializeField] private Image[] imagenesTorres;
 
+    [Header("Excepciones de planificación")]
+    [SerializeField] private GameObject[] excepcionesPlanificacion;
+
     private bool fasePlanificacion;
     private bool transicionRealizada;
     private float escalaTiempoOriginal;
+
+    private readonly HashSet<MonoBehaviour> scriptsCongelados =
+        new HashSet<MonoBehaviour>();
 
     private void Start()
     {
@@ -96,10 +102,7 @@ public class GamePhaseManager : MonoBehaviour
 
         ActivarCamaraPlanificacion();
         ActivarHUDPlanificacion();
-
         CongelarGameplay();
-
-        // Mostrar los indicadores de aparición durante la planificación.
         MostrarIndicadoresSpawn();
 
         if (colocacionTorretas != null)
@@ -207,15 +210,17 @@ public class GamePhaseManager : MonoBehaviour
         if (elementos == null)
             return;
 
-        for (int i = 0; i < elementos.Length; i++)
+        foreach (GameObject elemento in elementos)
         {
-            if (elementos[i] != null)
-                elementos[i].SetActive(estado);
+            if (elemento != null)
+                elemento.SetActive(estado);
         }
     }
 
     private void CongelarGameplay()
     {
+        scriptsCongelados.Clear();
+
         MonoBehaviour[] scripts = FindObjectsByType<MonoBehaviour>(
             FindObjectsInactive.Include,
             FindObjectsSortMode.None
@@ -232,6 +237,7 @@ public class GamePhaseManager : MonoBehaviour
                 continue;
 
             script.enabled = false;
+            scriptsCongelados.Add(script);
             cantidadCongelada++;
         }
 
@@ -251,46 +257,40 @@ public class GamePhaseManager : MonoBehaviour
         if (script == colocacionTorretas)
             return true;
 
-        if (script is IndicadorPuntoSpawn)
+        if (script is IndicadorPuntoSpawn ||
+            script is EventSystem ||
+            script is BaseInputModule ||
+            script is GraphicRaycaster ||
+            script is Selectable)
             return true;
 
-        if (script is EventSystem)
+        if (PerteneceAObjeto(script, botonContinuar))
             return true;
 
-        if (script is BaseInputModule)
-            return true;
-
-        if (script is GraphicRaycaster)
-            return true;
-
-        if (script is Selectable)
-            return true;
-
-        if (EsElementoCompartido(script.gameObject))
-            return true;
-
-        if (botonContinuar != null)
+        if (elementosHUDCompartido != null)
         {
-            Transform transformScript = script.transform;
-            Transform transformBoton = botonContinuar.transform;
-
-            if (transformScript == transformBoton ||
-                transformScript.IsChildOf(transformBoton))
-                return true;
+            foreach (GameObject elemento in elementosHUDCompartido)
+            {
+                if (PerteneceAObjeto(script, elemento))
+                    return true;
+            }
         }
 
         if (imagenesTorres != null)
         {
-            for (int i = 0; i < imagenesTorres.Length; i++)
+            foreach (Image imagen in imagenesTorres)
             {
-                if (imagenesTorres[i] == null)
-                    continue;
+                if (imagen != null &&
+                    PerteneceAObjeto(script, imagen.gameObject))
+                    return true;
+            }
+        }
 
-                Transform transformImagen =
-                    imagenesTorres[i].transform;
-
-                if (script.transform == transformImagen ||
-                    script.transform.IsChildOf(transformImagen))
+        if (excepcionesPlanificacion != null)
+        {
+            foreach (GameObject excepcion in excepcionesPlanificacion)
+            {
+                if (PerteneceAObjeto(script, excepcion))
                     return true;
             }
         }
@@ -298,23 +298,18 @@ public class GamePhaseManager : MonoBehaviour
         return false;
     }
 
-    private bool EsElementoCompartido(GameObject objeto)
+    private bool PerteneceAObjeto(
+        MonoBehaviour script,
+        GameObject objeto)
     {
-        if (elementosHUDCompartido == null)
+        if (script == null || objeto == null)
             return false;
 
-        for (int i = 0; i < elementosHUDCompartido.Length; i++)
-        {
-            if (elementosHUDCompartido[i] == null)
-                continue;
+        Transform transformScript = script.transform;
+        Transform transformObjeto = objeto.transform;
 
-            if (objeto == elementosHUDCompartido[i] ||
-                objeto.transform.IsChildOf(
-                    elementosHUDCompartido[i].transform))
-                return true;
-        }
-
-        return false;
+        return transformScript == transformObjeto ||
+               transformScript.IsChildOf(transformObjeto);
     }
 
     public void ConfirmarPlanificacion()
@@ -337,9 +332,7 @@ public class GamePhaseManager : MonoBehaviour
         if (sfxManager != null)
             sfxManager.ReproducirContinuar();
 
-        // Ocultar los indicadores antes de comenzar el combate.
         OcultarIndicadoresSpawn();
-
         DetenerMusicaPlanificacion();
         DetenerColocacion();
 
@@ -382,43 +375,18 @@ public class GamePhaseManager : MonoBehaviour
 
     private void ReactivarGameplay()
     {
-        MonoBehaviour[] scripts = FindObjectsByType<MonoBehaviour>(
-            FindObjectsInactive.Include,
-            FindObjectsSortMode.None
-        );
-
         int cantidadReactivada = 0;
 
-        foreach (MonoBehaviour script in scripts)
+        foreach (MonoBehaviour script in scriptsCongelados)
         {
-            if (script == null)
+            if (script == null || script.enabled)
                 continue;
 
-            if (script == this || script == colocacionTorretas)
-                continue;
-
-            if (script is EventSystem ||
-                script is BaseInputModule ||
-                script is GraphicRaycaster ||
-                script is Selectable)
-                continue;
-
-            if (botonContinuar != null)
-            {
-                Transform transformScript = script.transform;
-                Transform transformBoton = botonContinuar.transform;
-
-                if (transformScript == transformBoton ||
-                    transformScript.IsChildOf(transformBoton))
-                    continue;
-            }
-
-            if (!script.enabled)
-            {
-                script.enabled = true;
-                cantidadReactivada++;
-            }
+            script.enabled = true;
+            cantidadReactivada++;
         }
+
+        scriptsCongelados.Clear();
 
         Debug.Log(
             "GamePhaseManager: Se reactivaron " +

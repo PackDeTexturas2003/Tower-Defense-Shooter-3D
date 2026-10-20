@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TorretaLargoAlcance
   rango: 15
-  "da\xF1o": 15
+  "da\xF1o": 10
   tiempoEntreDisparos: 2.5
   balaTorreta: {fileID: 7221492933073147343, guid: daed2fa95e883fb42a7946982b06b3fd, type: 3}
   puntoDisparo: {fileID: 7572571466707763196}

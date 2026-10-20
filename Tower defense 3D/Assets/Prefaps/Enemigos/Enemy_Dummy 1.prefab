@@ -143,7 +143,7 @@ MonoBehaviour:
   - tipoMunicion: 2
     probabilidad: 40
     prefab: {fileID: 2254340649296830931, guid: 54b7f037e49d4884d8a257ce7d33bdd1, type: 3}
-  dineroAlMorir: 25
+  dineroAlMorir: 5
 --- !u!114 &614390505775713585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e010a13da922846809c614d1003c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  data: {fileID: 11400000, guid: b980deeb7e0c44846b9df6e7f9cf8292, type: 2}
+  data: {fileID: 11400000, guid: 74b20d2ab61a7084c9f08ac939b1ef15, type: 2}
   tipoAtaque: 0
   tipoObjetivo: 1
   objetivo: {fileID: 0}
