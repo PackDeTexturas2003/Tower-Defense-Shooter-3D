@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d3053fae1689744b267ee40925842e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickup
-  tipoMunicion: 0
+  tipoMunicion: 1
   cantidadMunicion: 12
   sfxManager: {fileID: 0}

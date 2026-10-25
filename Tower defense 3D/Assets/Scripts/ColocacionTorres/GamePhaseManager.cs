@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-1000)]
 public class GamePhaseManager : MonoBehaviour
 {
+    [Header("Selección inicial de armas")]
+    [SerializeField] private GameObject panelSeleccionArmas;
+
     [Header("Cámaras")]
     [SerializeField] private GameObject camaraPlanificacion;
     [SerializeField] private GameObject camaraFPS;
@@ -43,8 +47,10 @@ public class GamePhaseManager : MonoBehaviour
     [Header("Excepciones de planificación")]
     [SerializeField] private GameObject[] excepcionesPlanificacion;
 
+    private bool faseSeleccionArmas;
     private bool fasePlanificacion;
     private bool transicionRealizada;
+    private bool gameplayCongelado;
     private float escalaTiempoOriginal;
 
     private readonly HashSet<MonoBehaviour> scriptsCongelados =
@@ -57,7 +63,18 @@ public class GamePhaseManager : MonoBehaviour
         ConfigurarMusicaPlanificacion();
         ConfigurarBotonContinuar();
 
-        IniciarPlanificacion();
+        if (sfxManager == null)
+            sfxManager = FindFirstObjectByType<SFXManager>();
+
+        if (panelSeleccionArmas != null &&
+            panelSeleccionArmas.activeInHierarchy)
+        {
+            IniciarSeleccionArmas();
+        }
+        else
+        {
+            IniciarPlanificacion();
+        }
     }
 
     private void ConfigurarMusicaPlanificacion()
@@ -85,24 +102,93 @@ public class GamePhaseManager : MonoBehaviour
         if (boton == null)
         {
             Debug.LogError(
-                "GamePhaseManager: El objeto asignado como botón Continuar no tiene un componente Button."
+                "GamePhaseManager: El botón Continuar no tiene Button."
             );
             return;
         }
 
+        boton.onClick.RemoveListener(ConfirmarPlanificacion);
         boton.onClick.AddListener(ConfirmarPlanificacion);
+    }
+
+    private void IniciarSeleccionArmas()
+    {
+        faseSeleccionArmas = true;
+        fasePlanificacion = false;
+        transicionRealizada = false;
+
+        Time.timeScale = 0f;
+
+        if (panelSeleccionArmas != null)
+            panelSeleccionArmas.SetActive(true);
+
+        // La cámara FPS permanece activa para renderizar
+        // la escena y conservar su Audio Listener.
+        if (camaraFPS != null)
+            camaraFPS.SetActive(true);
+
+        // Ocultamos la cámara de planificación, no la FPS.
+        if (camaraPlanificacion != null)
+            camaraPlanificacion.SetActive(false);
+
+        if (botonContinuar != null)
+            botonContinuar.SetActive(false);
+
+        CambiarEstadoElementos(elementosHUDPlanificacion, false);
+        CambiarEstadoElementos(elementosHUDCombate, false);
+
+        if (colocacionTorretas != null)
+            colocacionTorretas.enabled = false;
+
+        CongelarGameplay();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Debug.Log(
+            "GamePhaseManager: Selección de armas iniciada."
+        );
+    }
+
+    public void ConfirmarSeleccionArmas()
+    {
+        if (!faseSeleccionArmas)
+        {
+            Debug.LogWarning(
+                "GamePhaseManager: No estamos en la selección de armas."
+            );
+            return;
+        }
+
+        faseSeleccionArmas = false;
+
+        if (panelSeleccionArmas != null)
+            panelSeleccionArmas.SetActive(false);
+
+        Debug.Log(
+            "GamePhaseManager: Selección de armas completada."
+        );
+
+        IniciarPlanificacion();
     }
 
     private void IniciarPlanificacion()
     {
+        faseSeleccionArmas = false;
         fasePlanificacion = true;
         transicionRealizada = false;
 
         Time.timeScale = 0f;
 
+        if (panelSeleccionArmas != null)
+            panelSeleccionArmas.SetActive(false);
+
         ActivarCamaraPlanificacion();
         ActivarHUDPlanificacion();
-        CongelarGameplay();
+
+        if (!gameplayCongelado)
+            CongelarGameplay();
+
         MostrarIndicadoresSpawn();
 
         if (colocacionTorretas != null)
@@ -146,32 +232,18 @@ public class GamePhaseManager : MonoBehaviour
 
         foreach (IndicadorPuntoSpawn indicador in indicadoresPuntosSpawn)
         {
-            if (indicador == null)
-                continue;
-
-            indicador.OcultarIndicador();
+            if (indicador != null)
+                indicador.OcultarIndicador();
         }
     }
 
     private void ReproducirMusicaPlanificacion()
     {
-        if (audioPlanificacion == null)
-        {
-            Debug.LogWarning(
-                "GamePhaseManager: No se asignó el AudioSource de planificación."
-            );
+        if (audioPlanificacion == null || audioPlanificacion.clip == null)
             return;
-        }
 
-        if (audioPlanificacion.clip == null)
-        {
-            Debug.LogWarning(
-                "GamePhaseManager: El AudioSource de planificación no tiene un AudioClip."
-            );
-            return;
-        }
-
-        audioPlanificacion.Play();
+        if (!audioPlanificacion.isPlaying)
+            audioPlanificacion.Play();
     }
 
     private void DetenerMusicaPlanificacion()
@@ -182,6 +254,7 @@ public class GamePhaseManager : MonoBehaviour
 
     private void ActivarCamaraPlanificacion()
     {
+        // Al planificar, se utiliza la cámara de planificación.
         if (camaraFPS != null)
             camaraFPS.SetActive(false);
 
@@ -219,14 +292,15 @@ public class GamePhaseManager : MonoBehaviour
 
     private void CongelarGameplay()
     {
+        if (gameplayCongelado)
+            return;
+
         scriptsCongelados.Clear();
 
         MonoBehaviour[] scripts = FindObjectsByType<MonoBehaviour>(
             FindObjectsInactive.Include,
             FindObjectsSortMode.None
         );
-
-        int cantidadCongelada = 0;
 
         foreach (MonoBehaviour script in scripts)
         {
@@ -238,23 +312,21 @@ public class GamePhaseManager : MonoBehaviour
 
             script.enabled = false;
             scriptsCongelados.Add(script);
-            cantidadCongelada++;
         }
 
+        gameplayCongelado = true;
+
         Debug.Log(
-            "GamePhaseManager: Se desactivaron " +
-            cantidadCongelada +
-            " scripts para la planificación."
+            "GamePhaseManager: Gameplay congelado durante la preparación."
         );
     }
 
     private bool DebePermanecerActivoDurantePlanificacion(
         MonoBehaviour script)
     {
-        if (script == this)
-            return true;
-
-        if (script == colocacionTorretas)
+        if (script == this ||
+            script is SeleccionArmas ||
+            script == colocacionTorretas)
             return true;
 
         if (script is IndicadorPuntoSpawn ||
@@ -264,7 +336,8 @@ public class GamePhaseManager : MonoBehaviour
             script is Selectable)
             return true;
 
-        if (PerteneceAObjeto(script, botonContinuar))
+        if (PerteneceAObjeto(script, panelSeleccionArmas) ||
+            PerteneceAObjeto(script, botonContinuar))
             return true;
 
         if (elementosHUDCompartido != null)
@@ -305,26 +378,16 @@ public class GamePhaseManager : MonoBehaviour
         if (script == null || objeto == null)
             return false;
 
-        Transform transformScript = script.transform;
-        Transform transformObjeto = objeto.transform;
+        Transform tScript = script.transform;
+        Transform tObjeto = objeto.transform;
 
-        return transformScript == transformObjeto ||
-               transformScript.IsChildOf(transformObjeto);
+        return tScript == tObjeto || tScript.IsChildOf(tObjeto);
     }
 
     public void ConfirmarPlanificacion()
     {
-        Debug.Log(
-            "GamePhaseManager: Se recibió el clic de Continuar."
-        );
-
         if (!fasePlanificacion || transicionRealizada)
-        {
-            Debug.LogWarning(
-                "GamePhaseManager: La planificación ya terminó o la transición ya se realizó."
-            );
             return;
-        }
 
         transicionRealizada = true;
         fasePlanificacion = false;
@@ -375,24 +438,14 @@ public class GamePhaseManager : MonoBehaviour
 
     private void ReactivarGameplay()
     {
-        int cantidadReactivada = 0;
-
         foreach (MonoBehaviour script in scriptsCongelados)
         {
-            if (script == null || script.enabled)
-                continue;
-
-            script.enabled = true;
-            cantidadReactivada++;
+            if (script != null)
+                script.enabled = true;
         }
 
         scriptsCongelados.Clear();
-
-        Debug.Log(
-            "GamePhaseManager: Se reactivaron " +
-            cantidadReactivada +
-            " scripts para la fase de combate."
-        );
+        gameplayCongelado = false;
     }
 
     private void IniciarOleadas()
@@ -412,11 +465,11 @@ public class GamePhaseManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!fasePlanificacion)
-            return;
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (faseSeleccionArmas || fasePlanificacion)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void OnDestroy()

@@ -1,50 +1,133 @@
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     [Header("Armas")]
-    [SerializeField]
-    private Weapon[] armas;
-
-    [SerializeField]
-    private int armaInicial = 0;
+    [SerializeField] private Weapon[] armas;
+    [SerializeField] private int armaInicial = 0;
 
     [Header("Audio")]
-    [SerializeField]
-    private SFXManager sfxManager;
+    [SerializeField] private SFXManager sfxManager;
 
+    private Weapon[] armasOriginales;
     private Weapon armaActual;
-
     private int indiceArmaActual;
-
     private bool avisoSinMunicionReproducido;
+    private bool seleccionConfigurada;
+
+    private void Awake()
+    {
+        armasOriginales = armas != null
+            ? (Weapon[])armas.Clone()
+            : new Weapon[0];
+
+        DesactivarTodasLasArmas();
+    }
 
     private void Start()
     {
-        EquiparArma(armaInicial);
-
         if (sfxManager == null)
-        {
-            sfxManager =
-                FindFirstObjectByType<SFXManager>();
-        }
+            sfxManager = FindFirstObjectByType<SFXManager>();
     }
 
     private void Update()
     {
-        if (armaActual == null)
+        if (!seleccionConfigurada || armaActual == null)
             return;
 
         CambiarArma();
-
         ManejarRecarga();
-
         ManejarDisparo();
     }
 
-    // =====================================================
-    // CAMBIO DE ARMA
-    // =====================================================
+    private void DesactivarTodasLasArmas()
+    {
+        if (armasOriginales == null)
+            return;
+
+        foreach (Weapon arma in armasOriginales)
+        {
+            if (arma != null)
+                arma.gameObject.SetActive(false);
+        }
+    }
+
+    public void ConfigurarArmasSeleccionadas(List<Weapon> seleccionadas)
+    {
+        if (seleccionadas == null || seleccionadas.Count == 0)
+        {
+            Debug.LogError(
+                "WeaponManager: no se recibieron armas seleccionadas."
+            );
+            return;
+        }
+
+        List<Weapon> armasValidas = new List<Weapon>();
+
+        foreach (Weapon arma in seleccionadas)
+        {
+            if (arma == null)
+                continue;
+
+            bool perteneceAlJugador = false;
+
+            foreach (Weapon original in armasOriginales)
+            {
+                if (original == arma)
+                {
+                    perteneceAlJugador = true;
+                    break;
+                }
+            }
+
+            if (perteneceAlJugador && !armasValidas.Contains(arma))
+                armasValidas.Add(arma);
+        }
+
+        if (armasValidas.Count == 0)
+        {
+            Debug.LogError(
+                "WeaponManager: las armas seleccionadas no son válidas."
+            );
+            return;
+        }
+
+        DesactivarTodasLasArmas();
+
+        armas = armasValidas.ToArray();
+        armaActual = null;
+        indiceArmaActual = 0;
+        seleccionConfigurada = true;
+        avisoSinMunicionReproducido = false;
+
+        EquiparArma(Mathf.Clamp(armaInicial, 0, armas.Length - 1));
+
+        Debug.Log(
+            "WeaponManager: selección aplicada. Armas disponibles: " +
+            armas.Length
+        );
+    }
+
+    public List<AmmoType> ObtenerTiposMunicionSeleccionados()
+    {
+        List<AmmoType> tipos = new List<AmmoType>();
+
+        if (!seleccionConfigurada || armas == null)
+            return tipos;
+
+        foreach (Weapon arma in armas)
+        {
+            if (arma == null)
+                continue;
+
+            if (!tipos.Contains(arma.TipoMunicion))
+                tipos.Add(arma.TipoMunicion);
+        }
+
+        return tipos;
+    }
 
     private void CambiarArma()
     {
@@ -57,183 +140,81 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
             EquiparArma(1);
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            EquiparArma(2);
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            EquiparArma(3);
-
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            EquiparArma(4);
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            EquiparArma(5);
-
-        float rueda =
-            Input.mouseScrollDelta.y;
+        float rueda = Input.mouseScrollDelta.y;
 
         if (rueda > 0f)
-        {
             CambiarArmaPorRueda(1);
-        }
         else if (rueda < 0f)
-        {
             CambiarArmaPorRueda(-1);
-        }
     }
 
-    // =====================================================
-    // CAMBIO CON RUEDA
-    // =====================================================
-
-    private void CambiarArmaPorRueda(
-        int direccion)
+    private void CambiarArmaPorRueda(int direccion)
     {
-        if (armas == null ||
-            armas.Length == 0)
-        {
+        if (armas == null || armas.Length <= 1)
             return;
-        }
 
-        int nuevoIndice =
-            indiceArmaActual +
-            direccion;
+        int nuevoIndice = indiceArmaActual;
 
-        if (nuevoIndice >= armas.Length)
+        for (int i = 0; i < armas.Length; i++)
         {
-            nuevoIndice = 0;
-        }
-
-        if (nuevoIndice < 0)
-        {
-            nuevoIndice =
-                armas.Length - 1;
-        }
-
-        for (int i = 0;
-             i < armas.Length;
-             i++)
-        {
-            if (armas[nuevoIndice] != null)
-            {
-                EquiparArma(
-                    nuevoIndice
-                );
-
-                return;
-            }
-
             nuevoIndice += direccion;
 
             if (nuevoIndice >= armas.Length)
-            {
                 nuevoIndice = 0;
-            }
 
             if (nuevoIndice < 0)
+                nuevoIndice = armas.Length - 1;
+
+            if (armas[nuevoIndice] != null)
             {
-                nuevoIndice =
-                    armas.Length - 1;
+                EquiparArma(nuevoIndice);
+                return;
             }
         }
     }
 
-    // =====================================================
-    // EQUIPAR ARMA
-    // =====================================================
-
-    private void EquiparArma(
-        int indice)
+    private void EquiparArma(int indice)
     {
-        if (armas == null)
+        if (armas == null || indice < 0 || indice >= armas.Length)
             return;
 
-        if (indice < 0 ||
-            indice >= armas.Length)
-        {
+        if (armas[indice] == null || armaActual == armas[indice])
             return;
+
+        foreach (Weapon arma in armasOriginales)
+        {
+            if (arma != null)
+                arma.gameObject.SetActive(false);
         }
 
-        if (armas[indice] == null)
-            return;
+        armaActual = armas[indice];
+        indiceArmaActual = indice;
+        armaActual.gameObject.SetActive(true);
+        avisoSinMunicionReproducido = false;
 
-        if (armaActual == armas[indice])
-            return;
-
-        for (int i = 0;
-             i < armas.Length;
-             i++)
-        {
-            if (armas[i] != null)
-            {
-                armas[i].gameObject.SetActive(
-                    false
-                );
-            }
-        }
-
-        armaActual =
-            armas[indice];
-
-        indiceArmaActual =
-            indice;
-
-        armaActual.gameObject.SetActive(
-            true
-        );
-
-        avisoSinMunicionReproducido =
-            false;
-
-        Debug.Log(
-            "Arma equipada: " +
-            armaActual.nombreArma
-        );
+        Debug.Log("Arma equipada: " + armaActual.nombreArma);
     }
-
-    // =====================================================
-    // OBTENER ARMA ACTUAL
-    // =====================================================
 
     public Weapon GetArmaActual()
     {
         return armaActual;
     }
 
-    // =====================================================
-    // AGREGAR MUNICIÓN
-    // =====================================================
-
-    public bool AgregarMunicion(
-        AmmoType tipoMunicion,
-        int cantidad)
+    public bool AgregarMunicion(AmmoType tipoMunicion, int cantidad)
     {
-        if (armas == null)
+        if (!seleccionConfigurada || armas == null)
             return false;
 
-        for (int i = 0;
-             i < armas.Length;
-             i++)
+        foreach (Weapon arma in armas)
         {
-            if (armas[i] == null)
+            if (arma == null || arma.TipoMunicion != tipoMunicion)
                 continue;
 
-            if (armas[i].TipoMunicion !=
-                tipoMunicion)
-            {
-                continue;
-            }
-
-            bool agregada =
-                armas[i].AgregarMunicion(
-                    cantidad
-                );
+            bool agregada = arma.AgregarMunicion(cantidad);
 
             if (agregada)
             {
-                avisoSinMunicionReproducido =
-                    false;
-
+                avisoSinMunicionReproducido = false;
                 return true;
             }
         }
@@ -241,56 +222,31 @@ public class WeaponManager : MonoBehaviour
         return false;
     }
 
-    // =====================================================
-    // DISPARO
-    // =====================================================
-
     private void ManejarDisparo()
     {
         switch (armaActual.FireMode)
         {
             case FireMode.SemiAuto:
-
             case FireMode.Pump:
-
             case FireMode.Bolt:
-
+            case FireMode.Burst:
                 if (Input.GetMouseButtonDown(0))
-                {
                     Disparar();
-                }
-
                 break;
 
             case FireMode.FullAuto:
-
                 if (Input.GetMouseButton(0))
-                {
                     Disparar();
-                }
-
-                break;
-
-            case FireMode.Burst:
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Disparar();
-                }
-
                 break;
         }
 
         if (Input.GetMouseButtonUp(0))
-        {
-            avisoSinMunicionReproducido =
-                false;
-        }
+            avisoSinMunicionReproducido = false;
     }
 
     private void Disparar()
     {
-        if (armaActual.EstaRecargando)
+        if (armaActual == null || armaActual.EstaRecargando)
             return;
 
         if (!armaActual.TieneMunicion())
@@ -298,64 +254,42 @@ public class WeaponManager : MonoBehaviour
             if (!avisoSinMunicionReproducido)
             {
                 if (sfxManager != null)
-                {
                     sfxManager.ReproducirSinMunicion();
-                }
 
-                avisoSinMunicionReproducido =
-                    true;
+                avisoSinMunicionReproducido = true;
             }
 
             return;
         }
 
-        avisoSinMunicionReproducido =
-            false;
+        avisoSinMunicionReproducido = false;
 
-        int municionAntes =
-            armaActual.MunicionActual;
-
+        int municionAntes = armaActual.MunicionActual;
         armaActual.Disparar();
 
-        if (armaActual.MunicionActual <
-            municionAntes)
+        if (armaActual.MunicionActual < municionAntes &&
+            sfxManager != null)
         {
-            if (sfxManager != null)
-            {
-                sfxManager.ReproducirDisparo(
-                    armaActual.TipoMunicion
-                );
-            }
+            sfxManager.ReproducirDisparo(armaActual.TipoMunicion);
         }
     }
-
-    // =====================================================
-    // RECARGA
-    // =====================================================
 
     private void ManejarRecarga()
     {
         if (!Input.GetKeyDown(KeyCode.R))
             return;
 
-        if (armaActual.EstaRecargando)
+        if (armaActual == null || armaActual.EstaRecargando)
             return;
 
-        if (armaActual.MunicionActual >=
-            armaActual.CapacidadCargador)
-        {
+        if (armaActual.MunicionActual >= armaActual.CapacidadCargador)
             return;
-        }
 
         if (armaActual.MunicionReserva <= 0)
             return;
 
         if (sfxManager != null)
-        {
-            sfxManager.ReproducirRecarga(
-                armaActual.TipoMunicion
-            );
-        }
+            sfxManager.ReproducirRecarga(armaActual.TipoMunicion);
 
         armaActual.Recargar();
     }

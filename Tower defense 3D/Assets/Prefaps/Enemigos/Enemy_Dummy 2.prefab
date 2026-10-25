@@ -166,12 +166,24 @@ MonoBehaviour:
   duracionMuerte: 0.3
   sfxManager: {fileID: 0}
   dropsMunicion:
+  - tipoMunicion: 0
+    probabilidad: 40
+    prefab: {fileID: 5979671794525995343, guid: f263498b449569a4194febe4d631446b, type: 3}
   - tipoMunicion: 1
-    probabilidad: 60
-    prefab: {fileID: 2254340649296830931, guid: 54b7f037e49d4884d8a257ce7d33bdd1, type: 3}
-  - tipoMunicion: 1
-    probabilidad: 60
-    prefab: {fileID: 2254340649296830931, guid: 54b7f037e49d4884d8a257ce7d33bdd1, type: 3}
+    probabilidad: 40
+    prefab: {fileID: 2254340649296830931, guid: 66179acd525748042bad77f9afdb01f1, type: 3}
+  - tipoMunicion: 2
+    probabilidad: 40
+    prefab: {fileID: 5979671794525995343, guid: 0ee878d9800fc9e4b91db2ecb9009f8b, type: 3}
+  - tipoMunicion: 3
+    probabilidad: 40
+    prefab: {fileID: 5979671794525995343, guid: 8f4fe860cf29a4543b7b31a75557f077, type: 3}
+  - tipoMunicion: 4
+    probabilidad: 40
+    prefab: {fileID: 5979671794525995343, guid: e5436b82f185e9c4ea089f51cec692c6, type: 3}
+  - tipoMunicion: 5
+    probabilidad: 30
+    prefab: {fileID: 5979671794525995343, guid: ac23fb3e6b31eba4ba51986d8a1df1ae, type: 3}
   dineroAlMorir: 6
 --- !u!114 &614390505775713585
 MonoBehaviour:
