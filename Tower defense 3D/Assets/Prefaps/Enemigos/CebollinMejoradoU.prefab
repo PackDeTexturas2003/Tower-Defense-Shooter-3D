@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CebollinMejoradoU
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
@@ -169,6 +173,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 74b20d2ab61a7084c9f08ac939b1ef15, type: 2}
   modeloVisual: {fileID: 2037370985423689733}
   rotacionYModelo: 90
+  velocidadRotacionModelo: 12
   tipoAtaque: 0
   tipoObjetivo: 1
   objetivo: {fileID: 0}

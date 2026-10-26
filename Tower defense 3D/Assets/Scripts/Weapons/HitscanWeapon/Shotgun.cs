@@ -38,7 +38,7 @@ public class Shotgun : HitscanWeapon
         // Repartir daño total
         // entre los perdigones
         float danoPorPerdigon =
-            dańo / perdigones;
+            daño / perdigones;
 
         enemigo.RecibirDanio(
             danoPorPerdigon

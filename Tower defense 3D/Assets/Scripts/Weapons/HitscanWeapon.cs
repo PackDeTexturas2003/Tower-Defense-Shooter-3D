@@ -140,7 +140,7 @@ public abstract class HitscanWeapon : Weapon
 
         // Daño
         enemigo.RecibirDanio(
-            dańo
+            daño
         );
 
         // Empuje

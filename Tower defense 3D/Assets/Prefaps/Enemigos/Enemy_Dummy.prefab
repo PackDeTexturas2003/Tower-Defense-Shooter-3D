@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5370747624909623835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.82, y: 3.35, z: -0.13502}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166,6 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   data: {fileID: 11400000, guid: b980deeb7e0c44846b9df6e7f9cf8292, type: 2}
+  modeloVisual: {fileID: -8679921383154817045, guid: a273a67252ab2e14da80305847bc36d7, type: 3}
+  rotacionYModelo: 0
+  velocidadRotacionModelo: 12
   tipoAtaque: 0
   tipoObjetivo: 0
   objetivo: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public enum AmmoType
@@ -18,25 +19,19 @@ public abstract class Weapon : MonoBehaviour
 
     [Header("Tipo de Munición")]
     [SerializeField]
-    protected AmmoType tipoMunicion =
-        AmmoType.Pistola;
+    protected AmmoType tipoMunicion = AmmoType.Pistola;
 
-    public AmmoType TipoMunicion =>
-        tipoMunicion;
+    public AmmoType TipoMunicion => tipoMunicion;
 
     [Header("Modo de Disparo")]
     [SerializeField]
-    protected FireMode fireMode =
-        FireMode.SemiAuto;
+    protected FireMode fireMode = FireMode.SemiAuto;
 
-    public FireMode FireMode =>
-        fireMode;
+    public FireMode FireMode => fireMode;
 
     [Header("Disparo")]
-    public float dańo = 10f;
-
+    public float daño = 10f;
     public float tiempoEntreDisparos = 1f;
-
     public float distancia = 100f;
 
     [Header("Retroceso del jugador")]
@@ -64,37 +59,88 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField]
     protected float tiempoRecarga = 1.5f;
 
+    [Header("Sonido")]
+    [SerializeField]
+    protected SFXManager sfxManager;
+
     protected Camera camara;
-
     protected float siguienteDisparo;
-
     protected int municionActual;
-
     protected int municionReserva;
-
     protected bool recargando;
 
     protected virtual void Awake()
     {
         camara = Camera.main;
 
-        municionActual =
-            Mathf.Clamp(
-                municionInicial,
-                0,
-                capacidadCargador
-            );
+        municionActual = Mathf.Clamp(
+            municionInicial,
+            0,
+            capacidadCargador
+        );
 
-        municionReserva =
-            Mathf.Clamp(
-                municionReservaInicial,
-                0,
-                reservaMaxima
-            );
+        municionReserva = Mathf.Clamp(
+            municionReservaInicial,
+            0,
+            reservaMaxima
+        );
+
+        if (sfxManager == null)
+        {
+            sfxManager = FindFirstObjectByType<SFXManager>();
+        }
+    }
+
+    protected virtual void Update()
+    {
+        // Solo se comprueba el botón para la SMG.
+        if (tipoMunicion != AmmoType.SMG)
+            return;
+
+        // Detiene el audio al soltar el botón,
+        // quedarse sin munición o comenzar a recargar.
+        if (!Input.GetMouseButton(0) ||
+            !TieneMunicion() ||
+            recargando)
+        {
+            DetenerSonidoSMG();
+        }
     }
 
     public virtual void Disparar()
     {
+    }
+
+    // =====================================================
+    // SONIDO DE LA SMG
+    // =====================================================
+
+    protected void IniciarSonidoSMG()
+    {
+        if (tipoMunicion != AmmoType.SMG)
+            return;
+
+        if (sfxManager == null)
+            return;
+
+        if (!Input.GetMouseButton(0))
+            return;
+
+        if (!TieneMunicion() || recargando)
+            return;
+
+        sfxManager.IniciarSonidoSMG();
+    }
+
+    protected void DetenerSonidoSMG()
+    {
+        if (tipoMunicion != AmmoType.SMG)
+            return;
+
+        if (sfxManager != null)
+        {
+            sfxManager.DetenerSonidoSMG();
+        }
     }
 
     // =====================================================
@@ -109,15 +155,22 @@ public abstract class Weapon : MonoBehaviour
     protected bool ConsumirMunicion()
     {
         if (municionActual <= 0)
+        {
+            DetenerSonidoSMG();
             return false;
+        }
 
         municionActual--;
+
+        if (municionActual <= 0)
+        {
+            DetenerSonidoSMG();
+        }
 
         return true;
     }
 
-    public bool AgregarMunicion(
-        int cantidad)
+    public bool AgregarMunicion(int cantidad)
     {
         if (cantidad <= 0)
             return false;
@@ -125,18 +178,15 @@ public abstract class Weapon : MonoBehaviour
         if (municionReserva >= reservaMaxima)
             return false;
 
-        int municionAntes =
-            municionReserva;
+        int municionAntes = municionReserva;
 
-        municionReserva =
-            Mathf.Clamp(
-                municionReserva + cantidad,
-                0,
-                reservaMaxima
-            );
+        municionReserva = Mathf.Clamp(
+            municionReserva + cantidad,
+            0,
+            reservaMaxima
+        );
 
-        return municionReserva >
-               municionAntes;
+        return municionReserva > municionAntes;
     }
 
     // =====================================================
@@ -154,40 +204,31 @@ public abstract class Weapon : MonoBehaviour
         if (municionReserva <= 0)
             return;
 
-        StartCoroutine(
-            RecargarCoroutine()
-        );
+        DetenerSonidoSMG();
+
+        StartCoroutine(RecargarCoroutine());
     }
 
     protected IEnumerator RecargarCoroutine()
     {
         recargando = true;
 
-        Debug.Log(
-            "Recargando " +
-            nombreArma +
-            "..."
-        );
+        DetenerSonidoSMG();
 
-        yield return new WaitForSeconds(
-            tiempoRecarga
-        );
+        Debug.Log("Recargando " + nombreArma + "...");
+
+        yield return new WaitForSeconds(tiempoRecarga);
 
         int espacioDisponible =
-            capacidadCargador -
-            municionActual;
+            capacidadCargador - municionActual;
 
-        int cantidadRecargar =
-            Mathf.Min(
-                espacioDisponible,
-                municionReserva
-            );
+        int cantidadRecargar = Mathf.Min(
+            espacioDisponible,
+            municionReserva
+        );
 
-        municionActual +=
-            cantidadRecargar;
-
-        municionReserva -=
-            cantidadRecargar;
+        municionActual += cantidadRecargar;
+        municionReserva -= cantidadRecargar;
 
         recargando = false;
 
@@ -203,18 +244,22 @@ public abstract class Weapon : MonoBehaviour
     // PROPIEDADES
     // =====================================================
 
-    public int MunicionActual =>
-        municionActual;
+    public int MunicionActual => municionActual;
 
-    public int MunicionReserva =>
-        municionReserva;
+    public int MunicionReserva => municionReserva;
 
-    public int CapacidadCargador =>
-        capacidadCargador;
+    public int CapacidadCargador => capacidadCargador;
 
-    public int ReservaMaxima =>
-        reservaMaxima;
+    public int ReservaMaxima => reservaMaxima;
 
-    public bool EstaRecargando =>
-        recargando;
+    public bool EstaRecargando => recargando;
+
+    // =====================================================
+    // LIMPIEZA
+    // =====================================================
+
+    protected virtual void OnDisable()
+    {
+        DetenerSonidoSMG();
+    }
 }

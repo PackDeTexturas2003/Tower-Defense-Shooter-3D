@@ -1,3 +1,5 @@
+
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -35,7 +37,7 @@ public class SFXManager : MonoBehaviour
     [Header("Sonidos de interfaz")]
     [SerializeField] private AudioClip sonidoContinuar;
 
-    [Header("Configuración")]
+    [Header("Configuración general")]
     [Range(0f, 1f)]
     [SerializeField] private float volumen = 1f;
 
@@ -55,7 +57,19 @@ public class SFXManager : MonoBehaviour
     [Range(0f, 2f)]
     [SerializeField] private float volumenContinuar = 1f;
 
+    [Header("Ráfaga del rifle")]
+    [SerializeField] private int cantidadDisparosRifle = 3;
+
+    [SerializeField] private float intervaloDisparosRifle = 0.15f;
+
+    [Header("Sonido continuo de la SMG")]
+    [SerializeField] private bool detenerSMGAlDesactivar = true;
+
     private AudioSource audioSource;
+    private AudioSource audioSourceSMG;
+
+    private Coroutine corrutinaRifle;
+    private bool reproduciendoSMG;
 
     private void Awake()
     {
@@ -64,41 +78,120 @@ public class SFXManager : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.volume = volumen;
+
+        // Fuente de audio independiente para el sonido continuo de la SMG.
+        audioSourceSMG = gameObject.AddComponent<AudioSource>();
+        audioSourceSMG.playOnAwake = false;
+        audioSourceSMG.loop = true;
+        audioSourceSMG.volume = volumen;
+        audioSourceSMG.spatialBlend = audioSource.spatialBlend;
+        audioSourceSMG.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
     }
+
+    // =========================================================
+    // DISPAROS
+    // =========================================================
 
     public void ReproducirDisparo(AmmoType tipoMunicion)
     {
-        AudioClip sonido = null;
-
         switch (tipoMunicion)
         {
             case AmmoType.Pistola:
-                sonido = disparoPistola;
+                ReproducirSonido(disparoPistola);
                 break;
 
             case AmmoType.Shotgun:
-                sonido = disparoShotgun;
+                ReproducirSonido(disparoShotgun);
                 break;
 
             case AmmoType.SMG:
-                sonido = disparoSMG;
+                // Solo comienza cuando el script del arma lo solicita.
+                IniciarSonidoSMG();
                 break;
 
             case AmmoType.Rifle:
-                sonido = disparoRifle;
+                IniciarRafagaRifle();
                 break;
 
             case AmmoType.Sniper:
-                sonido = disparoSniper;
+                ReproducirSonido(disparoSniper);
                 break;
 
             case AmmoType.RPG:
-                sonido = disparoRPG;
+                ReproducirSonido(disparoRPG);
                 break;
         }
-
-        ReproducirSonido(sonido);
     }
+
+    // =========================================================
+    // SMG: SONIDO CONTINUO MIENTRAS SE MANTIENE EL DISPARO
+    // =========================================================
+
+    public void IniciarSonidoSMG()
+    {
+        if (disparoSMG == null)
+            return;
+
+        if (audioSourceSMG == null)
+            return;
+
+        // Evita reiniciar el audio en cada fotograma.
+        if (reproduciendoSMG && audioSourceSMG.isPlaying)
+            return;
+
+        audioSourceSMG.clip = disparoSMG;
+        audioSourceSMG.volume = volumen;
+        audioSourceSMG.loop = true;
+
+        audioSourceSMG.Play();
+        reproduciendoSMG = true;
+    }
+
+    public void DetenerSonidoSMG()
+    {
+        if (audioSourceSMG == null)
+            return;
+
+        audioSourceSMG.Stop();
+        audioSourceSMG.clip = null;
+        reproduciendoSMG = false;
+    }
+
+    // =========================================================
+    // RIFLE: TRES DISPAROS CONSECUTIVOS
+    // =========================================================
+
+    public void IniciarRafagaRifle()
+    {
+        if (disparoRifle == null)
+            return;
+
+        if (corrutinaRifle != null)
+            return;
+
+        corrutinaRifle = StartCoroutine(ReproducirRafagaRifle());
+    }
+
+    private IEnumerator ReproducirRafagaRifle()
+    {
+        int cantidad = Mathf.Max(1, cantidadDisparosRifle);
+
+        for (int i = 0; i < cantidad; i++)
+        {
+            ReproducirSonido(disparoRifle);
+
+            if (i < cantidad - 1)
+                yield return new WaitForSeconds(
+                    Mathf.Max(0f, intervaloDisparosRifle)
+                );
+        }
+
+        corrutinaRifle = null;
+    }
+
+    // =========================================================
+    // RECARGAS
+    // =========================================================
 
     public void ReproducirRecarga(AmmoType tipoMunicion)
     {
@@ -134,6 +227,10 @@ public class SFXManager : MonoBehaviour
         ReproducirSonido(sonido);
     }
 
+    // =========================================================
+    // OTROS EFECTOS DE SONIDO
+    // =========================================================
+
     public void ReproducirSinMunicion()
     {
         ReproducirSonido(sinMunicion);
@@ -141,60 +238,46 @@ public class SFXManager : MonoBehaviour
 
     public void ReproducirImpactoEnemigo()
     {
-        ReproducirSonido(
-            impactoEnemigo,
-            volumenImpactoEnemigo
-        );
+        ReproducirSonido(impactoEnemigo, volumenImpactoEnemigo);
     }
 
     public void ReproducirGolpeJugador()
     {
-        ReproducirSonido(
-            golpeJugador,
-            volumenGolpeJugador
-        );
+        ReproducirSonido(golpeJugador, volumenGolpeJugador);
     }
 
     public void ReproducirRecogerMunicion()
     {
-        ReproducirSonido(
-            recogerMunicion,
-            volumenRecogerMunicion
-        );
+        ReproducirSonido(recogerMunicion, volumenRecogerMunicion);
     }
 
     public void ReproducirExplosionRPG()
     {
-        ReproducirSonido(
-            explosionRPG,
-            volumenExplosionRPG
-        );
+        ReproducirSonido(explosionRPG, volumenExplosionRPG);
     }
 
     public void ReproducirContinuar()
     {
-        ReproducirSonido(
-            sonidoContinuar,
-            volumenContinuar
-        );
+        ReproducirSonido(sonidoContinuar, volumenContinuar);
     }
+
+    // =========================================================
+    // REPRODUCCIÓN GENERAL
+    // =========================================================
 
     private void ReproducirSonido(AudioClip clip)
     {
-        if (clip == null)
+        if (clip == null || audioSource == null)
             return;
 
-        audioSource.PlayOneShot(
-            clip,
-            volumen
-        );
+        audioSource.PlayOneShot(clip, volumen);
     }
 
     private void ReproducirSonido(
         AudioClip clip,
         float multiplicadorVolumen)
     {
-        if (clip == null)
+        if (clip == null || audioSource == null)
             return;
 
         audioSource.PlayOneShot(
@@ -206,6 +289,27 @@ public class SFXManager : MonoBehaviour
     public void CambiarVolumen(float nuevoVolumen)
     {
         volumen = Mathf.Clamp01(nuevoVolumen);
-        audioSource.volume = volumen;
+
+        if (audioSource != null)
+            audioSource.volume = volumen;
+
+        if (audioSourceSMG != null)
+            audioSourceSMG.volume = volumen;
+    }
+
+    // =========================================================
+    // LIMPIEZA
+    // =========================================================
+
+    private void OnDisable()
+    {
+        if (detenerSMGAlDesactivar)
+            DetenerSonidoSMG();
+
+        if (corrutinaRifle != null)
+        {
+            StopCoroutine(corrutinaRifle);
+            corrutinaRifle = null;
+        }
     }
 }

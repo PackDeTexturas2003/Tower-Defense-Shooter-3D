@@ -94,7 +94,7 @@ public class BoltRifle : HitscanWeapon
                 );
 
                 enemigo.RecibirDanio(
-                    dańo
+                    daño
                 );
 
                 EnemyController enemyController =

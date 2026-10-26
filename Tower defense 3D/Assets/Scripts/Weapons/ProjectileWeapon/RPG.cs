@@ -32,7 +32,7 @@ public class RPG : ProjectileWeapon
         if (rpgProjectile != null)
         {
             rpgProjectile.Configurar(
-                dańo,
+                daño,
                 radioExplosion,
                 fuerzaExplosion
             );
