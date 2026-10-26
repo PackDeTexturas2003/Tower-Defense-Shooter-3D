@@ -90,6 +90,9 @@ public class SeleccionArmas : MonoBehaviour
             panelSeleccionArmas = gameObject;
 
         ActualizarInterfaz();
+
+        // El mensaje comienza vacío.
+        MostrarMensaje("");
     }
 
     private void BuscarArmas()
@@ -197,6 +200,8 @@ public class SeleccionArmas : MonoBehaviour
 
         CalcularCosto();
         ActualizarInterfaz();
+
+        // Al cambiar la selección, se limpia el mensaje anterior.
         MostrarMensaje("");
     }
 
@@ -256,13 +261,11 @@ public class SeleccionArmas : MonoBehaviour
             }
         }
 
+        // Confirmar permanece habilitado mientras no se haya confirmado.
+        // La validación de armas se realiza al pulsar el botón.
         if (botonConfirmar != null)
         {
-            botonConfirmar.interactable =
-                !seleccionConfirmada &&
-                armasSeleccionadas.Count > 0 &&
-                dineroJugador != null &&
-                dineroJugador.TieneDinero(costoSeleccion);
+            botonConfirmar.interactable = !seleccionConfirmada;
         }
     }
 
@@ -271,9 +274,12 @@ public class SeleccionArmas : MonoBehaviour
         if (seleccionConfirmada)
             return;
 
+        // Impide avanzar si no se ha elegido ninguna arma.
         if (armasSeleccionadas.Count == 0)
         {
-            MostrarMensaje("Selecciona al menos un arma.");
+            MostrarMensaje(
+                "Selecciona al menos un arma para continuar."
+            );
             return;
         }
 
@@ -313,14 +319,16 @@ public class SeleccionArmas : MonoBehaviour
 
         if (seleccionadas.Count == 0)
         {
-            MostrarMensaje("No hay armas válidas seleccionadas.");
+            MostrarMensaje(
+                "Selecciona al menos un arma para continuar."
+            );
             return;
         }
 
-        // Aplicamos las armas antes de descontar el dinero.
+        // Configura las armas seleccionadas.
         weaponManager.ConfigurarArmasSeleccionadas(seleccionadas);
 
-        // Descontamos únicamente el costo de las armas elegidas.
+        // Descuenta el costo de las armas elegidas.
         if (!dineroJugador.GastarDinero(costoSeleccion))
         {
             MostrarMensaje("No se pudo realizar el pago.");
@@ -343,7 +351,7 @@ public class SeleccionArmas : MonoBehaviour
             dineroJugador.ObtenerDinero()
         );
 
-        // Cerramos la selección y comenzamos la planificación.
+        // Avanza únicamente tras una selección válida.
         if (panelSeleccionArmas != null)
             panelSeleccionArmas.SetActive(false);
 
