@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.75
+      value: -63.755898
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.952
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.9
+      value: 58.482677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -115,7 +115,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.66, y: 7, z: 2.8}
-  m_Center: {x: 0, y: 1.86, z: 0}
+  m_Center: {x: 0, y: 1.67, z: 0}
 --- !u!114 &2084087268975778491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   data: {fileID: 11400000, guid: 74b20d2ab61a7084c9f08ac939b1ef15, type: 2}
+  modeloVisual: {fileID: 2037370985423689733}
+  rotacionYModelo: 90
   tipoAtaque: 0
   tipoObjetivo: 1
   objetivo: {fileID: 0}
@@ -227,3 +229,8 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!4 &2037370985423689733 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
+  m_PrefabInstance: {fileID: 2003129181312958446}
+  m_PrefabAsset: {fileID: 0}

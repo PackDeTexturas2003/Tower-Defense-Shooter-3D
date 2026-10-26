@@ -20,6 +20,18 @@ public class EnemyController : MonoBehaviour
     [Header("Datos")]
     [SerializeField] private EnemyData data;
 
+    // =========================================
+    // ROTACION DEL MODELO VISUAL
+    // =========================================
+
+    [Header("Rotacion del modelo visual")]
+    [SerializeField] private Transform modeloVisual;
+    [SerializeField] private float rotacionYModelo = 0f;
+    [SerializeField] private float velocidadRotacionModelo = 12f;
+
+    private Vector3 rotacionBaseModelo;
+    private Vector3 ultimaDireccionModelo = Vector3.forward;
+
     [Header("Tipo de ataque")]
     [SerializeField]
     private TipoAtaque tipoAtaque =
@@ -120,6 +132,67 @@ public class EnemyController : MonoBehaviour
         // El movimiento lo controla
         // NavMeshAgent.
         controller.enabled = false;
+
+        // Guardar la rotacion original del modelo.
+        if (modeloVisual != null)
+        {
+            rotacionBaseModelo =
+                modeloVisual.localEulerAngles;
+        }
+    }
+
+    // =========================================
+    // ROTACION DEL MODELO VISUAL
+    // =========================================
+
+    private void LateUpdate()
+    {
+        if (modeloVisual == null)
+            return;
+
+        // Obtener la direccion real del movimiento del enemigo.
+        Vector3 direccionMovimiento = Vector3.zero;
+
+        if (agent != null &&
+            agent.enabled &&
+            agent.isOnNavMesh)
+        {
+            direccionMovimiento = agent.velocity;
+        }
+
+        // Ignorar el movimiento vertical.
+        direccionMovimiento.y = 0f;
+
+        // Actualizar la direccion cuando el enemigo se desplaza.
+        if (direccionMovimiento.sqrMagnitude > 0.01f)
+        {
+            ultimaDireccionModelo =
+                direccionMovimiento.normalized;
+        }
+
+        // Girar el modelo hacia la ultima direccion de movimiento.
+        if (ultimaDireccionModelo.sqrMagnitude > 0.01f)
+        {
+            Quaternion rotacionObjetivo =
+                Quaternion.LookRotation(
+                    ultimaDireccionModelo
+                );
+
+            // Aplicar la correccion de orientacion del modelo.
+            rotacionObjetivo *= Quaternion.Euler(
+                rotacionBaseModelo.x,
+                rotacionBaseModelo.y + rotacionYModelo,
+                rotacionBaseModelo.z
+            );
+
+            modeloVisual.rotation =
+                Quaternion.Slerp(
+                    modeloVisual.rotation,
+                    rotacionObjetivo,
+                    velocidadRotacionModelo *
+                    Time.deltaTime
+                );
+        }
     }
 
     // =========================================
