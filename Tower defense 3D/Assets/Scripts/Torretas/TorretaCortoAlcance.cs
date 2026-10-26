@@ -22,6 +22,11 @@ public class TorretaCortoAlcance : MonoBehaviour
     private Transform objetivoActual;
     private float tiempoProximoDisparo;
 
+    // Datos públicos para mostrar estadísticas en la interfaz.
+    public float ObtenerRango() { return rango; }
+    public float ObtenerDanio() { return daño; }
+    public float ObtenerTiempoEntreDisparos() { return tiempoEntreDisparos; }
+
     private void Update()
     {
         BuscarObjetivo();

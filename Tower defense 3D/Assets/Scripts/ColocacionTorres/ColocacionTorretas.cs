@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -29,6 +30,9 @@ public class ColocacionTorretas : MonoBehaviour
 
     [Header("Visual")]
     [SerializeField] private bool mostrarColores = true;
+
+    [Header("Panel de información de la torre")]
+    [SerializeField] private PanelInformacionTorre panelInformacion;
 
     private bool puedeColocar;
     private ZonaColocacionTorre zonaSeleccionadaActual;
@@ -84,8 +88,11 @@ public class ColocacionTorretas : MonoBehaviour
 
     private ZonaColocacionTorre BuscarZonaDesdeMouse()
     {
-        if (zonasColocacion == null || zonasColocacion.Length == 0)
+        if (zonasColocacion == null ||
+            zonasColocacion.Length == 0)
+        {
             return null;
+        }
 
         Vector2 posicionMouse = Mouse.current.position.ReadValue();
 
@@ -105,7 +112,8 @@ public class ColocacionTorretas : MonoBehaviour
             if (colliderZona == null)
                 continue;
 
-            if (colliderZona.Raycast(rayo, out RaycastHit hit, 1000f))
+            if (colliderZona.Raycast(
+                rayo, out RaycastHit hit, 1000f))
             {
                 if (hit.distance < distanciaMasCercana)
                 {
@@ -132,7 +140,8 @@ public class ColocacionTorretas : MonoBehaviour
         zona.MostrarColorSeleccionada();
     }
 
-    private void ActualizarColorZonaSinSeleccion(ZonaColocacionTorre zona)
+    private void ActualizarColorZonaSinSeleccion(
+        ZonaColocacionTorre zona)
     {
         if (!mostrarColores || zona == null)
             return;
@@ -145,8 +154,11 @@ public class ColocacionTorretas : MonoBehaviour
 
     private bool SeleccionarTorreDesdeUI()
     {
-        if (imagenesTorres == null || imagenesTorres.Length == 0)
+        if (imagenesTorres == null ||
+            imagenesTorres.Length == 0)
+        {
             return false;
+        }
 
         if (EventSystem.current == null)
             return false;
@@ -202,12 +214,17 @@ public class ColocacionTorretas : MonoBehaviour
             return;
         }
 
-        if (prefabsTorres == null || prefabsTorres.Length == 0)
+        if (prefabsTorres == null ||
+            prefabsTorres.Length == 0)
+        {
             return;
+        }
 
         if (indiceTorreSeleccionada < 0 ||
             indiceTorreSeleccionada >= prefabsTorres.Length)
+        {
             return;
+        }
 
         GameObject prefabSeleccionado =
             prefabsTorres[indiceTorreSeleccionada];
@@ -230,7 +247,8 @@ public class ColocacionTorretas : MonoBehaviour
             Debug.Log(
                 "No tienes suficiente dinero para comprar esta torre. " +
                 "Precio: " + precio +
-                " | Dinero actual: " + dineroJugador.ObtenerDinero()
+                " | Dinero actual: " +
+                dineroJugador.ObtenerDinero()
             );
             return;
         }
@@ -292,6 +310,7 @@ public class ColocacionTorretas : MonoBehaviour
         puedeColocar = true;
 
         PrepararVisualesZonas();
+        ActualizarPanelInformacion();
 
         Debug.Log("Sistema de colocación iniciado.");
     }
@@ -302,6 +321,9 @@ public class ColocacionTorretas : MonoBehaviour
         zonaSeleccionadaActual = null;
 
         RestaurarVisualesZonas();
+
+        if (panelInformacion != null)
+            panelInformacion.Ocultar();
 
         Debug.Log("Sistema de colocación detenido.");
     }
@@ -337,10 +359,41 @@ public class ColocacionTorretas : MonoBehaviour
         }
     }
 
+    private void ActualizarPanelInformacion()
+    {
+        if (panelInformacion == null)
+            return;
+
+        if (prefabsTorres == null ||
+            indiceTorreSeleccionada < 0 ||
+            indiceTorreSeleccionada >= prefabsTorres.Length)
+        {
+            panelInformacion.Ocultar();
+            return;
+        }
+
+        GameObject prefab =
+            prefabsTorres[indiceTorreSeleccionada];
+
+        if (prefab == null)
+        {
+            panelInformacion.Ocultar();
+            return;
+        }
+
+        panelInformacion.Mostrar(
+            prefab,
+            ObtenerPrecioTorre(indiceTorreSeleccionada)
+        );
+    }
+
     public void SeleccionarTorre(int indice)
     {
-        if (prefabsTorres == null || prefabsTorres.Length == 0)
+        if (prefabsTorres == null ||
+            prefabsTorres.Length == 0)
+        {
             return;
+        }
 
         if (indice < 0 || indice >= prefabsTorres.Length)
             return;
@@ -354,6 +407,11 @@ public class ColocacionTorretas : MonoBehaviour
             );
         }
 
-        Debug.Log("Torre seleccionada: " + indiceTorreSeleccionada);
+        ActualizarPanelInformacion();
+
+        Debug.Log(
+            "Torre seleccionada: " +
+            indiceTorreSeleccionada
+        );
     }
 }
