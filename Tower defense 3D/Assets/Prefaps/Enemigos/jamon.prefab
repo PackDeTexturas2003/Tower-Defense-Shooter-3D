@@ -180,7 +180,7 @@ MonoBehaviour:
   rotacionYModelo: -90
   velocidadRotacionModelo: 120
   tipoAtaque: 0
-  tipoObjetivo: 0
+  tipoObjetivo: 1
   objetivo: {fileID: 0}
   radioDeteccionJugador: 12
   proyectilPrefab: {fileID: 0}
