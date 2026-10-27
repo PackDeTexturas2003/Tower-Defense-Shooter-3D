@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,8 @@ public class EnemyController : MonoBehaviour
     public enum TipoObjetivo
     {
         Jugador,
-        Objetivo
+        Objetivo,
+        Torreta
     }
 
     public enum TipoAtaque
@@ -52,6 +54,10 @@ public class EnemyController : MonoBehaviour
     [Header("Deteccion del jugador")]
     [SerializeField]
     private float radioDeteccionJugador = 12f;
+
+    [Header("Deteccion de torretas")]
+    [SerializeField]
+    private string tagTorreta = "Torreta";
 
     // =========================================
     // ATAQUE A DISTANCIA
@@ -344,9 +350,14 @@ public class EnemyController : MonoBehaviour
 
     private void BuscarObjetivo()
     {
+        string tagBuscado =
+            tipoObjetivo == TipoObjetivo.Torreta
+            ? tagTorreta
+            : "Objetivo";
+
         GameObject objetoEncontrado =
             GameObject.FindGameObjectWithTag(
-                "Objetivo"
+                tagBuscado
             );
 
         if (objetoEncontrado != null)
@@ -356,7 +367,8 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log(
                 gameObject.name +
-                " encontró al objetivo."
+                " encontró al objetivo: " +
+                objetoEncontrado.name
             );
         }
     }
@@ -398,7 +410,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Si el enemigo tiene como objetivo
-        // principal el núcleo/objetivo,
+        // principal el núcleo, la torreta,
         // pero el jugador entra en su radio,
         // empieza a perseguir al jugador.
         if (jugador != null &&
@@ -512,6 +524,10 @@ public class EnemyController : MonoBehaviour
         {
             AtacarJugador();
         }
+        else if (EsTorreta(objetivoActual))
+        {
+            AtacarTorreta();
+        }
         else
         {
             AtacarObjetivo();
@@ -565,6 +581,80 @@ public class EnemyController : MonoBehaviour
 
         Debug.Log(
             "ENEMIGO ATACÓ AL JUGADOR | " +
+            "Daño: " +
+            dano
+        );
+    }
+
+    // =========================================
+    // DETECTAR TORRETA
+    // =========================================
+
+    private bool EsTorreta(Transform objetivoComprobar)
+    {
+        if (objetivoComprobar == null)
+            return false;
+
+        Transform actual = objetivoComprobar;
+
+        while (actual != null)
+        {
+            if (actual.CompareTag(tagTorreta))
+                return true;
+
+            actual = actual.parent;
+        }
+
+        return false;
+    }
+
+    // =========================================
+    // ATAQUE A LA TORRETA
+    // =========================================
+
+    private void AtacarTorreta()
+    {
+        if (objetivoActual == null)
+            return;
+
+        TurretHealth vidaTorreta =
+            objetivoActual.GetComponentInParent<TurretHealth>();
+
+        if (vidaTorreta == null)
+        {
+            vidaTorreta =
+                objetivoActual.GetComponent<TurretHealth>();
+        }
+
+        if (vidaTorreta == null)
+        {
+            Debug.LogWarning(
+                "La torreta no tiene TurretHealth."
+            );
+
+            return;
+        }
+
+        float dano =
+            data != null
+            ? data.dano
+            : 10f;
+
+        float tiempo =
+            data != null
+            ? data.tiempoEntreAtaques
+            : 1f;
+
+        vidaTorreta.RecibirDanio(
+            dano
+        );
+
+        siguienteAtaque =
+            Time.time +
+            tiempo;
+
+        Debug.Log(
+            "ENEMIGO ATACÓ A LA TORRETA | " +
             "Daño: " +
             dano
         );

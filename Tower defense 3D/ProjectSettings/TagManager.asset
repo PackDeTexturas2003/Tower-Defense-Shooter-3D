@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Objetivo
   - Enemy
+  - Torreta
   layers:
   - Default
   - TransparentFX

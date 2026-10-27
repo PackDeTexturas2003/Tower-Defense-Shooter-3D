@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 6439494513200467166}
   m_Layer: 0
   m_Name: Torreta corto alcanse
-  m_TagString: Untagged
+  m_TagString: Torreta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,6 +509,7 @@ MonoBehaviour:
   entidadVida: {fileID: 0}
   barraVida: {fileID: 1977142065658393006}
   textoVida: {fileID: 3689136387702089865}
+  tagJugador: Player
   camaraJugador: {fileID: 0}
   mostrarVidaNumerica: 1
 --- !u!1 &8203196797788207416
