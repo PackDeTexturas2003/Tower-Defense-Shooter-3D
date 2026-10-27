@@ -1,5 +1,4 @@
 
-using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -33,8 +32,21 @@ public class GestorDialogosCinematica : MonoBehaviour
         public float duracionDesaparicion = 1f;
     }
 
+    [Header("Reloj compartido")]
+    [SerializeField]
+    private TransicionFinalCinematica reloj;
+
     [Header("Dialogos de la cinematica")]
-    [SerializeField] private Dialogo[] dialogos;
+    [SerializeField]
+    private Dialogo[] dialogos;
+
+    private void Awake()
+    {
+        if (reloj == null)
+        {
+            reloj = FindFirstObjectByType<TransicionFinalCinematica>();
+        }
+    }
 
     private void Start()
     {
@@ -48,101 +60,100 @@ public class GestorDialogosCinematica : MonoBehaviour
 
             dialogo.texto.rectTransform.localPosition =
                 dialogo.posicion;
+        }
 
-            StartCoroutine(EjecutarDialogo(dialogo));
+        ActualizarDialogos();
+    }
+
+    private void Update()
+    {
+        ActualizarDialogos();
+    }
+
+    private void ActualizarDialogos()
+    {
+        if (reloj == null)
+            return;
+
+        float tiempoActual = reloj.TiempoActual;
+
+        foreach (Dialogo dialogo in dialogos)
+        {
+            if (dialogo.texto == null)
+                continue;
+
+            dialogo.texto.rectTransform.localPosition =
+                dialogo.posicion;
+
+            float tiempoDialogo =
+                tiempoActual - dialogo.tiempoInicio;
+
+            if (tiempoDialogo < 0f)
+            {
+                OcultarDialogo(dialogo);
+                continue;
+            }
+
+            float aparicion = dialogo.duracionAparicion;
+            float visible = dialogo.tiempoVisible;
+            float desaparicion = dialogo.duracionDesaparicion;
+
+            float duracionTotal = aparicion + visible + desaparicion;
+
+            if (tiempoDialogo >= duracionTotal)
+            {
+                OcultarDialogo(dialogo);
+                continue;
+            }
+
+            dialogo.texto.text = dialogo.contenido;
+
+            float opacidad;
+
+            if (aparicion > 0f && tiempoDialogo < aparicion)
+            {
+                float progreso = Mathf.Clamp01(
+                    tiempoDialogo / aparicion
+                );
+
+                opacidad = Mathf.Lerp(0f, 1f, progreso);
+            }
+            else
+            {
+                float tiempoRestante = tiempoDialogo - aparicion;
+
+                if (tiempoRestante < visible)
+                {
+                    opacidad = 1f;
+                }
+                else if (desaparicion > 0f)
+                {
+                    float tiempoDesaparicion =
+                        tiempoRestante - visible;
+
+                    float progreso = Mathf.Clamp01(
+                        tiempoDesaparicion / desaparicion
+                    );
+
+                    opacidad = Mathf.Lerp(1f, 0f, progreso);
+                }
+                else
+                {
+                    opacidad = 0f;
+                }
+            }
+
+            EstablecerOpacidad(dialogo.texto, opacidad);
         }
     }
 
-    private IEnumerator EjecutarDialogo(Dialogo dialogo)
+    private void OcultarDialogo(Dialogo dialogo)
     {
-        yield return new WaitForSecondsRealtime(dialogo.tiempoInicio);
-
         if (dialogo.texto == null)
-            yield break;
+            return;
 
-        dialogo.texto.rectTransform.localPosition =
-            dialogo.posicion;
-
-        dialogo.texto.text = dialogo.contenido;
-
-        yield return StartCoroutine(
-            CambiarOpacidad(
-                dialogo.texto,
-                0f,
-                1f,
-                dialogo.duracionAparicion
-            )
-        );
-
-        if (dialogo.texto == null)
-            yield break;
-
-        if (dialogo.tiempoVisible > 0f)
-        {
-            yield return new WaitForSecondsRealtime(
-                dialogo.tiempoVisible
-            );
-        }
-
-        if (dialogo.texto == null)
-            yield break;
-
-        yield return StartCoroutine(
-            CambiarOpacidad(
-                dialogo.texto,
-                1f,
-                0f,
-                dialogo.duracionDesaparicion
-            )
-        );
-
-        if (dialogo.texto != null)
-            dialogo.texto.text = "";
-    }
-
-    private IEnumerator CambiarOpacidad(
-        TextMeshProUGUI texto,
-        float opacidadInicial,
-        float opacidadFinal,
-        float duracion)
-    {
-        if (texto == null)
-            yield break;
-
-        if (duracion <= 0f)
-        {
-            EstablecerOpacidad(texto, opacidadFinal);
-            yield break;
-        }
-
-        float tiempoTranscurrido = 0f;
-
-        EstablecerOpacidad(texto, opacidadInicial);
-
-        while (tiempoTranscurrido < duracion)
-        {
-            if (texto == null)
-                yield break;
-
-            tiempoTranscurrido += Time.unscaledDeltaTime;
-
-            float progreso = Mathf.Clamp01(
-                tiempoTranscurrido / duracion
-            );
-
-            float opacidad = Mathf.Lerp(
-                opacidadInicial,
-                opacidadFinal,
-                progreso
-            );
-
-            EstablecerOpacidad(texto, opacidad);
-
-            yield return null;
-        }
-
-        if (texto != null)
-            EstablecerOpacidad(texto, opacidadFinal);
+        dialogo.texto.text = "";
+        EstablecerOpacidad(dialogo.texto, 0f);
     }
 
     private void EstablecerOpacidad(

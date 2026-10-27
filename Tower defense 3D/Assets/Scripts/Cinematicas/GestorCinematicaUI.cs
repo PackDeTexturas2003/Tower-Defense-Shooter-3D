@@ -1,4 +1,4 @@
-using System.Collections;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,21 +17,43 @@ public class GestorCinematicaUI : MonoBehaviour
         public string nombre;
         public Image imagen;
         public TipoAnimacion tipo;
-        [Min(0f)] public float tiempoInicio;
+
+        [Min(0f)]
+        public float tiempoInicio;
 
         [Header("Movimiento")]
         public Vector3 posicionInicial;
         public Vector3 posicionFinal;
-        [Min(0f)] public float duracionMovimiento = 3f;
+
+        [Min(0f)]
+        public float duracionMovimiento = 3f;
 
         [Header("Aparicion y desaparicion")]
-        [Min(0f)] public float duracionAparicion = 1f;
-        [Min(0f)] public float tiempoVisible = 2f;
-        [Min(0f)] public float duracionDesaparicion = 1f;
+        [Min(0f)]
+        public float duracionAparicion = 1f;
+
+        [Min(0f)]
+        public float tiempoVisible = 2f;
+
+        [Min(0f)]
+        public float duracionDesaparicion = 1f;
     }
 
+    [Header("Reloj compartido")]
+    [SerializeField]
+    private TransicionFinalCinematica reloj;
+
     [Header("Elementos de la cinematica")]
-    [SerializeField] private ElementoCinematica[] elementos;
+    [SerializeField]
+    private ElementoCinematica[] elementos;
+
+    private void Awake()
+    {
+        if (reloj == null)
+        {
+            reloj = FindFirstObjectByType<TransicionFinalCinematica>();
+        }
+    }
 
     private void Start()
     {
@@ -40,58 +62,73 @@ public class GestorCinematicaUI : MonoBehaviour
             if (elemento.imagen == null)
                 continue;
 
-            EstablecerOpacidad(elemento.imagen, 0f);
             elemento.imagen.enabled = true;
+            EstablecerOpacidad(elemento.imagen, 0f);
+
             elemento.imagen.rectTransform.localPosition =
                 elemento.posicionInicial;
-
-            StartCoroutine(EjecutarElemento(elemento));
         }
+
+        ActualizarElementos();
     }
 
-    private IEnumerator EjecutarElemento(ElementoCinematica elemento)
+    private void Update()
     {
-        yield return new WaitForSecondsRealtime(elemento.tiempoInicio);
+        ActualizarElementos();
+    }
 
-        if (elemento.imagen == null)
-            yield break;
+    private void ActualizarElementos()
+    {
+        if (reloj == null)
+            return;
 
-        switch (elemento.tipo)
+        float tiempoActual = reloj.TiempoActual;
+
+        foreach (ElementoCinematica elemento in elementos)
         {
-            case TipoAnimacion.Movimiento:
-                yield return StartCoroutine(MoverImagen(elemento));
-                break;
+            if (elemento.imagen == null)
+                continue;
 
-            case TipoAnimacion.AparicionYDesaparicion:
-                yield return StartCoroutine(DesvanecerImagen(elemento));
-                break;
+            float tiempoElemento =
+                tiempoActual - elemento.tiempoInicio;
+
+            if (tiempoElemento < 0f)
+            {
+                elemento.imagen.rectTransform.localPosition =
+                    elemento.posicionInicial;
+
+                EstablecerOpacidad(elemento.imagen, 0f);
+                continue;
+            }
+
+            switch (elemento.tipo)
+            {
+                case TipoAnimacion.Movimiento:
+                    ActualizarMovimiento(elemento, tiempoElemento);
+                    break;
+
+                case TipoAnimacion.AparicionYDesaparicion:
+                    ActualizarDesvanecimiento(elemento, tiempoElemento);
+                    break;
+            }
         }
     }
 
-    private IEnumerator MoverImagen(ElementoCinematica elemento)
+    private void ActualizarMovimiento(
+        ElementoCinematica elemento,
+        float tiempoElemento)
     {
-        RectTransform rectTransform = elemento.imagen.rectTransform;
-
-        rectTransform.localPosition = elemento.posicionInicial;
-        EstablecerOpacidad(elemento.imagen, 1f);
+        RectTransform rectTransform =
+            elemento.imagen.rectTransform;
 
         if (elemento.duracionMovimiento <= 0f)
         {
             rectTransform.localPosition = elemento.posicionFinal;
-            yield break;
         }
-
-        float tiempoTranscurrido = 0f;
-
-        while (tiempoTranscurrido < elemento.duracionMovimiento)
+        else
         {
-            if (elemento.imagen == null)
-                yield break;
-
-            tiempoTranscurrido += Time.unscaledDeltaTime;
-
             float progreso = Mathf.Clamp01(
-                tiempoTranscurrido / elemento.duracionMovimiento
+                tiempoElemento / elemento.duracionMovimiento
             );
 
             rectTransform.localPosition = Vector3.Lerp(
@@ -99,78 +136,64 @@ public class GestorCinematicaUI : MonoBehaviour
                 elemento.posicionFinal,
                 progreso
             );
-
-            yield return null;
         }
 
-        if (elemento.imagen != null)
-            rectTransform.localPosition = elemento.posicionFinal;
+        EstablecerOpacidad(elemento.imagen, 1f);
     }
 
-    private IEnumerator DesvanecerImagen(ElementoCinematica elemento)
+    private void ActualizarDesvanecimiento(
+        ElementoCinematica elemento,
+        float tiempoElemento)
     {
-        Image imagen = elemento.imagen;
-        EstablecerOpacidad(imagen, 0f);
+        float aparicion = elemento.duracionAparicion;
+        float visible = elemento.tiempoVisible;
+        float desaparicion = elemento.duracionDesaparicion;
 
-        yield return StartCoroutine(
-            CambiarOpacidad(imagen, 0f, 1f, elemento.duracionAparicion)
-        );
+        float duracionTotal = aparicion + visible + desaparicion;
 
-        if (imagen == null)
-            yield break;
-
-        if (elemento.tiempoVisible > 0f)
-            yield return new WaitForSecondsRealtime(elemento.tiempoVisible);
-
-        if (imagen == null)
-            yield break;
-
-        yield return StartCoroutine(
-            CambiarOpacidad(imagen, 1f, 0f, elemento.duracionDesaparicion)
-        );
-    }
-
-    private IEnumerator CambiarOpacidad(
-        Image imagen,
-        float opacidadInicial,
-        float opacidadFinal,
-        float duracion)
-    {
-        if (imagen == null)
-            yield break;
-
-        if (duracion <= 0f)
+        if (tiempoElemento >= duracionTotal)
         {
-            EstablecerOpacidad(imagen, opacidadFinal);
-            yield break;
+            EstablecerOpacidad(elemento.imagen, 0f);
+            return;
         }
 
-        float tiempoTranscurrido = 0f;
-
-        EstablecerOpacidad(imagen, opacidadInicial);
-
-        while (tiempoTranscurrido < duracion)
+        if (aparicion > 0f && tiempoElemento < aparicion)
         {
-            if (imagen == null)
-                yield break;
+            float progreso = Mathf.Clamp01(tiempoElemento / aparicion);
 
-            tiempoTranscurrido += Time.unscaledDeltaTime;
-
-            float progreso = Mathf.Clamp01(tiempoTranscurrido / duracion);
-
-            float opacidad = Mathf.Lerp(
-                opacidadInicial,
-                opacidadFinal,
-                progreso
+            EstablecerOpacidad(
+                elemento.imagen,
+                Mathf.Lerp(0f, 1f, progreso)
             );
 
-            EstablecerOpacidad(imagen, opacidad);
-
-            yield return null;
+            return;
         }
 
-        if (imagen != null)
-            EstablecerOpacidad(imagen, opacidadFinal);
+        float tiempoRestante = tiempoElemento - aparicion;
+
+        if (tiempoRestante < visible)
+        {
+            EstablecerOpacidad(elemento.imagen, 1f);
+            return;
+        }
+
+        float tiempoDesaparicion = tiempoRestante - visible;
+
+        if (desaparicion > 0f)
+        {
+            float progreso = Mathf.Clamp01(
+                tiempoDesaparicion / desaparicion
+            );
+
+            EstablecerOpacidad(
+                elemento.imagen,
+                Mathf.Lerp(1f, 0f, progreso)
+            );
+        }
+        else
+        {
+            EstablecerOpacidad(elemento.imagen, 0f);
+        }
     }
 
     private void EstablecerOpacidad(Image imagen, float opacidad)
