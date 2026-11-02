@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,9 @@ public class MenuPausa : MonoBehaviour
     [SerializeField] private Salto salto;
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private WeaponManager weaponManager;
+
+    [Header("Música")]
+    [SerializeField] private AmbientMusicManager ambientMusicManager;
 
     private bool juegoPausado = false;
 
@@ -61,6 +65,10 @@ public class MenuPausa : MonoBehaviour
     {
         juegoPausado = true;
         Time.timeScale = 0f;
+
+        // Pausar la música ambiental.
+        if (ambientMusicManager != null)
+            ambientMusicManager.PausarMusica();
 
         if (movimiento != null)
             movimiento.enabled = false;
@@ -131,6 +139,10 @@ public class MenuPausa : MonoBehaviour
 
         if (weaponManager != null)
             weaponManager.enabled = true;
+
+        // Continuar la música desde donde quedó.
+        if (ambientMusicManager != null)
+            ambientMusicManager.ContinuarMusica();
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

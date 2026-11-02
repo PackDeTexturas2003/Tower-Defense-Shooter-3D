@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,10 @@ public class PanelVictoriaManager : MonoBehaviour
 
     [Header("Elementos del HUD que se ocultan al ganar")]
     [SerializeField] private GameObject[] elementosHudAOcultar;
+
+    [Header("Música")]
+    [SerializeField] private AmbientMusicManager ambientMusicManager;
+    [SerializeField] private AudioClip musicaVictoria;
 
     [Header("Escenas")]
     [SerializeField] private string escenaMenu = "MenuPrincipal";
@@ -28,6 +31,12 @@ public class PanelVictoriaManager : MonoBehaviour
                 "PanelVictoriaManager: Asigna el panel de victoria."
             );
         }
+
+        if (ambientMusicManager == null)
+        {
+            ambientMusicManager =
+                FindFirstObjectByType<AmbientMusicManager>();
+        }
     }
 
     public void MostrarPanelVictoria()
@@ -37,7 +46,7 @@ public class PanelVictoriaManager : MonoBehaviour
 
         victoriaMostrada = true;
 
-        // Ocultar los elementos del HUD.
+        // Ocultar HUD.
         if (elementosHudAOcultar != null)
         {
             foreach (GameObject elemento in elementosHudAOcultar)
@@ -47,18 +56,52 @@ public class PanelVictoriaManager : MonoBehaviour
             }
         }
 
-        // Mostrar el panel de victoria.
-        if (panelVictoria != null)
-            panelVictoria.SetActive(true);
+        // Detener música actual y reproducir victoria.
+        ReproducirMusicaVictoria();
 
-        // Pausar el juego y liberar el cursor.
+        // Mostrar panel.
+        if (panelVictoria != null)
+        {
+            panelVictoria.SetActive(true);
+        }
+
+        // Detener el juego.
         Time.timeScale = 0f;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         Debug.Log(
-            "PanelVictoriaManager: ¡Victoria! HUD oculto y panel mostrado."
+            "PanelVictoriaManager: ¡Victoria! Panel mostrado."
         );
+    }
+
+    private void ReproducirMusicaVictoria()
+    {
+        if (ambientMusicManager == null)
+        {
+            Debug.LogWarning(
+                "PanelVictoriaManager: No se encontró AmbientMusicManager."
+            );
+
+            return;
+        }
+
+        ambientMusicManager.DetenerMusica();
+
+        if (musicaVictoria != null)
+        {
+            ambientMusicManager.ReproducirMusica(
+                musicaVictoria,
+                true
+            );
+        }
+        else
+        {
+            Debug.LogWarning(
+                "PanelVictoriaManager: No se asignó la música de victoria."
+            );
+        }
     }
 
     public void ReiniciarNivel()
@@ -73,6 +116,7 @@ public class PanelVictoriaManager : MonoBehaviour
     public void IrAlMenu()
     {
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(escenaMenu);
     }
 
@@ -92,21 +136,24 @@ public class PanelVictoriaManager : MonoBehaviour
         if (string.IsNullOrWhiteSpace(siguienteNivel))
         {
             Debug.LogWarning(
-                "PanelVictoriaManager: Escribe el nombre de la escena siguiente."
+                "PanelVictoriaManager: No se asignó el siguiente nivel."
             );
+
             return;
         }
 
         if (!Application.CanStreamedLevelBeLoaded(siguienteNivel))
         {
             Debug.LogError(
-                "No se puede cargar la escena '" + siguienteNivel +
-                "'. Comprueba que exista y esté incluida en Build Profiles."
+                "PanelVictoriaManager: No se encuentra la escena " +
+                siguienteNivel
             );
+
             return;
         }
 
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(siguienteNivel);
     }
 }
