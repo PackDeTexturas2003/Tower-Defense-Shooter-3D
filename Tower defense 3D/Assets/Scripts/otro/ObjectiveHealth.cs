@@ -1,8 +1,20 @@
+
 using UnityEngine;
 
 public class ObjectiveHealth : Health
 {
-    private bool yaMurio = false;
+    [Header("Game Over")]
+    [SerializeField] private GameOverManager gameOverManager;
+
+    private bool yaMurio;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (gameOverManager == null)
+            gameOverManager = FindFirstObjectByType<GameOverManager>();
+    }
 
     protected override void Morir()
     {
@@ -11,15 +23,22 @@ public class ObjectiveHealth : Health
 
         yaMurio = true;
 
-        Debug.Log(
-            "¡¡EL OBJETIVO FUE DESTRUIDO!!"
-        );
+        Debug.Log("¡¡EL OBJETIVO FUE DESTRUIDO!!");
 
-        // Por ahora solamente desactivamos
-        // el componente de vida.
-        // Después podemos poner aquí
-        // la derrota de la partida.
+        if (gameOverManager != null)
+        {
+            gameOverManager.MostrarDerrota(
+                GameOverManager.CausaDerrota.ObjetivoDestruido
+            );
+        }
+        else
+        {
+            Debug.LogError(
+                "ObjectiveHealth: No se encontró GameOverManager."
+            );
+        }
 
+        // Evita que el objetivo siga recibiendo daño.
         enabled = false;
     }
 }

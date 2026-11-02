@@ -32,6 +32,7 @@ public class AmbientMusicManager : MonoBehaviour
         }
     }
 
+    // Reproduce la música configurada originalmente.
     public void ReproducirMusica()
     {
         if (musica == null)
@@ -43,7 +44,27 @@ public class AmbientMusicManager : MonoBehaviour
             return;
         }
 
-        audioSource.clip = musica;
+        ReproducirMusica(musica, repetir);
+    }
+
+    // Permite reproducir una música diferente, como victoria o derrota.
+    public void ReproducirMusica(AudioClip nuevaMusica, bool repetirMusica = true)
+    {
+        if (nuevaMusica == null)
+        {
+            Debug.LogWarning(
+                "AmbientMusicManager: No se asignó el AudioClip que se quiere reproducir."
+            );
+
+            return;
+        }
+
+        audioSource.Stop();
+
+        audioSource.clip = nuevaMusica;
+        audioSource.loop = repetirMusica;
+        audioSource.volume = volumen;
+
         audioSource.Play();
     }
 

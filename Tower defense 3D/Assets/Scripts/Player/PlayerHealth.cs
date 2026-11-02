@@ -1,5 +1,5 @@
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
@@ -7,19 +7,27 @@ public class PlayerHealth : Health
     [SerializeField] private float mostrarVidaMaxima;
     [SerializeField] private float mostrarVidaActual;
 
+    [Header("Game Over")]
+    [SerializeField] private GameOverManager gameOverManager;
+
+    private bool yaMurio;
+
     protected override void Awake()
     {
         base.Awake();
 
+        if (gameOverManager == null)
+            gameOverManager = FindFirstObjectByType<GameOverManager>();
+
         ActualizarValores();
     }
 
-    void Update()
+    private void Update()
     {
         ActualizarValores();
     }
 
-    void ActualizarValores()
+    private void ActualizarValores()
     {
         mostrarVidaMaxima = vidaMaxima;
         mostrarVidaActual = vidaActual;
@@ -27,16 +35,32 @@ public class PlayerHealth : Health
 
     protected override void Morir()
     {
+        if (yaMurio)
+            return;
+
+        yaMurio = true;
+
         Debug.Log("El jugador ha muerto.");
 
-        // Reinicia la escena actual
-        SceneManager.LoadScene(
-            SceneManager.GetActiveScene().buildIndex
-        );
+        if (gameOverManager != null)
+        {
+            gameOverManager.MostrarDerrota(
+                GameOverManager.CausaDerrota.JugadorEliminado
+            );
+        }
+        else
+        {
+            Debug.LogError(
+                "PlayerHealth: No se encontró GameOverManager."
+            );
+        }
     }
 
     public void Curar(float cantidad)
     {
+        if (yaMurio || cantidad <= 0f)
+            return;
+
         vidaActual += cantidad;
 
         if (vidaActual > vidaMaxima)
