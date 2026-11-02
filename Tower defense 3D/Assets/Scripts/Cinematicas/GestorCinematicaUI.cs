@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +47,9 @@ public class GestorCinematicaUI : MonoBehaviour
     [SerializeField]
     private ElementoCinematica[] elementos;
 
+    private readonly Dictionary<Image, float> opacidadesOriginales =
+        new Dictionary<Image, float>();
+
     private void Awake()
     {
         if (reloj == null)
@@ -62,11 +65,18 @@ public class GestorCinematicaUI : MonoBehaviour
             if (elemento.imagen == null)
                 continue;
 
+            if (!opacidadesOriginales.ContainsKey(elemento.imagen))
+            {
+                opacidadesOriginales[elemento.imagen] =
+                    elemento.imagen.color.a;
+            }
+
             elemento.imagen.enabled = true;
-            EstablecerOpacidad(elemento.imagen, 0f);
 
             elemento.imagen.rectTransform.localPosition =
                 elemento.posicionInicial;
+
+            EstablecerOpacidad(elemento.imagen, 0f);
         }
 
         ActualizarElementos();
@@ -79,7 +89,7 @@ public class GestorCinematicaUI : MonoBehaviour
 
     private void ActualizarElementos()
     {
-        if (reloj == null)
+        if (reloj == null || elementos == null)
             return;
 
         float tiempoActual = reloj.TiempoActual;
@@ -145,9 +155,9 @@ public class GestorCinematicaUI : MonoBehaviour
         ElementoCinematica elemento,
         float tiempoElemento)
     {
-        float aparicion = elemento.duracionAparicion;
-        float visible = elemento.tiempoVisible;
-        float desaparicion = elemento.duracionDesaparicion;
+        float aparicion = Mathf.Max(0f, elemento.duracionAparicion);
+        float visible = Mathf.Max(0f, elemento.tiempoVisible);
+        float desaparicion = Mathf.Max(0f, elemento.duracionDesaparicion);
 
         float duracionTotal = aparicion + visible + desaparicion;
 
@@ -159,7 +169,9 @@ public class GestorCinematicaUI : MonoBehaviour
 
         if (aparicion > 0f && tiempoElemento < aparicion)
         {
-            float progreso = Mathf.Clamp01(tiempoElemento / aparicion);
+            float progreso = Mathf.Clamp01(
+                tiempoElemento / aparicion
+            );
 
             EstablecerOpacidad(
                 elemento.imagen,
@@ -177,10 +189,10 @@ public class GestorCinematicaUI : MonoBehaviour
             return;
         }
 
-        float tiempoDesaparicion = tiempoRestante - visible;
-
         if (desaparicion > 0f)
         {
+            float tiempoDesaparicion = tiempoRestante - visible;
+
             float progreso = Mathf.Clamp01(
                 tiempoDesaparicion / desaparicion
             );
@@ -201,8 +213,14 @@ public class GestorCinematicaUI : MonoBehaviour
         if (imagen == null)
             return;
 
+        if (!opacidadesOriginales.TryGetValue(imagen, out float alphaOriginal))
+        {
+            alphaOriginal = imagen.color.a;
+            opacidadesOriginales[imagen] = alphaOriginal;
+        }
+
         Color color = imagen.color;
-        color.a = opacidad;
+        color.a = alphaOriginal * Mathf.Clamp01(opacidad);
         imagen.color = color;
     }
 }

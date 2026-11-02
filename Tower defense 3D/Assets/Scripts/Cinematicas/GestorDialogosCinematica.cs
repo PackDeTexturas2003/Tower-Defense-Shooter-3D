@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -40,6 +40,9 @@ public class GestorDialogosCinematica : MonoBehaviour
     [SerializeField]
     private Dialogo[] dialogos;
 
+    private readonly Dictionary<TextMeshProUGUI, float> opacidadesOriginales =
+        new Dictionary<TextMeshProUGUI, float>();
+
     private void Awake()
     {
         if (reloj == null)
@@ -50,16 +53,26 @@ public class GestorDialogosCinematica : MonoBehaviour
 
     private void Start()
     {
+        if (dialogos == null)
+            return;
+
         foreach (Dialogo dialogo in dialogos)
         {
             if (dialogo.texto == null)
                 continue;
 
-            dialogo.texto.text = "";
-            EstablecerOpacidad(dialogo.texto, 0f);
+            if (!opacidadesOriginales.ContainsKey(dialogo.texto))
+            {
+                opacidadesOriginales[dialogo.texto] =
+                    dialogo.texto.color.a;
+            }
 
             dialogo.texto.rectTransform.localPosition =
                 dialogo.posicion;
+
+            dialogo.texto.text = "";
+
+            EstablecerOpacidad(dialogo.texto, 0f);
         }
 
         ActualizarDialogos();
@@ -72,7 +85,7 @@ public class GestorDialogosCinematica : MonoBehaviour
 
     private void ActualizarDialogos()
     {
-        if (reloj == null)
+        if (reloj == null || dialogos == null)
             return;
 
         float tiempoActual = reloj.TiempoActual;
@@ -94,9 +107,9 @@ public class GestorDialogosCinematica : MonoBehaviour
                 continue;
             }
 
-            float aparicion = dialogo.duracionAparicion;
-            float visible = dialogo.tiempoVisible;
-            float desaparicion = dialogo.duracionDesaparicion;
+            float aparicion = Mathf.Max(0f, dialogo.duracionAparicion);
+            float visible = Mathf.Max(0f, dialogo.tiempoVisible);
+            float desaparicion = Mathf.Max(0f, dialogo.duracionDesaparicion);
 
             float duracionTotal = aparicion + visible + desaparicion;
 
@@ -163,8 +176,14 @@ public class GestorDialogosCinematica : MonoBehaviour
         if (texto == null)
             return;
 
+        if (!opacidadesOriginales.TryGetValue(texto, out float alphaOriginal))
+        {
+            alphaOriginal = texto.color.a;
+            opacidadesOriginales[texto] = alphaOriginal;
+        }
+
         Color color = texto.color;
-        color.a = opacidad;
+        color.a = alphaOriginal * Mathf.Clamp01(opacidad);
         texto.color = color;
     }
 }
