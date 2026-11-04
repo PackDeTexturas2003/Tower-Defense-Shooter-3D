@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using TMPro;
 
@@ -13,7 +14,15 @@ public class DineroJugador : MonoBehaviour
 
     private void Awake()
     {
-        dineroActual = dineroInicial;
+        if (SaveManager.Instance != null)
+        {
+            dineroActual = SaveManager.Instance.ObtenerMonedas();
+        }
+        else
+        {
+            dineroActual = dineroInicial;
+        }
+
         ActualizarTextoDinero();
     }
 
@@ -38,6 +47,7 @@ public class DineroJugador : MonoBehaviour
         dineroActual -= cantidad;
 
         ActualizarTextoDinero();
+        GuardarDinero();
 
         Debug.Log(
             "Dinero gastado: " + cantidad +
@@ -55,6 +65,7 @@ public class DineroJugador : MonoBehaviour
         dineroActual += cantidad;
 
         ActualizarTextoDinero();
+        GuardarDinero();
 
         Debug.Log(
             "Dinero recibido: " + cantidad +
@@ -62,11 +73,21 @@ public class DineroJugador : MonoBehaviour
         );
     }
 
+    private void GuardarDinero()
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.EstablecerMonedas(
+                dineroActual
+            );
+        }
+    }
+
     private void ActualizarTextoDinero()
     {
-        if (textoDinero == null)
-            return;
-
-        textoDinero.text = "$" + dineroActual;
+        if (textoDinero != null)
+        {
+            textoDinero.text = "$" + dineroActual;
+        }
     }
 }

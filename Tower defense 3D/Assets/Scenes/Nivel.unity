@@ -14572,7 +14572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1383bce6d5082464ea843f1ba96c9e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DineroJugador
-  dineroInicial: 500
+  dineroInicial: 100
   textoDinero: {fileID: 1328419001}
 --- !u!4 &2101963526
 Transform:

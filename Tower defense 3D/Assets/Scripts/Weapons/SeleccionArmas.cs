@@ -91,7 +91,6 @@ public class SeleccionArmas : MonoBehaviour
 
         ActualizarInterfaz();
 
-        // El mensaje comienza vacío.
         MostrarMensaje("");
     }
 
@@ -156,6 +155,27 @@ public class SeleccionArmas : MonoBehaviour
         }
     }
 
+    private bool EstaDesbloqueada(OpcionArma opcion)
+    {
+        if (opcion == null)
+            return false;
+
+        // Si no existe SaveManager, solo se considera gratis
+        // el arma cuyo precio sea cero.
+        if (SaveManager.Instance == null)
+            return opcion.precio <= 0;
+
+        return SaveManager.Instance.EstaDesbloqueada(opcion.nombre);
+    }
+
+    private int ObtenerPrecio(OpcionArma opcion)
+    {
+        if (EstaDesbloqueada(opcion))
+            return 0;
+
+        return Mathf.Max(0, opcion.precio);
+    }
+
     private void AlternarSeleccion(OpcionArma opcion)
     {
         if (seleccionConfirmada || opcion == null)
@@ -185,11 +205,13 @@ public class SeleccionArmas : MonoBehaviour
                 return;
             }
 
+            int precioArma = ObtenerPrecio(opcion);
+
             int dineroDisponible = dineroJugador != null
                 ? dineroJugador.ObtenerDinero()
                 : 0;
 
-            if (costoSeleccion + opcion.precio > dineroDisponible)
+            if (costoSeleccion + precioArma > dineroDisponible)
             {
                 MostrarMensaje("No tienes suficiente dinero.");
                 return;
@@ -201,7 +223,6 @@ public class SeleccionArmas : MonoBehaviour
         CalcularCosto();
         ActualizarInterfaz();
 
-        // Al cambiar la selección, se limpia el mensaje anterior.
         MostrarMensaje("");
     }
 
@@ -212,7 +233,7 @@ public class SeleccionArmas : MonoBehaviour
         foreach (OpcionArma opcion in armasSeleccionadas)
         {
             if (opcion != null)
-                costoSeleccion += Mathf.Max(0, opcion.precio);
+                costoSeleccion += ObtenerPrecio(opcion);
         }
     }
 
@@ -247,22 +268,35 @@ public class SeleccionArmas : MonoBehaviour
                 bool seleccionada =
                     armasSeleccionadas.Contains(opcion);
 
+                bool desbloqueada =
+                    EstaDesbloqueada(opcion);
+
                 if (textoBoton != null)
                 {
+                    string estado = desbloqueada
+                        ? " [COMPRADA]"
+                        : "";
+
+                    string seleccion = seleccionada
+                        ? "[SELECCIONADA] "
+                        : "";
+
+                    string precio = desbloqueada
+                        ? "Gratis"
+                        : "$" + Mathf.Max(0, opcion.precio);
+
                     textoBoton.text =
-                        (seleccionada ? "[SELECCIONADA] " : "") +
-                        opcion.nombre + " — " +
-                        (opcion.precio == 0
-                            ? "Gratis"
-                            : "$" + opcion.precio);
+                        seleccion +
+                        opcion.nombre +
+                        estado +
+                        " — " +
+                        precio;
                 }
 
                 opcion.boton.interactable = !seleccionConfirmada;
             }
         }
 
-        // Confirmar permanece habilitado mientras no se haya confirmado.
-        // La validación de armas se realiza al pulsar el botón.
         if (botonConfirmar != null)
         {
             botonConfirmar.interactable = !seleccionConfirmada;
@@ -274,7 +308,6 @@ public class SeleccionArmas : MonoBehaviour
         if (seleccionConfirmada)
             return;
 
-        // Impide avanzar si no se ha elegido ninguna arma.
         if (armasSeleccionadas.Count == 0)
         {
             MostrarMensaje(
@@ -307,6 +340,14 @@ public class SeleccionArmas : MonoBehaviour
             return;
         }
 
+        if (SaveManager.Instance == null)
+        {
+            MostrarMensaje(
+                "No se encontró el SaveManager."
+            );
+            return;
+        }
+
         CalcularCosto();
 
         if (!dineroJugador.TieneDinero(costoSeleccion))
@@ -328,12 +369,24 @@ public class SeleccionArmas : MonoBehaviour
         // Configura las armas seleccionadas.
         weaponManager.ConfigurarArmasSeleccionadas(seleccionadas);
 
-        // Descuenta el costo de las armas elegidas.
+        // Cobra solamente las armas que todavía no estaban compradas.
         if (!dineroJugador.GastarDinero(costoSeleccion))
         {
             MostrarMensaje("No se pudo realizar el pago.");
             return;
         }
+
+        // Guarda las armas seleccionadas como desbloqueadas.
+        foreach (OpcionArma opcion in armasSeleccionadas)
+        {
+            if (opcion != null)
+            {
+                SaveManager.Instance.DesbloquearArma(opcion.nombre);
+            }
+        }
+
+        // Guarda los datos de la partida.
+        SaveManager.Instance.GuardarTodo();
 
         seleccionConfirmada = true;
         ActualizarInterfaz();
@@ -351,7 +404,6 @@ public class SeleccionArmas : MonoBehaviour
             dineroJugador.ObtenerDinero()
         );
 
-        // Avanza únicamente tras una selección válida.
         if (panelSeleccionArmas != null)
             panelSeleccionArmas.SetActive(false);
 
