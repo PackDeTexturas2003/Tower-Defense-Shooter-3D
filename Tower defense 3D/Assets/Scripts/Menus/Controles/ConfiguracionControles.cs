@@ -14,6 +14,11 @@ public static class ConfiguracionControles
     private const string TECLA_SALTO = "TeclaSalto";
     private const string TECLA_SPRINT = "TeclaSprint";
 
+    private const string TECLA_ADELANTE = "TeclaAdelante";
+    private const string TECLA_IZQUIERDA = "TeclaIzquierda";
+    private const string TECLA_ATRAS = "TeclaAtras";
+    private const string TECLA_DERECHA = "TeclaDerecha";
+
 
     // =========================
     // TIPOS DE DISPARO
@@ -24,7 +29,6 @@ public static class ConfiguracionControles
         Mouse = 0,
         Teclado = 1
     }
-
 
     public enum BotonMouse
     {
@@ -52,6 +56,18 @@ public static class ConfiguracionControles
 
     private const Key SPRINT_DEFAULT =
         Key.LeftShift;
+
+    private const Key ADELANTE_DEFAULT =
+        Key.W;
+
+    private const Key IZQUIERDA_DEFAULT =
+        Key.A;
+
+    private const Key ATRAS_DEFAULT =
+        Key.S;
+
+    private const Key DERECHA_DEFAULT =
+        Key.D;
 
 
     // =========================
@@ -183,6 +199,88 @@ public static class ConfiguracionControles
 
 
     // =========================
+    // GUARDAR MOVIMIENTO
+    // =========================
+
+    public static void GuardarAdelante(Key tecla)
+    {
+        PlayerPrefs.SetInt(
+            TECLA_ADELANTE,
+            (int)tecla
+        );
+
+        PlayerPrefs.Save();
+    }
+
+    public static void GuardarIzquierda(Key tecla)
+    {
+        PlayerPrefs.SetInt(
+            TECLA_IZQUIERDA,
+            (int)tecla
+        );
+
+        PlayerPrefs.Save();
+    }
+
+    public static void GuardarAtras(Key tecla)
+    {
+        PlayerPrefs.SetInt(
+            TECLA_ATRAS,
+            (int)tecla
+        );
+
+        PlayerPrefs.Save();
+    }
+
+    public static void GuardarDerecha(Key tecla)
+    {
+        PlayerPrefs.SetInt(
+            TECLA_DERECHA,
+            (int)tecla
+        );
+
+        PlayerPrefs.Save();
+    }
+
+
+    // =========================
+    // OBTENER MOVIMIENTO
+    // =========================
+
+    public static Key ObtenerAdelante()
+    {
+        return (Key)PlayerPrefs.GetInt(
+            TECLA_ADELANTE,
+            (int)ADELANTE_DEFAULT
+        );
+    }
+
+    public static Key ObtenerIzquierda()
+    {
+        return (Key)PlayerPrefs.GetInt(
+            TECLA_IZQUIERDA,
+            (int)IZQUIERDA_DEFAULT
+        );
+    }
+
+    public static Key ObtenerAtras()
+    {
+        return (Key)PlayerPrefs.GetInt(
+            TECLA_ATRAS,
+            (int)ATRAS_DEFAULT
+        );
+    }
+
+    public static Key ObtenerDerecha()
+    {
+        return (Key)PlayerPrefs.GetInt(
+            TECLA_DERECHA,
+            (int)DERECHA_DEFAULT
+        );
+    }
+
+
+    // =========================
     // RESTAURAR PREDETERMINADOS
     // =========================
 
@@ -211,6 +309,26 @@ public static class ConfiguracionControles
         PlayerPrefs.SetInt(
             TECLA_SPRINT,
             (int)SPRINT_DEFAULT
+        );
+
+        PlayerPrefs.SetInt(
+            TECLA_ADELANTE,
+            (int)ADELANTE_DEFAULT
+        );
+
+        PlayerPrefs.SetInt(
+            TECLA_IZQUIERDA,
+            (int)IZQUIERDA_DEFAULT
+        );
+
+        PlayerPrefs.SetInt(
+            TECLA_ATRAS,
+            (int)ATRAS_DEFAULT
+        );
+
+        PlayerPrefs.SetInt(
+            TECLA_DERECHA,
+            (int)DERECHA_DEFAULT
         );
 
         PlayerPrefs.Save();

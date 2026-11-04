@@ -18,6 +18,7 @@ public class TransicionFinalCinematica : MonoBehaviour
 
     [Header("Texto para saltar")]
     [SerializeField] private TMP_Text textoSaltar;
+    [SerializeField] private string mensajeSaltar = "Pulsa ESPACIO para saltar la cinemática";
     [SerializeField] private float duracionAparicion = 0.3f;
     [SerializeField] private float duracionDesaparicion = 0.3f;
     [SerializeField] private float tiempoAntesDeOcultar = 3f;
@@ -30,6 +31,10 @@ public class TransicionFinalCinematica : MonoBehaviour
     private float tiempoDesdeMovimiento;
     private float alphaActual;
     private float alphaObjetivo;
+    private float alphaOriginalTexto = 1f;
+
+    private float tiempoUltimoSalto;
+    private bool yaSeHaSaltado;
 
     private bool cinematicTerminated;
     private bool mousePositionInitialized;
@@ -37,14 +42,13 @@ public class TransicionFinalCinematica : MonoBehaviour
     private void Awake()
     {
         TiempoActual = 0f;
-        alphaActual = 0f;
-        alphaObjetivo = 0f;
 
         if (textoSaltar != null)
         {
-            Color color = textoSaltar.color;
-            color.a = 0f;
-            textoSaltar.color = color;
+            textoSaltar.text = mensajeSaltar;
+
+            alphaOriginalTexto = textoSaltar.color.a;
+            EstablecerOpacidadTexto(0f);
         }
 
         if (Mouse.current != null)
@@ -52,6 +56,10 @@ public class TransicionFinalCinematica : MonoBehaviour
             ultimaPosicionMouse = Mouse.current.position.ReadValue();
             mousePositionInitialized = true;
         }
+
+        alphaActual = 0f;
+        alphaObjetivo = 0f;
+        tiempoDesdeMovimiento = 0f;
     }
 
     private void Update()
@@ -70,8 +78,8 @@ public class TransicionFinalCinematica : MonoBehaviour
             return;
         }
 
-        if (TiempoActual >= tiempoEnfriamientoSalto &&
-            Keyboard.current != null &&
+        if (Keyboard.current != null &&
+            teclaSaltar != Key.None &&
             Keyboard.current[teclaSaltar].wasPressedThisFrame)
         {
             SaltarCinematica();
@@ -102,16 +110,17 @@ public class TransicionFinalCinematica : MonoBehaviour
             tiempoDesdeMovimiento = 0f;
             alphaObjetivo = 1f;
         }
-
-        ultimaPosicionMouse = posicionActual;
-
-        if (alphaObjetivo > 0f)
+        else if (alphaObjetivo > 0f)
         {
             tiempoDesdeMovimiento += Time.unscaledDeltaTime;
 
             if (tiempoDesdeMovimiento >= tiempoAntesDeOcultar)
+            {
                 alphaObjetivo = 0f;
+            }
         }
+
+        ultimaPosicionMouse = posicionActual;
     }
 
     private void ActualizarTextoSaltar()
@@ -136,17 +145,35 @@ public class TransicionFinalCinematica : MonoBehaviour
             );
         }
 
+        EstablecerOpacidadTexto(alphaActual);
+    }
+
+    private void EstablecerOpacidadTexto(float opacidad)
+    {
+        if (textoSaltar == null)
+            return;
+
         Color color = textoSaltar.color;
-        color.a = alphaActual;
+        color.a = alphaOriginalTexto * Mathf.Clamp01(opacidad);
         textoSaltar.color = color;
     }
 
     public void SaltarCinematica()
     {
-        if (TiempoActual < tiempoEnfriamientoSalto)
+        if (cinematicTerminated)
             return;
 
+        if (yaSeHaSaltado &&
+            Time.unscaledTime - tiempoUltimoSalto < tiempoEnfriamientoSalto)
+        {
+            return;
+        }
+
+        yaSeHaSaltado = true;
+        tiempoUltimoSalto = Time.unscaledTime;
+
         alphaObjetivo = 0f;
+
         SaltarA(tiempoSalto);
     }
 
@@ -161,8 +188,12 @@ public class TransicionFinalCinematica : MonoBehaviour
             duracionCinematica
         );
 
+        Debug.Log("TransicionFinalCinematica: tiempo adelantado a " + TiempoActual + " segundos.");
+
         if (TiempoActual >= duracionCinematica)
+        {
             CambiarEscena();
+        }
     }
 
     private void CambiarEscena()
@@ -170,17 +201,25 @@ public class TransicionFinalCinematica : MonoBehaviour
         if (cinematicTerminated)
             return;
 
-        cinematicTerminated = true;
-
-        if (!string.IsNullOrEmpty(escenaDestino))
+        if (string.IsNullOrWhiteSpace(escenaDestino))
         {
-            SceneManager.LoadScene(escenaDestino);
-        }
-        else
-        {
-            Debug.LogWarning(
+            Debug.LogError(
                 "TransicionFinalCinematica: no se ha asignado una escena de destino."
             );
+            return;
         }
+
+        if (!Application.CanStreamedLevelBeLoaded(escenaDestino))
+        {
+            Debug.LogError(
+                "TransicionFinalCinematica: la escena '" +
+                escenaDestino +
+                "' no está disponible en Build Settings."
+            );
+            return;
+        }
+
+        cinematicTerminated = true;
+        SceneManager.LoadScene(escenaDestino);
     }
 }
