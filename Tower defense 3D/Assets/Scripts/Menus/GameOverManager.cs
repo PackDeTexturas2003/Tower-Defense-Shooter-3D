@@ -56,6 +56,12 @@ public class GameOverManager : MonoBehaviour
 
         derrotaMostrada = true;
 
+        // Revertir monedas y armas conseguidas durante este nivel.
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.RestaurarProgresoPorDerrota();
+        }
+
         // Cambiar los textos según la causa de derrota.
         if (tituloGameOver != null)
         {

@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,7 +25,7 @@ public class SeleccionArmas : MonoBehaviour
     [SerializeField] private GamePhaseManager gamePhaseManager;
     [SerializeField] private GameObject panelSeleccionArmas;
 
-    [Header("Configuración")]
+    [Header("Configuracion")]
     [SerializeField] private int maximoArmas = 2;
 
     [Header("Dinero")]
@@ -37,7 +36,7 @@ public class SeleccionArmas : MonoBehaviour
     [SerializeField] private TMP_Text textoCostoSeleccion;
     [SerializeField] private TMP_Text textoMensaje;
 
-    [Header("Confirmación")]
+    [Header("Confirmacion")]
     [SerializeField] private Button botonConfirmar;
 
     private readonly List<OpcionArma> armasSeleccionadas =
@@ -90,7 +89,6 @@ public class SeleccionArmas : MonoBehaviour
             panelSeleccionArmas = gameObject;
 
         ActualizarInterfaz();
-
         MostrarMensaje("");
     }
 
@@ -148,7 +146,7 @@ public class SeleccionArmas : MonoBehaviour
             if (opcion.arma == null)
             {
                 Debug.LogError(
-                    "SeleccionArmas: no se encontró el arma " +
+                    "SeleccionArmas: no se encontro el arma " +
                     opcion.nombre + "."
                 );
             }
@@ -160,8 +158,6 @@ public class SeleccionArmas : MonoBehaviour
         if (opcion == null)
             return false;
 
-        // Si no existe SaveManager, solo se considera gratis
-        // el arma cuyo precio sea cero.
         if (SaveManager.Instance == null)
             return opcion.precio <= 0;
 
@@ -199,7 +195,7 @@ public class SeleccionArmas : MonoBehaviour
             if (opcion.arma == null)
             {
                 MostrarMensaje(
-                    "No se encontró el componente de " +
+                    "No se encontro el componente de " +
                     opcion.nombre + "."
                 );
                 return;
@@ -222,7 +218,6 @@ public class SeleccionArmas : MonoBehaviour
 
         CalcularCosto();
         ActualizarInterfaz();
-
         MostrarMensaje("");
     }
 
@@ -289,7 +284,7 @@ public class SeleccionArmas : MonoBehaviour
                         seleccion +
                         opcion.nombre +
                         estado +
-                        " — " +
+                        " - " +
                         precio;
                 }
 
@@ -343,7 +338,7 @@ public class SeleccionArmas : MonoBehaviour
         if (SaveManager.Instance == null)
         {
             MostrarMensaje(
-                "No se encontró el SaveManager."
+                "No se encontro el SaveManager."
             );
             return;
         }
@@ -366,17 +361,18 @@ public class SeleccionArmas : MonoBehaviour
             return;
         }
 
-        // Configura las armas seleccionadas.
+        // Configurar las armas seleccionadas.
         weaponManager.ConfigurarArmasSeleccionadas(seleccionadas);
 
-        // Cobra solamente las armas que todavía no estaban compradas.
+        // Cobrar las armas seleccionadas.
         if (!dineroJugador.GastarDinero(costoSeleccion))
         {
             MostrarMensaje("No se pudo realizar el pago.");
             return;
         }
 
-        // Guarda las armas seleccionadas como desbloqueadas.
+        // Actualizar desbloqueos solo en memoria.
+        // El progreso se guarda al ganar el nivel.
         foreach (OpcionArma opcion in armasSeleccionadas)
         {
             if (opcion != null)
@@ -384,9 +380,6 @@ public class SeleccionArmas : MonoBehaviour
                 SaveManager.Instance.DesbloquearArma(opcion.nombre);
             }
         }
-
-        // Guarda los datos de la partida.
-        SaveManager.Instance.GuardarTodo();
 
         seleccionConfirmada = true;
         ActualizarInterfaz();
@@ -397,7 +390,7 @@ public class SeleccionArmas : MonoBehaviour
         );
 
         Debug.Log(
-            "Selección confirmada. Armas: " +
+            "Seleccion confirmada. Armas: " +
             seleccionadas.Count +
             ". Costo: $" + costoSeleccion +
             ". Dinero restante: $" +

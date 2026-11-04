@@ -5,7 +5,7 @@ using TMPro;
 public class DineroJugador : MonoBehaviour
 {
     [Header("Dinero")]
-    [SerializeField] private int dineroInicial = 500;
+    [SerializeField] private int dineroInicial = 100;
 
     [Header("Interfaz")]
     [SerializeField] private TMP_Text textoDinero;
@@ -14,6 +14,8 @@ public class DineroJugador : MonoBehaviour
 
     private void Awake()
     {
+        if (SaveManager.Instance != null)
+            SaveManager.Instance.IniciarNivel();
         if (SaveManager.Instance != null)
         {
             dineroActual = SaveManager.Instance.ObtenerMonedas();

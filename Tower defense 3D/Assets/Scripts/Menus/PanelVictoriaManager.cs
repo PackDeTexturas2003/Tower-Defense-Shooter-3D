@@ -46,6 +46,12 @@ public class PanelVictoriaManager : MonoBehaviour
 
         victoriaMostrada = true;
 
+        // Confirmar y guardar el progreso conseguido en este nivel.
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.ConfirmarVictoria();
+        }
+
         // Ocultar HUD.
         if (elementosHudAOcultar != null)
         {
