@@ -180,7 +180,7 @@ MonoBehaviour:
   rotacionYModelo: -90
   velocidadRotacionModelo: 120
   tipoAtaque: 0
-  tipoObjetivo: 2
+  tipoObjetivo: 0
   objetivo: {fileID: 0}
   radioDeteccionJugador: 12
   tagTorreta: Torreta
