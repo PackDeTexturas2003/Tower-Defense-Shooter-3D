@@ -12,11 +12,25 @@ public class ConfiguracionUI : MonoBehaviour
     [SerializeField] private TMP_Text textoSalto;
     [SerializeField] private TMP_Text textoSprint;
 
+    [Header("Textos de movimiento")]
+    [SerializeField] private TMP_Text textoAdelante;
+    [SerializeField] private TMP_Text textoIzquierda;
+    [SerializeField] private TMP_Text textoAtras;
+    [SerializeField] private TMP_Text textoDerecha;
+
     [Header("Botones")]
     [SerializeField] private Button botonDisparo;
     [SerializeField] private Button botonEsquive;
     [SerializeField] private Button botonSalto;
     [SerializeField] private Button botonSprint;
+
+    [Header("Botones de movimiento")]
+    [SerializeField] private Button botonAdelante;
+    [SerializeField] private Button botonIzquierda;
+    [SerializeField] private Button botonAtras;
+    [SerializeField] private Button botonDerecha;
+
+    [Header("Restaurar configuraciones")]
     [SerializeField] private Button botonRestaurarPredeterminados;
 
     private enum ControlEsperando
@@ -25,7 +39,11 @@ public class ConfiguracionUI : MonoBehaviour
         Disparo,
         Esquive,
         Salto,
-        Sprint
+        Sprint,
+        Adelante,
+        Izquierda,
+        Atras,
+        Derecha
     }
 
     private ControlEsperando controlEsperando =
@@ -49,6 +67,22 @@ public class ConfiguracionUI : MonoBehaviour
 
         botonSprint.onClick.AddListener(
             () => EsperarTecla(ControlEsperando.Sprint)
+        );
+
+        botonAdelante.onClick.AddListener(
+            () => EsperarTecla(ControlEsperando.Adelante)
+        );
+
+        botonIzquierda.onClick.AddListener(
+            () => EsperarTecla(ControlEsperando.Izquierda)
+        );
+
+        botonAtras.onClick.AddListener(
+            () => EsperarTecla(ControlEsperando.Atras)
+        );
+
+        botonDerecha.onClick.AddListener(
+            () => EsperarTecla(ControlEsperando.Derecha)
         );
 
         botonRestaurarPredeterminados.onClick.AddListener(
@@ -88,6 +122,22 @@ public class ConfiguracionUI : MonoBehaviour
 
             case ControlEsperando.Sprint:
                 textoSprint.text = "Pulsa una tecla...";
+                break;
+
+            case ControlEsperando.Adelante:
+                textoAdelante.text = "Pulsa una tecla...";
+                break;
+
+            case ControlEsperando.Izquierda:
+                textoIzquierda.text = "Pulsa una tecla...";
+                break;
+
+            case ControlEsperando.Atras:
+                textoAtras.text = "Pulsa una tecla...";
+                break;
+
+            case ControlEsperando.Derecha:
+                textoDerecha.text = "Pulsa una tecla...";
                 break;
         }
     }
@@ -177,6 +227,30 @@ public class ConfiguracionUI : MonoBehaviour
                 ConfiguracionControles.GuardarSprint(tecla);
                 textoSprint.text = tecla.ToString();
                 break;
+
+            case ControlEsperando.Adelante:
+
+                ConfiguracionControles.GuardarAdelante(tecla);
+                textoAdelante.text = tecla.ToString();
+                break;
+
+            case ControlEsperando.Izquierda:
+
+                ConfiguracionControles.GuardarIzquierda(tecla);
+                textoIzquierda.text = tecla.ToString();
+                break;
+
+            case ControlEsperando.Atras:
+
+                ConfiguracionControles.GuardarAtras(tecla);
+                textoAtras.text = tecla.ToString();
+                break;
+
+            case ControlEsperando.Derecha:
+
+                ConfiguracionControles.GuardarDerecha(tecla);
+                textoDerecha.text = tecla.ToString();
+                break;
         }
 
         controlEsperando = ControlEsperando.Ninguno;
@@ -238,6 +312,18 @@ public class ConfiguracionUI : MonoBehaviour
 
         textoSprint.text =
             ConfiguracionControles.ObtenerSprint().ToString();
+
+        textoAdelante.text =
+            ConfiguracionControles.ObtenerAdelante().ToString();
+
+        textoIzquierda.text =
+            ConfiguracionControles.ObtenerIzquierda().ToString();
+
+        textoAtras.text =
+            ConfiguracionControles.ObtenerAtras().ToString();
+
+        textoDerecha.text =
+            ConfiguracionControles.ObtenerDerecha().ToString();
     }
 
     private string ObtenerTextoDisparo()

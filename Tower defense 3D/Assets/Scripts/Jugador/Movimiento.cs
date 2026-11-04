@@ -19,12 +19,17 @@ public class Movimiento : MonoBehaviour
 
     private Key teclaSprint;
 
+    private Key teclaAdelante;
+    private Key teclaIzquierda;
+    private Key teclaAtras;
+    private Key teclaDerecha;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         esquive = GetComponent<Esquive>();
 
-        CargarTeclaSprint();
+        CargarConfiguracionControles();
 
         rb.freezeRotation = true;
         rb.useGravity = true;
@@ -44,15 +49,17 @@ public class Movimiento : MonoBehaviour
     }
 
     // =========================
-    // GUARDAR / CARGAR SPRINT
+    // CARGAR CONFIGURACION
     // =========================
 
-    private void CargarTeclaSprint()
+    private void CargarConfiguracionControles()
     {
-        teclaSprint = (Key)PlayerPrefs.GetInt(
-            "TeclaSprint",
-            (int)Key.LeftShift
-        );
+        teclaSprint = ConfiguracionControles.ObtenerSprint();
+
+        teclaAdelante = ConfiguracionControles.ObtenerAdelante();
+        teclaIzquierda = ConfiguracionControles.ObtenerIzquierda();
+        teclaAtras = ConfiguracionControles.ObtenerAtras();
+        teclaDerecha = ConfiguracionControles.ObtenerDerecha();
     }
 
     // =========================
@@ -67,16 +74,16 @@ public class Movimiento : MonoBehaviour
         float horizontal = 0f;
         float vertical = 0f;
 
-        if (Keyboard.current.aKey.isPressed)
+        if (Keyboard.current[teclaIzquierda].isPressed)
             horizontal = -1f;
 
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current[teclaDerecha].isPressed)
             horizontal = 1f;
 
-        if (Keyboard.current.wKey.isPressed)
+        if (Keyboard.current[teclaAdelante].isPressed)
             vertical = 1f;
 
-        if (Keyboard.current.sKey.isPressed)
+        if (Keyboard.current[teclaAtras].isPressed)
             vertical = -1f;
 
         Vector3 direccion =
