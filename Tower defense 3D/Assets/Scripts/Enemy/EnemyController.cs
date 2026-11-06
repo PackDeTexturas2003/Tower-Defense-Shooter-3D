@@ -113,6 +113,9 @@ public class EnemyController : MonoBehaviour
 
     private Transform objetivoPrincipal;
 
+    // Torreta seleccionada por los enemigos de tipo Torreta.
+    private Transform torretaObjetivoActual;
+
     private Transform objetivoActual;
 
     private CharacterController controller;
@@ -350,15 +353,11 @@ public class EnemyController : MonoBehaviour
 
     private void BuscarObjetivo()
     {
-        string tagBuscado =
-            tipoObjetivo == TipoObjetivo.Torreta
-            ? tagTorreta
-            : "Objetivo";
-
+        // El objetivo principal de respaldo es siempre el núcleo.
+        // Las torretas se buscan por separado para poder comprobar
+        // si todavía existen torretas activas.
         GameObject objetoEncontrado =
-            GameObject.FindGameObjectWithTag(
-                tagBuscado
-            );
+            GameObject.FindGameObjectWithTag("Objetivo");
 
         if (objetoEncontrado != null)
         {
@@ -367,7 +366,7 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log(
                 gameObject.name +
-                " encontró al objetivo: " +
+                " encontró al objetivo principal: " +
                 objetoEncontrado.name
             );
         }
@@ -398,34 +397,94 @@ public class EnemyController : MonoBehaviour
 
     private void ActualizarObjetivoActual()
     {
-        // Si el enemigo tiene como objetivo
-        // principal al jugador.
-        if (tipoObjetivo ==
-            TipoObjetivo.Jugador)
+        // Los enemigos configurados para perseguir al jugador
+        // mantienen su comportamiento original.
+        if (tipoObjetivo == TipoObjetivo.Jugador)
         {
-            objetivoActual =
-                jugador;
-
+            objetivoActual = jugador;
             return;
         }
 
-        // Si el enemigo tiene como objetivo
-        // principal el núcleo, la torreta,
-        // pero el jugador entra en su radio,
-        // empieza a perseguir al jugador.
-        if (jugador != null &&
-            JugadorDentroDelRadio())
+        // La nueva prioridad se aplica exclusivamente a los
+        // enemigos configurados con TipoObjetivo.Torreta.
+        if (tipoObjetivo == TipoObjetivo.Torreta)
         {
-            objetivoActual =
-                jugador;
+            torretaObjetivoActual = BuscarTorretaVivaMasCercana();
 
+            // Mientras exista una torreta viva, el enemigo
+            // debe priorizarla. El radio del jugador no aplica.
+            if (torretaObjetivoActual != null)
+            {
+                objetivoActual = torretaObjetivoActual;
+                return;
+            }
+
+            // El radio del jugador solo se activa cuando no
+            // quedan torretas vivas.
+            if (jugador != null && JugadorDentroDelRadio())
+            {
+                objetivoActual = jugador;
+                return;
+            }
+
+            // Sin torretas y con el jugador fuera del radio,
+            // avanzar hacia el núcleo.
+            objetivoActual = objetivoPrincipal;
             return;
         }
 
-        // Si el jugador está fuera del radio,
-        // vuelve al objetivo principal.
-        objetivoActual =
-            objetivoPrincipal;
+        // Se conserva el comportamiento anterior para
+        // TipoObjetivo.Objetivo.
+        if (jugador != null && JugadorDentroDelRadio())
+        {
+            objetivoActual = jugador;
+            return;
+        }
+
+        objetivoActual = objetivoPrincipal;
+    }
+
+    // Busca la torreta activa más cercana al enemigo.
+    // Los objetos inactivos no se consideran torretas vivas.
+    private Transform BuscarTorretaVivaMasCercana()
+    {
+        GameObject[] torretas;
+
+        try
+        {
+            torretas = GameObject.FindGameObjectsWithTag(tagTorreta);
+        }
+        catch (UnityException)
+        {
+            Debug.LogError(
+                "El tag '" + tagTorreta +
+                "' no está definido en Unity."
+            );
+
+            return null;
+        }
+
+        Transform torretaMasCercana = null;
+        float menorDistancia = Mathf.Infinity;
+
+        foreach (GameObject torreta in torretas)
+        {
+            if (torreta == null || !torreta.activeInHierarchy)
+                continue;
+
+            float distancia = Vector3.Distance(
+                transform.position,
+                torreta.transform.position
+            );
+
+            if (distancia < menorDistancia)
+            {
+                menorDistancia = distancia;
+                torretaMasCercana = torreta.transform;
+            }
+        }
+
+        return torretaMasCercana;
     }
 
     // =========================================

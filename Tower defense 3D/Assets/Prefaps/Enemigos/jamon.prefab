@@ -180,9 +180,9 @@ MonoBehaviour:
   rotacionYModelo: -90
   velocidadRotacionModelo: 120
   tipoAtaque: 0
-  tipoObjetivo: 0
+  tipoObjetivo: 2
   objetivo: {fileID: 0}
-  radioDeteccionJugador: 12
+  radioDeteccionJugador: 0
   tagTorreta: Torreta
   proyectilPrefab: {fileID: 0}
   puntoDisparo: {fileID: 0}
