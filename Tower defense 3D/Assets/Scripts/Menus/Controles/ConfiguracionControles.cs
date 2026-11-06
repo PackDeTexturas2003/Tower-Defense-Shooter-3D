@@ -1,12 +1,9 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public static class ConfiguracionControles
 {
-    // =========================
-    // CLAVES PLAYERPREFS
-    // =========================
-
     private const string TECLA_DISPARO = "TeclaDisparo";
     private const string TIPO_DISPARO = "TipoDisparo";
 
@@ -19,11 +16,6 @@ public static class ConfiguracionControles
     private const string TECLA_IZQUIERDA = "TeclaIzquierda";
     private const string TECLA_ATRAS = "TeclaAtras";
     private const string TECLA_DERECHA = "TeclaDerecha";
-
-
-    // =========================
-    // TIPOS DE DISPARO
-    // =========================
 
     public enum TipoEntrada
     {
@@ -38,41 +30,21 @@ public static class ConfiguracionControles
         Medio = 2
     }
 
-
-    // =========================
-    // VALORES PREDETERMINADOS
-    // =========================
-
     private const BotonMouse DISPARO_MOUSE_DEFAULT =
         BotonMouse.Izquierdo;
 
     private const Key DISPARO_TECLADO_DEFAULT =
         Key.Space;
 
-    private const Key DASH_DEFAULT =
-        Key.E;
+    private const Key DASH_DEFAULT = Key.E;
+    private const Key SALTO_DEFAULT = Key.Space;
+    private const Key SPRINT_DEFAULT = Key.LeftShift;
+    private const Key RECARGA_DEFAULT = Key.R;
 
-    private const Key SALTO_DEFAULT =
-        Key.Space;
-
-    private const Key SPRINT_DEFAULT =
-        Key.LeftShift;
-
-    private const Key RECARGA_DEFAULT =
-        Key.R;
-
-    private const Key ADELANTE_DEFAULT =
-        Key.W;
-
-    private const Key IZQUIERDA_DEFAULT =
-        Key.A;
-
-    private const Key ATRAS_DEFAULT =
-        Key.S;
-
-    private const Key DERECHA_DEFAULT =
-        Key.D;
-
+    private const Key ADELANTE_DEFAULT = Key.W;
+    private const Key IZQUIERDA_DEFAULT = Key.A;
+    private const Key ATRAS_DEFAULT = Key.S;
+    private const Key DERECHA_DEFAULT = Key.D;
 
     // =========================
     // GUARDAR DISPARO
@@ -91,7 +63,6 @@ public static class ConfiguracionControles
         PlayerPrefs.SetInt(TECLA_DISPARO, (int)tecla);
         PlayerPrefs.Save();
     }
-
 
     // =========================
     // OBTENER DISPARO
@@ -121,7 +92,6 @@ public static class ConfiguracionControles
         );
     }
 
-
     // =========================
     // GUARDAR OTROS CONTROLES
     // =========================
@@ -149,7 +119,6 @@ public static class ConfiguracionControles
         PlayerPrefs.SetInt(TECLA_RECARGA, (int)tecla);
         PlayerPrefs.Save();
     }
-
 
     // =========================
     // OBTENER OTROS CONTROLES
@@ -187,7 +156,6 @@ public static class ConfiguracionControles
         );
     }
 
-
     // =========================
     // GUARDAR MOVIMIENTO
     // =========================
@@ -215,7 +183,6 @@ public static class ConfiguracionControles
         PlayerPrefs.SetInt(TECLA_DERECHA, (int)tecla);
         PlayerPrefs.Save();
     }
-
 
     // =========================
     // OBTENER MOVIMIENTO
@@ -252,7 +219,6 @@ public static class ConfiguracionControles
             (int)DERECHA_DEFAULT
         );
     }
-
 
     // =========================
     // RESTAURAR PREDETERMINADOS

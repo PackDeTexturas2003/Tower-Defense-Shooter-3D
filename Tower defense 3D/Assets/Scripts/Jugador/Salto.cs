@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,6 @@ public class Salto : MonoBehaviour
     [SerializeField] private float anguloMaximoSuelo = 60f;
 
     private Rigidbody rb;
-
     private bool estaEnSuelo;
 
     private float tiempoUltimoSalto = -Mathf.Infinity;
@@ -29,22 +29,19 @@ public class Salto : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        // Cargar la tecla de salto guardada.
         CargarTeclaSalto();
 
-        // Asegurar que el Rigidbody utilice gravedad.
         rb.useGravity = true;
-
-        // Evitar que el personaje rote por las físicas.
         rb.freezeRotation = true;
     }
 
     private void Update()
     {
+        CargarTeclaSalto();
+
         if (Keyboard.current == null)
             return;
 
-        // Detectar la tecla de salto.
         if (Keyboard.current[teclaSalto].wasPressedThisFrame)
         {
             IntentarSaltar();
@@ -52,15 +49,12 @@ public class Salto : MonoBehaviour
     }
 
     // =========================
-    // GUARDAR / CARGAR SALTO
+    // CARGAR SALTO
     // =========================
 
     private void CargarTeclaSalto()
     {
-        teclaSalto = (Key)PlayerPrefs.GetInt(
-            "TeclaSalto",
-            (int)Key.Space
-        );
+        teclaSalto = ConfiguracionControles.ObtenerSalto();
     }
 
     // =========================
@@ -69,11 +63,9 @@ public class Salto : MonoBehaviour
 
     private void IntentarSaltar()
     {
-        // Comprobar cooldown.
         if (Time.time < tiempoUltimoSalto + cooldownSalto)
             return;
 
-        // Comprobar si estamos en el suelo.
         if (!estaEnSuelo)
             return;
 
@@ -86,24 +78,19 @@ public class Salto : MonoBehaviour
 
     private void Saltar()
     {
-        // Registrar el momento del salto.
         tiempoUltimoSalto = Time.time;
 
-        // Obtener la velocidad actual.
         Vector3 velocidad = rb.linearVelocity;
 
-        // Eliminar la velocidad vertical.
         velocidad.y = 0f;
 
         rb.linearVelocity = velocidad;
 
-        // Aplicar el salto.
         rb.AddForce(
             Vector3.up * fuerzaSalto,
             ForceMode.Impulse
         );
 
-        // Ya no estamos en el suelo.
         estaEnSuelo = false;
     }
 
@@ -117,14 +104,11 @@ public class Salto : MonoBehaviour
         {
             ContactPoint contacto = collision.GetContact(i);
 
-            // Vector que indica hacia arriba desde la superficie.
             float angulo = Vector3.Angle(
                 contacto.normal,
                 Vector3.up
             );
 
-            // Si la superficie es suficientemente horizontal,
-            // la consideramos suelo.
             if (angulo <= anguloMaximoSuelo)
             {
                 estaEnSuelo = true;
@@ -135,8 +119,6 @@ public class Salto : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        // Esperamos a que OnCollisionStay vuelva a detectar
-        // una superficie antes de permitir otro salto.
         estaEnSuelo = false;
     }
 }
