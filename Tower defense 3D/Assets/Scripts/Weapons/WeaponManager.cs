@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -131,16 +132,22 @@ public class WeaponManager : MonoBehaviour
 
     private void CambiarArma()
     {
-        if (armaActual.EstaRecargando)
+        if (armaActual == null || armaActual.EstaRecargando)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            EquiparArma(0);
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
+                EquiparArma(0);
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            EquiparArma(1);
+            if (Keyboard.current.digit2Key.wasPressedThisFrame)
+                EquiparArma(1);
+        }
 
-        float rueda = Input.mouseScrollDelta.y;
+        if (Mouse.current == null)
+            return;
+
+        float rueda = Mouse.current.scroll.ReadValue().y;
 
         if (rueda > 0f)
             CambiarArmaPorRueda(1);
@@ -189,6 +196,7 @@ public class WeaponManager : MonoBehaviour
 
         armaActual = armas[indice];
         indiceArmaActual = indice;
+
         armaActual.gameObject.SetActive(true);
         avisoSinMunicionReproducido = false;
 
@@ -222,6 +230,8 @@ public class WeaponManager : MonoBehaviour
         return false;
     }
 
+    // ---------------- DISPARO ----------------
+
     private void ManejarDisparo()
     {
         switch (armaActual.FireMode)
@@ -230,18 +240,114 @@ public class WeaponManager : MonoBehaviour
             case FireMode.Pump:
             case FireMode.Bolt:
             case FireMode.Burst:
-                if (Input.GetMouseButtonDown(0))
+                if (DisparoPresionadoEsteFrame())
                     Disparar();
                 break;
 
             case FireMode.FullAuto:
-                if (Input.GetMouseButton(0))
+                if (DisparoMantenido())
                     Disparar();
                 break;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (DisparoSoltadoEsteFrame())
             avisoSinMunicionReproducido = false;
+    }
+
+    private bool DisparoPresionadoEsteFrame()
+    {
+        if (ConfiguracionControles.ObtenerTipoDisparo() ==
+            ConfiguracionControles.TipoEntrada.Mouse)
+        {
+            if (Mouse.current == null)
+                return false;
+
+            switch (ConfiguracionControles.ObtenerDisparoMouse())
+            {
+                case ConfiguracionControles.BotonMouse.Izquierdo:
+                    return Mouse.current.leftButton.wasPressedThisFrame;
+
+                case ConfiguracionControles.BotonMouse.Derecho:
+                    return Mouse.current.rightButton.wasPressedThisFrame;
+
+                case ConfiguracionControles.BotonMouse.Medio:
+                    return Mouse.current.middleButton.wasPressedThisFrame;
+            }
+        }
+        else
+        {
+            if (Keyboard.current == null)
+                return false;
+
+            Key tecla = ConfiguracionControles.ObtenerDisparoTeclado();
+            return Keyboard.current[tecla].wasPressedThisFrame;
+        }
+
+        return false;
+    }
+
+    private bool DisparoMantenido()
+    {
+        if (ConfiguracionControles.ObtenerTipoDisparo() ==
+            ConfiguracionControles.TipoEntrada.Mouse)
+        {
+            if (Mouse.current == null)
+                return false;
+
+            switch (ConfiguracionControles.ObtenerDisparoMouse())
+            {
+                case ConfiguracionControles.BotonMouse.Izquierdo:
+                    return Mouse.current.leftButton.isPressed;
+
+                case ConfiguracionControles.BotonMouse.Derecho:
+                    return Mouse.current.rightButton.isPressed;
+
+                case ConfiguracionControles.BotonMouse.Medio:
+                    return Mouse.current.middleButton.isPressed;
+            }
+        }
+        else
+        {
+            if (Keyboard.current == null)
+                return false;
+
+            Key tecla = ConfiguracionControles.ObtenerDisparoTeclado();
+            return Keyboard.current[tecla].isPressed;
+        }
+
+        return false;
+    }
+
+    private bool DisparoSoltadoEsteFrame()
+    {
+        if (ConfiguracionControles.ObtenerTipoDisparo() ==
+            ConfiguracionControles.TipoEntrada.Mouse)
+        {
+            if (Mouse.current == null)
+                return false;
+
+            switch (ConfiguracionControles.ObtenerDisparoMouse())
+            {
+                case ConfiguracionControles.BotonMouse.Izquierdo:
+                    return Mouse.current.leftButton.wasReleasedThisFrame;
+
+                case ConfiguracionControles.BotonMouse.Derecho:
+                    return Mouse.current.rightButton.wasReleasedThisFrame;
+
+                case ConfiguracionControles.BotonMouse.Medio:
+                    return Mouse.current.middleButton.wasReleasedThisFrame;
+            }
+        }
+        else
+        {
+            if (Keyboard.current == null)
+                return false;
+
+            Key tecla = ConfiguracionControles.ObtenerDisparoTeclado();
+            return Keyboard.current[tecla].wasReleasedThisFrame;
+        }
+
+        return false;
     }
 
     private void Disparar()
@@ -265,6 +371,7 @@ public class WeaponManager : MonoBehaviour
         avisoSinMunicionReproducido = false;
 
         int municionAntes = armaActual.MunicionActual;
+
         armaActual.Disparar();
 
         if (armaActual.MunicionActual < municionAntes &&
@@ -273,6 +380,8 @@ public class WeaponManager : MonoBehaviour
             sfxManager.ReproducirDisparo(armaActual.TipoMunicion);
         }
     }
+
+    // ---------------- RECARGA ----------------
 
     private void ManejarRecarga()
     {

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,6 @@ public class Movimiento : MonoBehaviour
     private Esquive esquive;
 
     private Key teclaSprint;
-
     private Key teclaAdelante;
     private Key teclaIzquierda;
     private Key teclaAtras;
@@ -37,6 +37,7 @@ public class Movimiento : MonoBehaviour
 
     private void Update()
     {
+        CargarConfiguracionControles();
         Mirar();
     }
 
@@ -49,7 +50,7 @@ public class Movimiento : MonoBehaviour
     }
 
     // =========================
-    // CARGAR CONFIGURACION
+    // CARGAR CONFIGURACIÓN
     // =========================
 
     private void CargarConfiguracionControles()

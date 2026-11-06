@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -44,6 +45,8 @@ public class Esquive : MonoBehaviour
 
     private void Update()
     {
+        CargarTeclaDash();
+
         if (Keyboard.current == null)
             return;
 
@@ -62,15 +65,12 @@ public class Esquive : MonoBehaviour
     }
 
     // =========================
-    // GUARDAR / CARGAR DASH
+    // CARGAR DASH
     // =========================
 
     private void CargarTeclaDash()
     {
-        teclaDash = (Key)PlayerPrefs.GetInt(
-            "TeclaDash",
-            (int)Key.E
-        );
+        teclaDash = ConfiguracionControles.ObtenerDash();
     }
 
     // =========================
@@ -79,19 +79,14 @@ public class Esquive : MonoBehaviour
 
     private void IntentarDash()
     {
-        // No permitir otro dash mientras ya estamos haciendo uno.
         if (haciendoDash)
             return;
 
-        // Comprobar cooldown.
         if (Time.time < tiempoUltimoDash + cooldownDash)
             return;
 
-        // Obtener dirección del movimiento.
         direccionDash = ObtenerDireccion();
 
-        // Si no se está pulsando WASD,
-        // utilizar la dirección hacia delante.
         if (direccionDash == Vector3.zero)
         {
             if (!dashHaciaDelanteSinMovimiento)
@@ -100,22 +95,18 @@ public class Esquive : MonoBehaviour
             direccionDash = transform.forward;
         }
 
-        // Evitar movimiento vertical.
         direccionDash.y = 0f;
 
-        // Asegurarnos de tener una dirección válida.
         if (direccionDash.sqrMagnitude < 0.01f)
             return;
 
         direccionDash.Normalize();
 
-        // Activar dash.
         haciendoDash = true;
 
         tiempoDash = 0f;
         tiempoUltimoDash = Time.time;
 
-        // Reiniciar únicamente la velocidad horizontal.
         Vector3 velocidad = rb.linearVelocity;
 
         velocidad.x = 0f;
@@ -132,17 +123,14 @@ public class Esquive : MonoBehaviour
     {
         tiempoDash += Time.fixedDeltaTime;
 
-        // Velocidad progresiva.
         float velocidadActual = Mathf.MoveTowards(
             0f,
             velocidadDash,
             aceleracionDash * Time.fixedDeltaTime
         );
 
-        // Mantener la velocidad vertical.
         float velocidadVertical = rb.linearVelocity.y;
 
-        // Aplicar velocidad del dash.
         Vector3 nuevaVelocidad =
             direccionDash * velocidadActual;
 
@@ -150,7 +138,6 @@ public class Esquive : MonoBehaviour
 
         rb.linearVelocity = nuevaVelocidad;
 
-        // Comprobar si terminó.
         if (tiempoDash >= duracionDash)
         {
             TerminarDash();
@@ -178,20 +165,21 @@ public class Esquive : MonoBehaviour
         float horizontal = 0f;
         float vertical = 0f;
 
-        // =========================
-        // WASD FIJO
-        // =========================
+        Key teclaIzquierda = ConfiguracionControles.ObtenerIzquierda();
+        Key teclaDerecha = ConfiguracionControles.ObtenerDerecha();
+        Key teclaAdelante = ConfiguracionControles.ObtenerAdelante();
+        Key teclaAtras = ConfiguracionControles.ObtenerAtras();
 
-        if (Keyboard.current.aKey.isPressed)
+        if (Keyboard.current[teclaIzquierda].isPressed)
             horizontal = -1f;
 
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current[teclaDerecha].isPressed)
             horizontal = 1f;
 
-        if (Keyboard.current.wKey.isPressed)
+        if (Keyboard.current[teclaAdelante].isPressed)
             vertical = 1f;
 
-        if (Keyboard.current.sKey.isPressed)
+        if (Keyboard.current[teclaAtras].isPressed)
             vertical = -1f;
 
         Vector3 direccion =

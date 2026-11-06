@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 
 public enum AmmoType
@@ -93,13 +94,13 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Solo se comprueba el botón para la SMG.
+        // Detener el audio de la SMG cuando el jugador
+        // suelta el botón de disparo, se queda sin munición
+        // o comienza a recargar.
         if (tipoMunicion != AmmoType.SMG)
             return;
 
-        // Detiene el audio al soltar el botón,
-        // quedarse sin munición o comenzar a recargar.
-        if (!Input.GetMouseButton(0) ||
+        if (!DisparoPresionado() ||
             !TieneMunicion() ||
             recargando)
         {
@@ -109,6 +110,70 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Disparar()
     {
+    }
+
+    // =====================================================
+    // INPUT DE DISPARO
+    // =====================================================
+
+    protected bool DisparoPresionado()
+    {
+        if (Mouse.current == null &&
+            Keyboard.current == null)
+        {
+            return false;
+        }
+
+        ConfiguracionControles.TipoEntrada tipo =
+            ConfiguracionControles.ObtenerTipoDisparo();
+
+        if (tipo == ConfiguracionControles.TipoEntrada.Mouse)
+        {
+            if (Mouse.current == null)
+                return false;
+
+            ConfiguracionControles.BotonMouse boton =
+                ConfiguracionControles.ObtenerDisparoMouse();
+
+            switch (boton)
+            {
+                case ConfiguracionControles.BotonMouse.Izquierdo:
+                    return Mouse.current.leftButton.isPressed;
+
+                case ConfiguracionControles.BotonMouse.Derecho:
+                    return Mouse.current.rightButton.isPressed;
+
+                case ConfiguracionControles.BotonMouse.Medio:
+                    return Mouse.current.middleButton.isPressed;
+            }
+        }
+        else
+        {
+            if (Keyboard.current == null)
+                return false;
+
+            Key tecla =
+                ConfiguracionControles.ObtenerDisparoTeclado();
+
+            return Keyboard.current[tecla].isPressed;
+        }
+
+        return false;
+    }
+
+    // =====================================================
+    // INPUT DE RECARGA
+    // =====================================================
+
+    protected bool RecargaPresionada()
+    {
+        if (Keyboard.current == null)
+            return false;
+
+        Key teclaRecarga =
+            ConfiguracionControles.ObtenerRecarga();
+
+        return Keyboard.current[teclaRecarga].wasPressedThisFrame;
     }
 
     // =====================================================
@@ -123,7 +188,7 @@ public abstract class Weapon : MonoBehaviour
         if (sfxManager == null)
             return;
 
-        if (!Input.GetMouseButton(0))
+        if (!DisparoPresionado())
             return;
 
         if (!TieneMunicion() || recargando)
