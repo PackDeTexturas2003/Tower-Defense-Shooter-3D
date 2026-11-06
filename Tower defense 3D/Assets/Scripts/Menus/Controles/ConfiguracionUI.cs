@@ -11,6 +11,7 @@ public class ConfiguracionUI : MonoBehaviour
     [SerializeField] private TMP_Text textoEsquive;
     [SerializeField] private TMP_Text textoSalto;
     [SerializeField] private TMP_Text textoSprint;
+    [SerializeField] private TMP_Text textoRecarga;
 
     [Header("Textos de movimiento")]
     [SerializeField] private TMP_Text textoAdelante;
@@ -23,6 +24,7 @@ public class ConfiguracionUI : MonoBehaviour
     [SerializeField] private Button botonEsquive;
     [SerializeField] private Button botonSalto;
     [SerializeField] private Button botonSprint;
+    [SerializeField] private Button botonRecarga;
 
     [Header("Botones de movimiento")]
     [SerializeField] private Button botonAdelante;
@@ -40,6 +42,7 @@ public class ConfiguracionUI : MonoBehaviour
         Esquive,
         Salto,
         Sprint,
+        Recarga,
         Adelante,
         Izquierda,
         Atras,
@@ -67,6 +70,10 @@ public class ConfiguracionUI : MonoBehaviour
 
         botonSprint.onClick.AddListener(
             () => EsperarTecla(ControlEsperando.Sprint)
+        );
+
+        botonRecarga.onClick.AddListener(
+            () => EsperarTecla(ControlEsperando.Recarga)
         );
 
         botonAdelante.onClick.AddListener(
@@ -124,6 +131,10 @@ public class ConfiguracionUI : MonoBehaviour
                 textoSprint.text = "Pulsa una tecla...";
                 break;
 
+            case ControlEsperando.Recarga:
+                textoRecarga.text = "Pulsa una tecla...";
+                break;
+
             case ControlEsperando.Adelante:
                 textoAdelante.text = "Pulsa una tecla...";
                 break;
@@ -148,7 +159,6 @@ public class ConfiguracionUI : MonoBehaviour
 
     private void DetectarEntrada()
     {
-        // Primero comprobamos teclado
         if (Keyboard.current != null)
         {
             foreach (KeyControl tecla in Keyboard.current.allKeys)
@@ -164,7 +174,6 @@ public class ConfiguracionUI : MonoBehaviour
             }
         }
 
-        // Después comprobamos mouse
         if (Mouse.current != null)
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -226,6 +235,12 @@ public class ConfiguracionUI : MonoBehaviour
 
                 ConfiguracionControles.GuardarSprint(tecla);
                 textoSprint.text = tecla.ToString();
+                break;
+
+            case ControlEsperando.Recarga:
+
+                ConfiguracionControles.GuardarRecarga(tecla);
+                textoRecarga.text = tecla.ToString();
                 break;
 
             case ControlEsperando.Adelante:
@@ -312,6 +327,9 @@ public class ConfiguracionUI : MonoBehaviour
 
         textoSprint.text =
             ConfiguracionControles.ObtenerSprint().ToString();
+
+        textoRecarga.text =
+            ConfiguracionControles.ObtenerRecarga().ToString();
 
         textoAdelante.text =
             ConfiguracionControles.ObtenerAdelante().ToString();

@@ -13,6 +13,7 @@ public static class ConfiguracionControles
     private const string TECLA_DASH = "TeclaDash";
     private const string TECLA_SALTO = "TeclaSalto";
     private const string TECLA_SPRINT = "TeclaSprint";
+    private const string TECLA_RECARGA = "TeclaRecarga";
 
     private const string TECLA_ADELANTE = "TeclaAdelante";
     private const string TECLA_IZQUIERDA = "TeclaIzquierda";
@@ -57,6 +58,9 @@ public static class ConfiguracionControles
     private const Key SPRINT_DEFAULT =
         Key.LeftShift;
 
+    private const Key RECARGA_DEFAULT =
+        Key.R;
+
     private const Key ADELANTE_DEFAULT =
         Key.W;
 
@@ -76,31 +80,15 @@ public static class ConfiguracionControles
 
     public static void GuardarDisparoMouse(BotonMouse boton)
     {
-        PlayerPrefs.SetInt(
-            TIPO_DISPARO,
-            (int)TipoEntrada.Mouse
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_DISPARO,
-            (int)boton
-        );
-
+        PlayerPrefs.SetInt(TIPO_DISPARO, (int)TipoEntrada.Mouse);
+        PlayerPrefs.SetInt(TECLA_DISPARO, (int)boton);
         PlayerPrefs.Save();
     }
 
     public static void GuardarDisparoTeclado(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TIPO_DISPARO,
-            (int)TipoEntrada.Teclado
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_DISPARO,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TIPO_DISPARO, (int)TipoEntrada.Teclado);
+        PlayerPrefs.SetInt(TECLA_DISPARO, (int)tecla);
         PlayerPrefs.Save();
     }
 
@@ -140,31 +128,25 @@ public static class ConfiguracionControles
 
     public static void GuardarDash(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_DASH,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_DASH, (int)tecla);
         PlayerPrefs.Save();
     }
 
     public static void GuardarSalto(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_SALTO,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_SALTO, (int)tecla);
         PlayerPrefs.Save();
     }
 
     public static void GuardarSprint(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_SPRINT,
-            (int)tecla
-        );
+        PlayerPrefs.SetInt(TECLA_SPRINT, (int)tecla);
+        PlayerPrefs.Save();
+    }
 
+    public static void GuardarRecarga(Key tecla)
+    {
+        PlayerPrefs.SetInt(TECLA_RECARGA, (int)tecla);
         PlayerPrefs.Save();
     }
 
@@ -197,6 +179,14 @@ public static class ConfiguracionControles
         );
     }
 
+    public static Key ObtenerRecarga()
+    {
+        return (Key)PlayerPrefs.GetInt(
+            TECLA_RECARGA,
+            (int)RECARGA_DEFAULT
+        );
+    }
+
 
     // =========================
     // GUARDAR MOVIMIENTO
@@ -204,41 +194,25 @@ public static class ConfiguracionControles
 
     public static void GuardarAdelante(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_ADELANTE,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_ADELANTE, (int)tecla);
         PlayerPrefs.Save();
     }
 
     public static void GuardarIzquierda(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_IZQUIERDA,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_IZQUIERDA, (int)tecla);
         PlayerPrefs.Save();
     }
 
     public static void GuardarAtras(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_ATRAS,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_ATRAS, (int)tecla);
         PlayerPrefs.Save();
     }
 
     public static void GuardarDerecha(Key tecla)
     {
-        PlayerPrefs.SetInt(
-            TECLA_DERECHA,
-            (int)tecla
-        );
-
+        PlayerPrefs.SetInt(TECLA_DERECHA, (int)tecla);
         PlayerPrefs.Save();
     }
 
@@ -286,50 +260,18 @@ public static class ConfiguracionControles
 
     public static void RestaurarPredeterminados()
     {
-        PlayerPrefs.SetInt(
-            TIPO_DISPARO,
-            (int)TipoEntrada.Mouse
-        );
+        PlayerPrefs.SetInt(TIPO_DISPARO, (int)TipoEntrada.Mouse);
+        PlayerPrefs.SetInt(TECLA_DISPARO, (int)DISPARO_MOUSE_DEFAULT);
 
-        PlayerPrefs.SetInt(
-            TECLA_DISPARO,
-            (int)DISPARO_MOUSE_DEFAULT
-        );
+        PlayerPrefs.SetInt(TECLA_DASH, (int)DASH_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_SALTO, (int)SALTO_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_SPRINT, (int)SPRINT_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_RECARGA, (int)RECARGA_DEFAULT);
 
-        PlayerPrefs.SetInt(
-            TECLA_DASH,
-            (int)DASH_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_SALTO,
-            (int)SALTO_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_SPRINT,
-            (int)SPRINT_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_ADELANTE,
-            (int)ADELANTE_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_IZQUIERDA,
-            (int)IZQUIERDA_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_ATRAS,
-            (int)ATRAS_DEFAULT
-        );
-
-        PlayerPrefs.SetInt(
-            TECLA_DERECHA,
-            (int)DERECHA_DEFAULT
-        );
+        PlayerPrefs.SetInt(TECLA_ADELANTE, (int)ADELANTE_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_IZQUIERDA, (int)IZQUIERDA_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_ATRAS, (int)ATRAS_DEFAULT);
+        PlayerPrefs.SetInt(TECLA_DERECHA, (int)DERECHA_DEFAULT);
 
         PlayerPrefs.Save();
     }

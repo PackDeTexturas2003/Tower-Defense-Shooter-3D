@@ -1,6 +1,6 @@
-
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -276,7 +276,12 @@ public class WeaponManager : MonoBehaviour
 
     private void ManejarRecarga()
     {
-        if (!Input.GetKeyDown(KeyCode.R))
+        if (Keyboard.current == null)
+            return;
+
+        Key teclaRecarga = ConfiguracionControles.ObtenerRecarga();
+
+        if (!Keyboard.current[teclaRecarga].wasPressedThisFrame)
             return;
 
         if (armaActual == null || armaActual.EstaRecargando)
