@@ -1,10 +1,14 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class SFXManager : MonoBehaviour
 {
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixerGroup grupoSFX;
+
     [Header("Sonidos de armas")]
     [SerializeField] private AudioClip disparoPistola;
     [SerializeField] private AudioClip disparoShotgun;
@@ -79,7 +83,9 @@ public class SFXManager : MonoBehaviour
         audioSource.loop = false;
         audioSource.volume = volumen;
 
-        // Fuente de audio independiente para el sonido continuo de la SMG.
+        if (grupoSFX != null)
+            audioSource.outputAudioMixerGroup = grupoSFX;
+
         audioSourceSMG = gameObject.AddComponent<AudioSource>();
         audioSourceSMG.playOnAwake = false;
         audioSourceSMG.loop = true;
@@ -105,7 +111,6 @@ public class SFXManager : MonoBehaviour
                 break;
 
             case AmmoType.SMG:
-                // Solo comienza cuando el script del arma lo solicita.
                 IniciarSonidoSMG();
                 break;
 
@@ -124,7 +129,7 @@ public class SFXManager : MonoBehaviour
     }
 
     // =========================================================
-    // SMG: SONIDO CONTINUO MIENTRAS SE MANTIENE EL DISPARO
+    // SMG
     // =========================================================
 
     public void IniciarSonidoSMG()
@@ -135,7 +140,6 @@ public class SFXManager : MonoBehaviour
         if (audioSourceSMG == null)
             return;
 
-        // Evita reiniciar el audio en cada fotograma.
         if (reproduciendoSMG && audioSourceSMG.isPlaying)
             return;
 
@@ -158,7 +162,7 @@ public class SFXManager : MonoBehaviour
     }
 
     // =========================================================
-    // RIFLE: TRES DISPAROS CONSECUTIVOS
+    // RIFLE
     // =========================================================
 
     public void IniciarRafagaRifle()

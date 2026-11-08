@@ -1,9 +1,13 @@
 
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class VocesDialogosCinematica : MonoBehaviour
 {
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixerGroup grupoVoces;
+
     [System.Serializable]
     public class VozDialogo
     {
@@ -37,6 +41,9 @@ public class VocesDialogosCinematica : MonoBehaviour
         }
 
         audioSource.playOnAwake = false;
+
+        if (grupoVoces != null)
+            audioSource.outputAudioMixerGroup = grupoVoces;
     }
 
     private void Update()

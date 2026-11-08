@@ -1,9 +1,13 @@
 
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicaCinematica : MonoBehaviour
 {
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixerGroup grupoMusica;
+
     [Header("Configuración de música")]
     [SerializeField] private AudioClip cancion;
     [Range(0f, 1f)]
@@ -39,6 +43,9 @@ public class MusicaCinematica : MonoBehaviour
         fuenteAudio.volume = volumen;
         fuenteAudio.spatialBlend = 0f;
         fuenteAudio.clip = cancion;
+
+        if (grupoMusica != null)
+            fuenteAudio.outputAudioMixerGroup = grupoMusica;
 
         volumenInicial = volumen;
     }

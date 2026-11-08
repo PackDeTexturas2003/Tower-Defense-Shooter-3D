@@ -1,8 +1,13 @@
+
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AmbientMusicManager : MonoBehaviour
 {
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixerGroup grupoMusica;
+
     [Header("Música Ambiental")]
     [SerializeField] private AudioClip musica;
 
@@ -22,6 +27,9 @@ public class AmbientMusicManager : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = repetir;
         audioSource.volume = volumen;
+
+        if (grupoMusica != null)
+            audioSource.outputAudioMixerGroup = grupoMusica;
     }
 
     private void Start()
@@ -32,7 +40,6 @@ public class AmbientMusicManager : MonoBehaviour
         }
     }
 
-    // Reproduce la música configurada originalmente.
     public void ReproducirMusica()
     {
         if (musica == null)
@@ -47,7 +54,6 @@ public class AmbientMusicManager : MonoBehaviour
         ReproducirMusica(musica, repetir);
     }
 
-    // Permite reproducir una música diferente, como victoria o derrota.
     public void ReproducirMusica(AudioClip nuevaMusica, bool repetirMusica = true)
     {
         if (nuevaMusica == null)

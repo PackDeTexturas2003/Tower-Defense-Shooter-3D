@@ -1,8 +1,13 @@
+
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicaPlanificacion : MonoBehaviour
 {
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixerGroup grupoMusica;
+
     [Header("Música")]
     [SerializeField] private AudioClip musica;
 
@@ -20,6 +25,9 @@ public class MusicaPlanificacion : MonoBehaviour
         audioSource.loop = true;
         audioSource.volume = volumen;
         audioSource.spatialBlend = 0f;
+
+        if (grupoMusica != null)
+            audioSource.outputAudioMixerGroup = grupoMusica;
     }
 
     private void Start()
