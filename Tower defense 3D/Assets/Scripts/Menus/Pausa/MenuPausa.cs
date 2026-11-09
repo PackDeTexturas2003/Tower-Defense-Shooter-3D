@@ -27,10 +27,13 @@ public class MenuPausa : MonoBehaviour
     [SerializeField] private AmbientMusicManager ambientMusicManager;
 
     private bool juegoPausado = false;
+    private bool configuracionesAbiertasDesdePausa = false;
 
     private void Start()
     {
         juegoPausado = false;
+        configuracionesAbiertasDesdePausa = false;
+
         Time.timeScale = 1f;
 
         if (panelPausa != null)
@@ -40,11 +43,7 @@ public class MenuPausa : MonoBehaviour
             botonContinuar.onClick.AddListener(Continuar);
 
         if (botonConfiguraciones != null)
-        {
-            botonConfiguraciones.onClick.AddListener(
-                IrAConfiguraciones
-            );
-        }
+            botonConfiguraciones.onClick.AddListener(IrAConfiguraciones);
     }
 
     private void Update()
@@ -56,17 +55,25 @@ public class MenuPausa : MonoBehaviour
             return;
 
         if (juegoPausado)
+        {
             Continuar();
+        }
         else
+        {
             Pausar();
+        }
     }
+
+    // =========================
+    // PAUSAR JUEGO
+    // =========================
 
     private void Pausar()
     {
         juegoPausado = true;
+
         Time.timeScale = 0f;
 
-        // Pausar la música ambiental.
         if (ambientMusicManager != null)
             ambientMusicManager.PausarMusica();
 
@@ -95,6 +102,10 @@ public class MenuPausa : MonoBehaviour
         }
     }
 
+    // =========================
+    // ORDEN VISUAL DEL PANEL
+    // =========================
+
     private void PonerPanelAlFrente()
     {
         if (!ponerPanelAlFrente || panelPausa == null)
@@ -107,22 +118,31 @@ public class MenuPausa : MonoBehaviour
 
         canvasPanel = canvasPanel.rootCanvas;
 
-        if (canvasPanel.renderMode == RenderMode.ScreenSpaceOverlay)
-        {
-            panelPausa.transform.SetAsLastSibling();
-        }
-        else
-        {
-            panelPausa.transform.SetAsLastSibling();
+        panelPausa.transform.SetAsLastSibling();
 
+        if (canvasPanel.renderMode != RenderMode.ScreenSpaceOverlay)
+        {
             canvasPanel.overrideSorting = true;
             canvasPanel.sortingOrder = 100;
         }
     }
 
+    // =========================
+    // CONTINUAR JUEGO
+    // =========================
+
     private void Continuar()
     {
+        // Si Configuración se abrió desde Pausa,
+        // se cierra antes de reanudar el nivel.
+        if (configuracionesAbiertasDesdePausa)
+        {
+            CerrarEscenaConfiguraciones();
+            configuracionesAbiertasDesdePausa = false;
+        }
+
         juegoPausado = false;
+
         Time.timeScale = 1f;
 
         if (movimiento != null)
@@ -140,7 +160,6 @@ public class MenuPausa : MonoBehaviour
         if (weaponManager != null)
             weaponManager.enabled = true;
 
-        // Continuar la música desde donde quedó.
         if (ambientMusicManager != null)
             ambientMusicManager.ContinuarMusica();
 
@@ -151,8 +170,14 @@ public class MenuPausa : MonoBehaviour
             panelPausa.SetActive(false);
     }
 
+    // =========================
+    // ABRIR CONFIGURACIONES
+    // =========================
+
     private void IrAConfiguraciones()
     {
+        configuracionesAbiertasDesdePausa = true;
+
         if (panelPausa != null)
             panelPausa.SetActive(false);
 
@@ -161,16 +186,43 @@ public class MenuPausa : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        Scene escenaConfiguraciones =
+            SceneManager.GetSceneByName("Configuraciones");
+
+        if (escenaConfiguraciones.isLoaded)
+            return;
+
         SceneManager.LoadSceneAsync(
             "Configuraciones",
             LoadSceneMode.Additive
         );
     }
 
+    // =========================
+    // CERRAR CONFIGURACIONES
+    // =========================
+
+    private void CerrarEscenaConfiguraciones()
+    {
+        Scene escenaConfiguraciones =
+            SceneManager.GetSceneByName("Configuraciones");
+
+        if (escenaConfiguraciones.isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("Configuraciones");
+        }
+    }
+
+    // Este método puede seguir conectado
+    // al botón Volver de Configuración.
     public void ReanudarDesdeConfiguraciones()
     {
         Continuar();
     }
+
+    // =========================
+    // VOLVER AL MENU PRINCIPAL
+    // =========================
 
     public void VolverAlMenuPrincipal()
     {

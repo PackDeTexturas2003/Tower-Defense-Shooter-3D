@@ -3229,6 +3229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b457feb9e90f38449626a9414e9a9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
+  grupoSFX: {fileID: -8262192152716653043, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
   disparoPistola: {fileID: 8300000, guid: de5a34bf935b010489633a2edf6c7ae5, type: 3}
   disparoShotgun: {fileID: 8300000, guid: 7841467c315e64047b3652aef8ff3e09, type: 3}
   disparoSMG: {fileID: 8300000, guid: b77ae76f2715799419d1e24d858a4627, type: 3}
@@ -3265,7 +3266,7 @@ AudioSource:
   m_GameObject: {fileID: 435277890}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8262192152716653043, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -7647,6 +7648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372f1e472e9377b49a9923f2d0322937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmbientMusicManager
+  grupoMusica: {fileID: 9085276779343858543, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
   musica: {fileID: 8300000, guid: 6d3c2de5f47aa804f9e365127082affe, type: 3}
   volumen: 0.7
   reproducirAlIniciar: 1
@@ -7660,7 +7662,7 @@ AudioSource:
   m_GameObject: {fileID: 1168413570}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 9085276779343858543, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -10141,7 +10143,7 @@ AudioSource:
   m_GameObject: {fileID: 1375080757}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 9085276779343858543, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b21457a0f4cbb294cac30dfd9e521d23, type: 3}
   m_PlayOnAwake: 1

@@ -7,15 +7,12 @@ public class MenuManager : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
-
         SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void Continuar()
     {
         Time.timeScale = 1f;
-
-        // Carga el nivel manteniendo el progreso guardado.
         SceneManager.LoadScene("Nivel");
     }
 
@@ -26,26 +23,34 @@ public class MenuManager : MonoBehaviour
             Debug.LogError(
                 "MenuManager: No se encontró el SaveManager."
             );
-
             return;
         }
 
-        // Reinicia monedas y armas desbloqueadas.
         SaveManager.Instance.NuevaPartida();
 
         Time.timeScale = 1f;
-
-        // Carga el nivel con el progreso nuevo.
         SceneManager.LoadScene("Nivel");
     }
 
     public void Configuraciones()
     {
+        Time.timeScale = 1f;
+
         Scene escenaNivel =
             SceneManager.GetSceneByName("Nivel");
 
+        Scene escenaConfiguraciones =
+            SceneManager.GetSceneByName("Configuraciones");
+
+        if (escenaConfiguraciones.isLoaded)
+        {
+            Debug.Log("Configuraciones ya está cargada.");
+            return;
+        }
+
         if (escenaNivel.isLoaded)
         {
+            // Si estamos en el Nivel, cargar de forma aditiva.
             SceneManager.LoadSceneAsync(
                 "Configuraciones",
                 LoadSceneMode.Additive
@@ -53,6 +58,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            // Si estamos en el menú, cargar normalmente.
             SceneManager.LoadScene("Configuraciones");
         }
     }
@@ -79,12 +85,14 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene("MenuPrincipal");
         }
     }
 
     public void Creditos()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Creditos");
     }
 

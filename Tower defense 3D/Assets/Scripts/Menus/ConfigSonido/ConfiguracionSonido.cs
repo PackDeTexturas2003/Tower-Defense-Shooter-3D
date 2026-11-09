@@ -8,12 +8,12 @@ public class ConfiguracionSonido : MonoBehaviour
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer mezcladorAudio;
 
-    [Header("Parámetros del Mixer")]
+    [Header("Parámetros expuestos del Mixer")]
     [SerializeField] private string parametroSFX = "VolumenSFX";
     [SerializeField] private string parametroVoces = "VolumenVoces";
     [SerializeField] private string parametroMusica = "VolumenMusica";
 
-    [Header("Slider de volumen")]
+    [Header("Sliders de volumen")]
     [SerializeField] private Slider sliderSFX;
     [SerializeField] private Slider sliderVoces;
     [SerializeField] private Slider sliderMusica;
@@ -39,10 +39,13 @@ public class ConfiguracionSonido : MonoBehaviour
     private bool muteVoces;
     private bool muteMusica;
 
-    private void Start()
+    private void Awake()
     {
         CargarConfiguracion();
+    }
 
+    private void Start()
+    {
         ConfigurarSlider(sliderSFX);
         ConfigurarSlider(sliderVoces);
         ConfigurarSlider(sliderMusica);
@@ -78,28 +81,32 @@ public class ConfiguracionSonido : MonoBehaviour
         slider.maxValue = 1f;
     }
 
-    // =========================================================
+    // =========================
     // CARGAR CONFIGURACIÓN
-    // =========================================================
+    // =========================
 
     private void CargarConfiguracion()
     {
-        volumenSFX = PlayerPrefs.GetFloat(CLAVE_VOLUMEN_SFX, 1f);
-        volumenVoces = PlayerPrefs.GetFloat(CLAVE_VOLUMEN_VOCES, 1f);
-        volumenMusica = PlayerPrefs.GetFloat(CLAVE_VOLUMEN_MUSICA, 1f);
+        volumenSFX = Mathf.Clamp01(
+            PlayerPrefs.GetFloat(CLAVE_VOLUMEN_SFX, 1f)
+        );
+
+        volumenVoces = Mathf.Clamp01(
+            PlayerPrefs.GetFloat(CLAVE_VOLUMEN_VOCES, 1f)
+        );
+
+        volumenMusica = Mathf.Clamp01(
+            PlayerPrefs.GetFloat(CLAVE_VOLUMEN_MUSICA, 1f)
+        );
 
         muteSFX = PlayerPrefs.GetInt(CLAVE_MUTE_SFX, 0) == 1;
         muteVoces = PlayerPrefs.GetInt(CLAVE_MUTE_VOCES, 0) == 1;
         muteMusica = PlayerPrefs.GetInt(CLAVE_MUTE_MUSICA, 0) == 1;
-
-        volumenSFX = Mathf.Clamp01(volumenSFX);
-        volumenVoces = Mathf.Clamp01(volumenVoces);
-        volumenMusica = Mathf.Clamp01(volumenMusica);
     }
 
-    // =========================================================
+    // =========================
     // ACTUALIZAR INTERFAZ
-    // =========================================================
+    // =========================
 
     private void ActualizarInterfaz()
     {
@@ -122,9 +129,9 @@ public class ConfiguracionSonido : MonoBehaviour
             toggleMusica.SetIsOnWithoutNotify(muteMusica);
     }
 
-    // =========================================================
-    // CAMBIAR VOLUMEN
-    // =========================================================
+    // =========================
+    // VOLUMEN DE EFECTOS
+    // =========================
 
     public void CambiarVolumenSFX(float valor)
     {
@@ -133,8 +140,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetFloat(CLAVE_VOLUMEN_SFX, volumenSFX);
 
         AplicarVolumen(parametroSFX, volumenSFX, muteSFX);
+
         PlayerPrefs.Save();
     }
+
+    // =========================
+    // VOLUMEN DE VOCES
+    // =========================
 
     public void CambiarVolumenVoces(float valor)
     {
@@ -143,8 +155,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetFloat(CLAVE_VOLUMEN_VOCES, volumenVoces);
 
         AplicarVolumen(parametroVoces, volumenVoces, muteVoces);
+
         PlayerPrefs.Save();
     }
+
+    // =========================
+    // VOLUMEN DE AMBIENTE
+    // =========================
 
     public void CambiarVolumenMusica(float valor)
     {
@@ -153,12 +170,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetFloat(CLAVE_VOLUMEN_MUSICA, volumenMusica);
 
         AplicarVolumen(parametroMusica, volumenMusica, muteMusica);
+
         PlayerPrefs.Save();
     }
 
-    // =========================================================
-    // CAMBIAR MUTE
-    // =========================================================
+    // =========================
+    // SILENCIO DE EFECTOS
+    // =========================
 
     public void CambiarMuteSFX(bool activado)
     {
@@ -167,8 +185,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetInt(CLAVE_MUTE_SFX, muteSFX ? 1 : 0);
 
         AplicarVolumen(parametroSFX, volumenSFX, muteSFX);
+
         PlayerPrefs.Save();
     }
+
+    // =========================
+    // SILENCIO DE VOCES
+    // =========================
 
     public void CambiarMuteVoces(bool activado)
     {
@@ -177,8 +200,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetInt(CLAVE_MUTE_VOCES, muteVoces ? 1 : 0);
 
         AplicarVolumen(parametroVoces, volumenVoces, muteVoces);
+
         PlayerPrefs.Save();
     }
+
+    // =========================
+    // SILENCIO DE AMBIENTE
+    // =========================
 
     public void CambiarMuteMusica(bool activado)
     {
@@ -187,12 +215,13 @@ public class ConfiguracionSonido : MonoBehaviour
         PlayerPrefs.SetInt(CLAVE_MUTE_MUSICA, muteMusica ? 1 : 0);
 
         AplicarVolumen(parametroMusica, volumenMusica, muteMusica);
+
         PlayerPrefs.Save();
     }
 
-    // =========================================================
-    // APLICAR VOLUMEN AL AUDIO MIXER
-    // =========================================================
+    // =========================
+    // APLICAR CONFIGURACIÓN
+    // =========================
 
     private void AplicarConfiguracion()
     {
@@ -226,7 +255,12 @@ public class ConfiguracionSonido : MonoBehaviour
             decibelios = Mathf.Log10(volumen) * 20f;
         }
 
-        if (!mezcladorAudio.SetFloat(parametro, decibelios))
+        bool aplicado = mezcladorAudio.SetFloat(
+            parametro,
+            decibelios
+        );
+
+        if (!aplicado)
         {
             Debug.LogWarning(
                 "ConfiguracionSonido: No se encontró el parámetro expuesto: "
@@ -234,6 +268,10 @@ public class ConfiguracionSonido : MonoBehaviour
             );
         }
     }
+
+    // =========================
+    // LIMPIEZA
+    // =========================
 
     private void OnDestroy()
     {
