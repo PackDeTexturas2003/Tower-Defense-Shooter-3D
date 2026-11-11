@@ -2837,14 +2837,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.023185201, y: 0.742, z: 0.292}
+  m_LocalRotation: {x: -0.0023837998, y: 0.011289566, z: 0.007835871, w: 0.9999027}
+  m_LocalPosition: {x: -0.023185285, y: 0.742, z: 0.29199985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1847480714}
   m_Father: {fileID: 1480425149}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.283, y: 1.292, z: 0.895}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15697,6 +15697,7 @@ GameObject:
   - component: {fileID: 1847480717}
   - component: {fileID: 1847480716}
   - component: {fileID: 1847480715}
+  - component: {fileID: 1847480719}
   m_Layer: 0
   m_Name: Arma
   m_TagString: Untagged
@@ -15822,6 +15823,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847480713}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1847480719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847480713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c59c1930c7b8cc4d92ab53181c2f078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacionRecargaArma
+  configuraciones:
+  - tipoArma: 0
+    anguloX: -100
+    anguloY: 0
+    anguloZ: 0
+  - tipoArma: 1
+    anguloX: 120
+    anguloY: 0
+    anguloZ: 0
+  - tipoArma: 2
+    anguloX: -80
+    anguloY: -180
+    anguloZ: 40
+  - tipoArma: 3
+    anguloX: 60
+    anguloY: 4
+    anguloZ: -70
+  - tipoArma: 4
+    anguloX: -60
+    anguloY: -140
+    anguloZ: 55
+  - tipoArma: 5
+    anguloX: -120
+    anguloY: -30
+    anguloZ: 90
+  velocidadAnimacion: 8
 --- !u!1 &1862065989
 GameObject:
   m_ObjectHideFlags: 0
