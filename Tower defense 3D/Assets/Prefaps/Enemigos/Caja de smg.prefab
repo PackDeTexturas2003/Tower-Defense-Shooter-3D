@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 287136339009772063}
   - component: {fileID: 3597683248348995815}
   - component: {fileID: 274715004860862931}
+  - component: {fileID: -1809884303497856540}
   m_Layer: 0
   m_Name: Caja de smg
   m_TagString: Untagged
@@ -127,3 +128,23 @@ MonoBehaviour:
   tipoMunicion: 2
   cantidadMunicion: 30
   sfxManager: {fileID: 0}
+--- !u!114 &-1809884303497856540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979671794525995343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c73acdcb953dc40bb4f704d9047cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoFlotante
+  alturaFlotacion: 0.25
+  velocidadFlotacion: 2
+  ejeRotacion: {x: 0, y: 1, z: 0}
+  velocidadRotacion: 60
+  activarBrillo: 1
+  colorBrillo: {r: 0.36078432, g: 0.7803922, b: 0.37647063, a: 0.50980395}
+  intensidadBrillo: 1.5
+  velocidadBrillo: 2

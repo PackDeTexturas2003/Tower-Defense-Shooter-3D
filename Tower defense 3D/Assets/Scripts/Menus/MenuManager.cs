@@ -7,13 +7,38 @@ public class MenuManager : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
+
         SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void Continuar()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Nivel");
+
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError(
+                "MenuManager: No se encontró SaveManager."
+            );
+
+            return;
+        }
+
+        string nivelGuardado =
+            SaveManager.Instance.ObtenerNivelContinuar();
+
+        if (!Application.CanStreamedLevelBeLoaded(nivelGuardado))
+        {
+            Debug.LogError(
+                "No se encuentra el nivel guardado: " + nivelGuardado
+            );
+
+            return;
+        }
+
+        Debug.Log("Continuando desde: " + nivelGuardado);
+
+        SceneManager.LoadScene(nivelGuardado);
     }
 
     public void NuevaPartida()
@@ -21,14 +46,16 @@ public class MenuManager : MonoBehaviour
         if (SaveManager.Instance == null)
         {
             Debug.LogError(
-                "MenuManager: No se encontró el SaveManager."
+                "MenuManager: No se encontró SaveManager."
             );
+
             return;
         }
 
         SaveManager.Instance.NuevaPartida();
 
         Time.timeScale = 1f;
+
         SceneManager.LoadScene("Nivel");
     }
 
@@ -43,14 +70,10 @@ public class MenuManager : MonoBehaviour
             SceneManager.GetSceneByName("Configuraciones");
 
         if (escenaConfiguraciones.isLoaded)
-        {
-            Debug.Log("Configuraciones ya está cargada.");
             return;
-        }
 
         if (escenaNivel.isLoaded)
         {
-            // Si estamos en el Nivel, cargar de forma aditiva.
             SceneManager.LoadSceneAsync(
                 "Configuraciones",
                 LoadSceneMode.Additive
@@ -58,7 +81,6 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            // Si estamos en el menú, cargar normalmente.
             SceneManager.LoadScene("Configuraciones");
         }
     }
@@ -86,13 +108,13 @@ public class MenuManager : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
+
             SceneManager.LoadScene("MenuPrincipal");
         }
     }
 
     public void Creditos()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("Creditos");
     }
 

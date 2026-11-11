@@ -9,9 +9,10 @@ public class SaveData
 
     public List<string> armasDesbloqueadas = new List<string>();
 
+    public string ultimoNivel = "Nivel";
+
     public SaveData()
     {
-        // Arma inicial del jugador.
         DesbloquearArma("Pistola");
     }
 
