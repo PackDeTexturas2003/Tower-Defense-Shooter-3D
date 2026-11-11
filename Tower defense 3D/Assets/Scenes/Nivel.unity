@@ -13798,6 +13798,7 @@ MonoBehaviour:
   - {fileID: 613280001}
   - {fileID: 1207616351}
   - {fileID: 915642838}
+  - {fileID: 2019624466}
   ambientMusicManager: {fileID: 1168413571}
   musicaVictoria: {fileID: 8300000, guid: 87cd6881891f42347aa9f82bc17407ce, type: 3}
   escenaMenu: MenuPrincipal
@@ -13829,6 +13830,7 @@ MonoBehaviour:
   - {fileID: 613280001}
   - {fileID: 1207616351}
   - {fileID: 915642838}
+  - {fileID: 2019624466}
   ambientMusicManager: {fileID: 1168413571}
   musicaDerrota: {fileID: 8300000, guid: a4fb6f1f9ebbfec49948807d857c3530, type: 3}
   escenaMenu: MenuPrincipal
