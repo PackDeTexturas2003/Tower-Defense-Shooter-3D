@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,13 +47,18 @@ public class PanelVictoriaManager : MonoBehaviour
 
         victoriaMostrada = true;
 
-        // Confirmar y guardar el progreso conseguido en este nivel.
+        // Confirmar el progreso del nivel.
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.ConfirmarVictoria();
+
+            // Guardar el siguiente nivel automáticamente.
+            SaveManager.Instance.GuardarNivelContinuar(
+                siguienteNivel
+            );
         }
 
-        // Ocultar HUD.
+        // Ocultar elementos del HUD.
         if (elementosHudAOcultar != null)
         {
             foreach (GameObject elemento in elementosHudAOcultar)
@@ -62,23 +68,20 @@ public class PanelVictoriaManager : MonoBehaviour
             }
         }
 
-        // Detener música actual y reproducir victoria.
         ReproducirMusicaVictoria();
 
-        // Mostrar panel.
         if (panelVictoria != null)
         {
             panelVictoria.SetActive(true);
         }
 
-        // Detener el juego.
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         Debug.Log(
-            "PanelVictoriaManager: ¡Victoria! Panel mostrado."
+            "Victoria: siguiente nivel guardado: " + siguienteNivel
         );
     }
 
@@ -87,7 +90,7 @@ public class PanelVictoriaManager : MonoBehaviour
         if (ambientMusicManager == null)
         {
             Debug.LogWarning(
-                "PanelVictoriaManager: No se encontró AmbientMusicManager."
+                "No se encontró AmbientMusicManager."
             );
 
             return;
@@ -102,12 +105,6 @@ public class PanelVictoriaManager : MonoBehaviour
                 true
             );
         }
-        else
-        {
-            Debug.LogWarning(
-                "PanelVictoriaManager: No se asignó la música de victoria."
-            );
-        }
     }
 
     public void ReiniciarNivel()
@@ -119,6 +116,7 @@ public class PanelVictoriaManager : MonoBehaviour
         );
     }
 
+    // Salir al menú conservando el siguiente nivel.
     public void IrAlMenu()
     {
         Time.timeScale = 1f;
@@ -137,12 +135,13 @@ public class PanelVictoriaManager : MonoBehaviour
 #endif
     }
 
+    // Pasar directamente al siguiente nivel.
     public void SiguienteNivel()
     {
         if (string.IsNullOrWhiteSpace(siguienteNivel))
         {
             Debug.LogWarning(
-                "PanelVictoriaManager: No se asignó el siguiente nivel."
+                "No se asignó el siguiente nivel."
             );
 
             return;
@@ -151,8 +150,7 @@ public class PanelVictoriaManager : MonoBehaviour
         if (!Application.CanStreamedLevelBeLoaded(siguienteNivel))
         {
             Debug.LogError(
-                "PanelVictoriaManager: No se encuentra la escena " +
-                siguienteNivel
+                "No se encuentra la escena: " + siguienteNivel
             );
 
             return;

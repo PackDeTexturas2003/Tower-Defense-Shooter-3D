@@ -1,7 +1,9 @@
+
 using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1000)]
 public class SaveManager : MonoBehaviour
@@ -14,6 +16,16 @@ public class SaveManager : MonoBehaviour
 
     public SaveData Datos => datos;
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += RegistrarNivelCargado;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= RegistrarNivelCargado;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -25,8 +37,53 @@ public class SaveManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        rutaArchivo = Path.Combine(Application.persistentDataPath, "SaveData.json");
+        rutaArchivo = Path.Combine(
+            Application.persistentDataPath,
+            "SaveData.json"
+        );
+
         Cargar();
+    }
+
+    // Registrar el nivel cuando se carga una escena.
+    private void RegistrarNivelCargado(
+        Scene escena,
+        LoadSceneMode modo
+    )
+    {
+        if (escena.name == "Nivel" ||
+            escena.name.StartsWith("Nivel"))
+        {
+            GuardarNivelContinuar(escena.name);
+        }
+    }
+
+    // Guardar el nivel desde el que debe continuar.
+    public void GuardarNivelContinuar(string nombreNivel)
+    {
+        if (string.IsNullOrWhiteSpace(nombreNivel))
+            return;
+
+        if (datos == null)
+            datos = new SaveData();
+
+        datos.ultimoNivel = nombreNivel;
+
+        Guardar();
+
+        Debug.Log("Nivel para continuar guardado: " + nombreNivel);
+    }
+
+    // Obtener el último nivel guardado.
+    public string ObtenerNivelContinuar()
+    {
+        if (datos == null)
+            datos = new SaveData();
+
+        if (string.IsNullOrEmpty(datos.ultimoNivel))
+            datos.ultimoNivel = "Nivel";
+
+        return datos.ultimoNivel;
     }
 
     public void Cargar()
@@ -35,16 +92,30 @@ public class SaveManager : MonoBehaviour
         {
             try
             {
-                datos = JsonUtility.FromJson<SaveData>(File.ReadAllText(rutaArchivo));
-                if (datos == null) datos = new SaveData();
+                datos = JsonUtility.FromJson<SaveData>(
+                    File.ReadAllText(rutaArchivo)
+                );
+
+                if (datos == null)
+                    datos = new SaveData();
+
                 if (datos.armasDesbloqueadas == null)
-                    datos.armasDesbloqueadas = new List<string>();
+                {
+                    datos.armasDesbloqueadas =
+                        new List<string>();
+                }
+
+                if (string.IsNullOrEmpty(datos.ultimoNivel))
+                    datos.ultimoNivel = "Nivel";
 
                 datos.DesbloquearArma("Pistola");
             }
             catch (Exception e)
             {
-                Debug.LogError("Error al cargar el guardado: " + e.Message);
+                Debug.LogError(
+                    "Error al cargar el guardado: " + e.Message
+                );
+
                 datos = new SaveData();
             }
         }
@@ -58,81 +129,109 @@ public class SaveManager : MonoBehaviour
 
     public void Guardar()
     {
-        if (datos == null) datos = new SaveData();
+        if (datos == null)
+            datos = new SaveData();
 
         try
         {
             string json = JsonUtility.ToJson(datos, true);
+
             File.WriteAllText(rutaArchivo, json);
+
             Debug.Log("Guardado correctamente: " + rutaArchivo);
         }
         catch (Exception e)
         {
-            Debug.LogError("Error al guardar: " + e.Message);
+            Debug.LogError(
+                "Error al guardar: " + e.Message
+            );
         }
     }
 
-    // Invocar al comenzar la fase jugable del nivel, después de cargar los datos.
+    // Crear copia del progreso al comenzar el nivel.
     public void IniciarNivel()
     {
-        if (datos == null) datos = new SaveData();
+        if (datos == null)
+            datos = new SaveData();
+
         copiaInicioNivel = CopiarDatos(datos);
+
         Debug.Log("Copia de progreso creada al iniciar nivel.");
     }
 
-    // Ganar confirma los cambios temporales realizados en el nivel.
+    // Confirmar progreso al ganar.
     public void ConfirmarVictoria()
     {
         copiaInicioNivel = null;
+
         Guardar();
-        Debug.Log("Victoria: progreso del nivel confirmado.");
+
+        Debug.Log("Victoria: progreso confirmado.");
     }
 
-    // Perder restaura exactamente el progreso que había antes de este nivel.
+    // Restaurar progreso al perder.
     public void RestaurarProgresoPorDerrota()
     {
         if (copiaInicioNivel == null)
         {
-            Debug.LogWarning("No existe copia inicial del nivel para restaurar.");
+            Debug.LogWarning(
+                "No existe copia inicial del nivel para restaurar."
+            );
+
             return;
         }
 
         datos = CopiarDatos(copiaInicioNivel);
+
         copiaInicioNivel = null;
+
         Guardar();
-        Debug.Log("Derrota: progreso previo al nivel restaurado.");
+
+        Debug.Log("Derrota: progreso restaurado.");
     }
 
     private SaveData CopiarDatos(SaveData origen)
     {
-        SaveData copia = JsonUtility.FromJson<SaveData>(JsonUtility.ToJson(origen));
+        SaveData copia = JsonUtility.FromJson<SaveData>(
+            JsonUtility.ToJson(origen)
+        );
+
         if (copia.armasDesbloqueadas == null)
-            copia.armasDesbloqueadas = new List<string>();
+        {
+            copia.armasDesbloqueadas =
+                new List<string>();
+        }
+
         return copia;
     }
 
     public bool EstaDesbloqueada(string nombreArma)
     {
-        return datos != null && datos.ArmaDesbloqueada(nombreArma);
+        return datos != null &&
+               datos.ArmaDesbloqueada(nombreArma);
     }
 
-    // Cambia solo los datos en memoria durante el nivel.
     public void DesbloquearArma(string nombreArma)
     {
-        if (datos == null) datos = new SaveData();
+        if (datos == null)
+            datos = new SaveData();
+
         datos.DesbloquearArma(nombreArma);
     }
 
     public int ObtenerMonedas()
     {
-        if (datos == null) datos = new SaveData();
+        if (datos == null)
+            datos = new SaveData();
+
         return datos.monedas;
     }
 
-    // Cambia solo las monedas en memoria; Guardar se ejecuta al ganar/perder.
     public void EstablecerMonedas(int cantidad)
     {
-        if (datos == null) datos = new SaveData();
+        if (datos == null)
+            datos = new SaveData();
+
         datos.monedas = Mathf.Max(0, cantidad);
     }
 
@@ -141,6 +240,7 @@ public class SaveManager : MonoBehaviour
         Guardar();
     }
 
+    // Reiniciar completamente la partida.
     public void NuevaPartida()
     {
         try
@@ -149,13 +249,20 @@ public class SaveManager : MonoBehaviour
                 File.Delete(rutaArchivo);
 
             datos = new SaveData();
+
             copiaInicioNivel = null;
+
+            datos.ultimoNivel = "Nivel";
+
             Guardar();
+
             Debug.Log("Nueva partida: progreso reiniciado.");
         }
         catch (Exception e)
         {
-            Debug.LogError("Error al reiniciar la partida: " + e.Message);
+            Debug.LogError(
+                "Error al reiniciar la partida: " + e.Message
+            );
         }
     }
 }
