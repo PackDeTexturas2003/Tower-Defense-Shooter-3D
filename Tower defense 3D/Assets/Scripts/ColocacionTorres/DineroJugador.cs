@@ -5,7 +5,7 @@ using TMPro;
 public class DineroJugador : MonoBehaviour
 {
     [Header("Dinero")]
-    [SerializeField] private int dineroInicial = 100;
+    [SerializeField] private int dineroInicial = 1000;
 
     [Header("Interfaz")]
     [SerializeField] private TMP_Text textoDinero;
