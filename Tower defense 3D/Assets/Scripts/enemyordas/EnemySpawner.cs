@@ -18,6 +18,20 @@ public class EnemySpawner : MonoBehaviour
         public GrupoEnemigos[] grupos;
     }
 
+    [System.Serializable]
+    public class RutaAlternativa
+    {
+        public string nombre = "Ruta";
+        public Transform[] puntos;
+    }
+
+    [Header("Rutas alternativas de este generador")]
+    [SerializeField] private RutaAlternativa[] rutasAlternativas;
+
+    [Header("Distribución de rutas")]
+    [Range(0, 100)]
+    [SerializeField] private int probabilidadRutaAlternativa = 50;
+
     [Header("Oleadas")]
     [SerializeField] private OleadaSpawner[] oleadas;
 
@@ -160,6 +174,8 @@ public class EnemySpawner : MonoBehaviour
                 rotacion
             );
 
+        AsignarRutaAleatoria(enemigo);
+
         manager.RegistrarEnemigo(
             indiceOleada
         );
@@ -186,6 +202,78 @@ public class EnemySpawner : MonoBehaviour
             prefab.name +
             " | Oleada " +
             (indiceOleada + 1)
+        );
+    }
+
+    private void AsignarRutaAleatoria(GameObject enemigo)
+    {
+        if (rutasAlternativas == null ||
+            rutasAlternativas.Length == 0)
+        {
+            // Sin rutas configuradas, EnemyController conserva
+            // su movimiento directo hacia el objetivo.
+            return;
+        }
+
+        // Algunos enemigos conservan la ruta principal directa.
+        // Solo los que superan esta probabilidad reciben una ruta alternativa.
+        if (Random.Range(0, 100) >= probabilidadRutaAlternativa)
+        {
+            Debug.Log(
+                enemigo.name +
+                " usará la ruta principal directa del generador " +
+                gameObject.name
+            );
+            return;
+        }
+
+        // Construir una lista de rutas válidas para evitar
+        // seleccionar elementos sin puntos asignados.
+        System.Collections.Generic.List<RutaAlternativa> rutasValidas =
+            new System.Collections.Generic.List<RutaAlternativa>();
+
+        foreach (RutaAlternativa ruta in rutasAlternativas)
+        {
+            if (ruta != null &&
+                ruta.puntos != null &&
+                ruta.puntos.Length > 0)
+            {
+                rutasValidas.Add(ruta);
+            }
+        }
+
+        if (rutasValidas.Count == 0)
+        {
+            Debug.LogWarning(
+                gameObject.name +
+                " no tiene rutas válidas configuradas."
+            );
+            return;
+        }
+
+        int indice = Random.Range(0, rutasValidas.Count);
+        RutaAlternativa rutaElegida = rutasValidas[indice];
+
+        EnemyController controlador =
+            enemigo.GetComponent<EnemyController>();
+
+        if (controlador == null)
+        {
+            Debug.LogWarning(
+                enemigo.name +
+                " no tiene EnemyController; no se pudo asignar una ruta."
+            );
+            return;
+        }
+
+        controlador.ConfigurarRuta(rutaElegida.puntos);
+
+        Debug.Log(
+            enemigo.name +
+            " eligió la ruta '" +
+            rutaElegida.nombre +
+            "' del generador " +
+            gameObject.name
         );
     }
 

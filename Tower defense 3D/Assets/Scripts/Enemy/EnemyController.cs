@@ -122,6 +122,11 @@ public class EnemyController : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    // Ruta alternativa asignada por el spawner.
+    private Transform[] puntosRuta;
+    private int indicePuntoRuta;
+    private const float distanciaLlegadaPuntoRuta = 0.75f;
+
     private float siguienteAtaque;
 
     private bool agentePreparado;
@@ -202,6 +207,30 @@ public class EnemyController : MonoBehaviour
                     Time.deltaTime
                 );
         }
+    }
+
+    // =========================================
+    // RUTA ASIGNADA POR EL SPAWNER
+    // =========================================
+
+    public void ConfigurarRuta(Transform[] nuevaRuta)
+    {
+        puntosRuta = nuevaRuta;
+        indicePuntoRuta = 0;
+
+        if (puntosRuta == null || puntosRuta.Length == 0)
+        {
+            Debug.LogWarning(
+                gameObject.name + " recibió una ruta vacía."
+            );
+            puntosRuta = null;
+            return;
+        }
+
+        Debug.Log(
+            gameObject.name + " recibió una ruta de " +
+            puntosRuta.Length + " puntos."
+        );
     }
 
     // =========================================
@@ -932,31 +961,74 @@ public class EnemyController : MonoBehaviour
         if (objetivoActual == null)
             return;
 
-        if (agent == null)
-            return;
-
-        if (!agent.isOnNavMesh)
+        if (agent == null || !agent.isOnNavMesh)
             return;
 
         agent.isStopped = false;
 
-        if (tipoAtaque ==
-            TipoAtaque.CuerpoACuerpo)
+        // Distancia normal para atacar al objetivo final.
+        float distanciaParadaObjetivo =
+            tipoAtaque == TipoAtaque.CuerpoACuerpo
+            ? (data != null ? data.distanciaAtaque : 1.5f)
+            : radioDisparo;
+
+        Vector3 destinoMovimiento = objetivoActual.position;
+
+        // Las rutas alternativas solo se usan cuando el enemigo
+        // se dirige al objetivo principal, no al jugador ni a torretas.
+        if (objetivoActual == objetivoPrincipal &&
+            puntosRuta != null &&
+            indicePuntoRuta < puntosRuta.Length)
         {
-            agent.stoppingDistance =
-                data != null
-                ? data.distanciaAtaque
-                : 1.5f;
+            // IMPORTANTE: reducir la distancia de parada ANTES de
+            // comprobar la llegada. Si se usa la distancia de ataque
+            // (por ejemplo 1.5), el agente puede detenerse lejos del punto.
+            agent.stoppingDistance = 0.3f;
+
+            // Saltar puntos que hayan sido eliminados o estén vacíos.
+            while (indicePuntoRuta < puntosRuta.Length &&
+                   puntosRuta[indicePuntoRuta] == null)
+            {
+                indicePuntoRuta++;
+            }
+
+            // Si ya hay una ruta calculada y el agente llegó al punto,
+            // avanzar al siguiente.
+            if (indicePuntoRuta < puntosRuta.Length &&
+                !agent.pathPending &&
+                agent.hasPath &&
+                agent.remainingDistance <= 0.45f)
+            {
+                indicePuntoRuta++;
+
+                // Saltar posibles referencias vacías siguientes.
+                while (indicePuntoRuta < puntosRuta.Length &&
+                       puntosRuta[indicePuntoRuta] == null)
+                {
+                    indicePuntoRuta++;
+                }
+            }
+
+            // Si quedan puntos, dirigirse al siguiente.
+            if (indicePuntoRuta < puntosRuta.Length)
+            {
+                destinoMovimiento = puntosRuta[indicePuntoRuta].position;
+            }
+            else
+            {
+                // Terminó la ruta alternativa: continuar al objetivo
+                // con la distancia de parada habitual del enemigo.
+                agent.stoppingDistance = distanciaParadaObjetivo;
+            }
         }
         else
         {
-            agent.stoppingDistance =
-                radioDisparo;
+            // Persecución normal del jugador, torretas u objetivo
+            // cuando no hay ruta alternativa activa.
+            agent.stoppingDistance = distanciaParadaObjetivo;
         }
 
-        agent.SetDestination(
-            objetivoActual.position
-        );
+        agent.SetDestination(destinoMovimiento);
     }
 
     // =========================================
