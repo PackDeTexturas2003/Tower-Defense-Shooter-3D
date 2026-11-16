@@ -162,4 +162,12 @@ public class BoltRifle : HitscanWeapon
             "Francotirador listo para disparar."
         );
     }
+
+    // Weapon ya tiene OnDisable virtual para detener el audio.
+    // Lo sobrescribimos y liberamos el cerrojo al cambiar de arma.
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        accionandoCerrojo = false;
+    }
 }
