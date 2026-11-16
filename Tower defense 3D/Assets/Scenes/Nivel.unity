@@ -21259,6 +21259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: puert4
       objectReference: {fileID: 0}
+    - target: {fileID: 6036699488628413505, guid: 03ca327ebdfacec4db65d7b602ee3c84, type: 3}
+      propertyPath: m_TagString
+      value: Objetivo
+      objectReference: {fileID: 0}
     - target: {fileID: 6380891074160414459, guid: 03ca327ebdfacec4db65d7b602ee3c84, type: 3}
       propertyPath: m_LocalScale.x
       value: 95.04879
