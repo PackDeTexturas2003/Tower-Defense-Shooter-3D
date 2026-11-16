@@ -11580,7 +11580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmbientMusicManager
   grupoMusica: {fileID: 9085276779343858543, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
-  musica: {fileID: 8300000, guid: 6d3c2de5f47aa804f9e365127082affe, type: 3}
+  musica: {fileID: 8300000, guid: ea7986c890dd1c74a8773c27e05937ca, type: 3}
   volumen: 0.7
   reproducirAlIniciar: 1
   repetir: 1
