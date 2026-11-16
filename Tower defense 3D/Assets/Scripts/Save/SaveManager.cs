@@ -55,6 +55,9 @@ public class SaveManager : MonoBehaviour
             escena.name.StartsWith("Nivel"))
         {
             GuardarNivelContinuar(escena.name);
+
+            // Crear una copia del dinero y progreso al comenzar este nivel.
+            IniciarNivel();
         }
     }
 
@@ -169,25 +172,35 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Victoria: progreso confirmado.");
     }
 
-    // Restaurar progreso al perder.
+    // Restaurar progreso al perder o abandonar el nivel desde pausa.
     public void RestaurarProgresoPorDerrota()
+    {
+        RestaurarProgresoInicial("Derrota");
+    }
+
+    // Abandonar el nivel sin conservar las monedas obtenidas durante la partida.
+    public void AbandonarNivel()
+    {
+        RestaurarProgresoInicial("Salida desde pausa");
+    }
+
+    private void RestaurarProgresoInicial(string motivo)
     {
         if (copiaInicioNivel == null)
         {
             Debug.LogWarning(
-                "No existe copia inicial del nivel para restaurar."
+                motivo + ": no existe una copia inicial del nivel para restaurar."
             );
 
             return;
         }
 
         datos = CopiarDatos(copiaInicioNivel);
-
         copiaInicioNivel = null;
 
         Guardar();
 
-        Debug.Log("Derrota: progreso restaurado.");
+        Debug.Log(motivo + ": progreso inicial restaurado.");
     }
 
     private SaveData CopiarDatos(SaveData origen)
