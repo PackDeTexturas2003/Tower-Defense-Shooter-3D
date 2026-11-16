@@ -103,7 +103,7 @@ public class SeleccionArmas : MonoBehaviour
         }
 
         Weapon[] armasEncontradas =
-            weaponHolder.GetComponents<Weapon>();
+            weaponHolder.GetComponentsInChildren<Weapon>(true);
 
         if (opcionesArmas == null)
             return;

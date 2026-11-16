@@ -226,6 +226,12 @@ public class MenuPausa : MonoBehaviour
 
     public void VolverAlMenuPrincipal()
     {
+        // Salir desde pausa NO debe conservar las monedas ganadas en este nivel.
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.AbandonarNivel();
+        }
+
         Time.timeScale = 1f;
 
         Cursor.visible = true;
