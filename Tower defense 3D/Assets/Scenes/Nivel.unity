@@ -2877,8 +2877,8 @@ Transform:
   m_GameObject: {fileID: 287352896}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 18, y: 1.52, z: 17.81}
-  m_LocalScale: {x: 3.6533, y: 20.904833, z: 1}
+  m_LocalPosition: {x: 18, y: 1, z: 17.81}
+  m_LocalScale: {x: 6, y: 20.904833, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62879184}
@@ -4623,8 +4623,8 @@ Transform:
   m_GameObject: {fileID: 478374975}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -61.3, y: 1.44, z: 4.42}
-  m_LocalScale: {x: 1, y: 48.042522, z: 3.8125}
+  m_LocalPosition: {x: -61.3, y: 1, z: 4.42}
+  m_LocalScale: {x: 1, y: 48.042522, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62879184}
@@ -6006,7 +6006,7 @@ GameObject:
   - component: {fileID: 649959379}
   - component: {fileID: 649959378}
   m_Layer: 0
-  m_Name: Cube (12)
+  m_Name: Gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9089,7 +9089,7 @@ GameObject:
   - component: {fileID: 988837191}
   - component: {fileID: 988837190}
   m_Layer: 0
-  m_Name: Cube (8)
+  m_Name: CongeladoresB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9446,8 +9446,8 @@ Transform:
   m_GameObject: {fileID: 1011379823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -22.4, y: 1.16, z: -18.7}
-  m_LocalScale: {x: 4.3638616, y: 81.79452, z: 1}
+  m_LocalPosition: {x: -22.4, y: 1, z: -18.7}
+  m_LocalScale: {x: 6, y: 81.79452, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62879184}
@@ -12998,8 +12998,8 @@ Transform:
   m_GameObject: {fileID: 1283594237}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 18, y: 1.55, z: -9.17}
-  m_LocalScale: {x: 3.5974324, y: 21.572838, z: 1}
+  m_LocalPosition: {x: 18, y: 1, z: -9.17}
+  m_LocalScale: {x: 6, y: 21.572838, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62879184}
@@ -14938,8 +14938,8 @@ Transform:
   m_GameObject: {fileID: 1473853364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -21.6, y: 1.54, z: 27.41}
-  m_LocalScale: {x: 3.6472, y: 81.747, z: 1}
+  m_LocalPosition: {x: -21.6, y: 1, z: 27.41}
+  m_LocalScale: {x: 6, y: 81.747, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 62879184}
@@ -17928,7 +17928,7 @@ GameObject:
   - component: {fileID: 1749613622}
   - component: {fileID: 1749613621}
   m_Layer: 0
-  m_Name: Cube (10)
+  m_Name: Refris2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19947,7 +19947,7 @@ GameObject:
   - component: {fileID: 1891200919}
   - component: {fileID: 1891200918}
   m_Layer: 0
-  m_Name: Cube (9)
+  m_Name: Refris1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21334,7 +21334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd0d17e52ffbe0458b01ae42604dc0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BarraVidaWorldSpace
-  entidadVida: {fileID: 0}
+  entidadVida: {fileID: 1987799321}
   barraVida: {fileID: 1166803046}
   textoVida: {fileID: 65654288}
   tagJugador: Player
