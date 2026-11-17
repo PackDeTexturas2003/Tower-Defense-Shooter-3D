@@ -7023,6 +7023,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8604131778024695747, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
   m_PrefabInstance: {fileID: 933106541}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &933106545 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6366042441358291208, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+  m_PrefabInstance: {fileID: 933106541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccb28bac13464b48ade37985de692d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseLook
+--- !u!114 &933106546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3109548853966986267, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+  m_PrefabInstance: {fileID: 933106541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3a1996e283c7d4c8eb5acd1ccf362a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Salto
+--- !u!114 &933106547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3211613838260485679, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+  m_PrefabInstance: {fileID: 933106541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c57dc8e9b789541a15e0e5532f31ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Esquive
+--- !u!114 &933106548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7308761390172914561, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+  m_PrefabInstance: {fileID: 933106541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a4cd8cd895cb1448372e5c4c3f1fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movimiento
 --- !u!1 &957924661
 GameObject:
   m_ObjectHideFlags: 0
@@ -13266,6 +13310,7 @@ MonoBehaviour:
   - {fileID: 1207616351}
   - {fileID: 915642838}
   - {fileID: 2019624466}
+  weaponManager: {fileID: 0}
   ambientMusicManager: {fileID: 1168413571}
   musicaVictoria: {fileID: 8300000, guid: 87cd6881891f42347aa9f82bc17407ce, type: 3}
   escenaMenu: MenuPrincipal
@@ -14459,11 +14504,11 @@ MonoBehaviour:
   ponerPanelAlFrente: 1
   botonContinuar: {fileID: 787433917}
   botonConfiguraciones: {fileID: 1112872507}
-  movimiento: {fileID: 0}
-  esquive: {fileID: 0}
-  salto: {fileID: 0}
-  mouseLook: {fileID: 0}
-  weaponManager: {fileID: 0}
+  movimiento: {fileID: 933106548}
+  esquive: {fileID: 933106547}
+  salto: {fileID: 933106546}
+  mouseLook: {fileID: 933106545}
+  weaponManager: {fileID: 2025435349}
   ambientMusicManager: {fileID: 1168413571}
 --- !u!1 &1760274921
 GameObject:
