@@ -9526,7 +9526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfd9cd4b8ac32645911d742d1a0f9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoUI
-  weaponManager: {fileID: 0}
+  weaponManager: {fileID: 2025435349}
   textoMunicion: {fileID: 1517376584}
 --- !u!1 &1228605309
 GameObject:
