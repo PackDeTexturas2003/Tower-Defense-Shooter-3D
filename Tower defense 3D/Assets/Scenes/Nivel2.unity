@@ -3318,7 +3318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
   grupoSFX: {fileID: -8262192152716653043, guid: 2bc0901de88aeac4eba49b5f2fe2b114, type: 2}
-  disparoPistola: {fileID: 8300000, guid: de5a34bf935b010489633a2edf6c7ae5, type: 3}
+  disparoPistola: {fileID: 8300000, guid: 86dee3231f1ebea42851decf0d0d5824, type: 3}
   disparoShotgun: {fileID: 8300000, guid: 7841467c315e64047b3652aef8ff3e09, type: 3}
   disparoSMG: {fileID: 8300000, guid: b77ae76f2715799419d1e24d858a4627, type: 3}
   disparoRifle: {fileID: 8300000, guid: 50663c33abf845d43bab3e891eed5d73, type: 3}
@@ -14451,9 +14451,9 @@ MonoBehaviour:
   - {fileID: 1207616351}
   - {fileID: 915642838}
   - {fileID: 2019624466}
-  weaponManager: {fileID: 0}
+  weaponManager: {fileID: 2025435349}
   ambientMusicManager: {fileID: 1168413571}
-  musicaVictoria: {fileID: 8300000, guid: 87cd6881891f42347aa9f82bc17407ce, type: 3}
+  musicaVictoria: {fileID: 8300000, guid: 77abf3d556c2f534eb1773d77cf957f2, type: 3}
   escenaMenu: MenuPrincipal
   siguienteNivel: Nivel2
 --- !u!4 &1627921634 stripped
@@ -14485,7 +14485,7 @@ MonoBehaviour:
   - {fileID: 915642838}
   - {fileID: 2019624466}
   ambientMusicManager: {fileID: 1168413571}
-  musicaDerrota: {fileID: 8300000, guid: a4fb6f1f9ebbfec49948807d857c3530, type: 3}
+  musicaDerrota: {fileID: 8300000, guid: 055143b07907c754799c9c0e74fb8cfc, type: 3}
   escenaMenu: MenuPrincipal
 --- !u!1 &1632667971
 GameObject:
