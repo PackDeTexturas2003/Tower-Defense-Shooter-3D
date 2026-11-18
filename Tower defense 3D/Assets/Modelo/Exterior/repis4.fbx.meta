@@ -1,19 +1,14 @@
 fileFormatVersion: 2
-guid: 8c19faf0e14e492418e198c4c0d8721e
+guid: 90350bf6792615a4ba8eb25c9041898d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 5c26854a4fbc198448938046fd8196b8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 6bcafa21bc3424e409dd03de886eb54e, type: 2}
+      name: "Esanteria \xB4pint"
+    second: {fileID: 2800000, guid: d397ddc40340d6c42b77179f8b2447e5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
