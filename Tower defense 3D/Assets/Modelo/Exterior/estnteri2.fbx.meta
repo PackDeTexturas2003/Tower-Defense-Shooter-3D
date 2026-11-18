@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: eca5df4127920d04bb805a7286e0653e
+guid: 49799c95b8376e4468827ed9a342593b
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: estanteria21metal
+    second: {fileID: 2800000, guid: 8e523c23915ce434b8957e6d1183f5d4, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
