@@ -138,6 +138,8 @@ MonoBehaviour:
   duracionColor: 0.15
   duracionMuerte: 0.3
   sfxManager: {fileID: 0}
+  sonidoMuerte: {fileID: 8300000, guid: fd452f8c3f3fe92439a50a21628572f5, type: 3}
+  volumenSonidoMuerte: 3
   dropsMunicion:
   - tipoMunicion: 0
     probabilidad: 40

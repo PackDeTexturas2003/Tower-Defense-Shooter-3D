@@ -4,12 +4,40 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    // =========================
+    // DETECTAR SI HAY UN NIVEL CARGADO
+    // =========================
+
+    private bool HayNivelCargado()
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene escena = SceneManager.GetSceneAt(i);
+
+            if (escena.isLoaded &&
+                escena.name.StartsWith("Nivel"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // =========================
+    // MENU PRINCIPAL
+    // =========================
+
     public void Menu()
     {
         Time.timeScale = 1f;
 
         SceneManager.LoadScene("MenuPrincipal");
     }
+
+    // =========================
+    // CONTINUAR PARTIDA
+    // =========================
 
     public void Continuar()
     {
@@ -41,6 +69,10 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(nivelGuardado);
     }
 
+    // =========================
+    // NUEVA PARTIDA
+    // =========================
+
     public void NuevaPartida()
     {
         if (SaveManager.Instance == null)
@@ -59,12 +91,13 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Nivel");
     }
 
+    // =========================
+    // ABRIR CONFIGURACIONES
+    // =========================
+
     public void Configuraciones()
     {
         Time.timeScale = 1f;
-
-        Scene escenaNivel =
-            SceneManager.GetSceneByName("Nivel");
 
         Scene escenaConfiguraciones =
             SceneManager.GetSceneByName("Configuraciones");
@@ -72,8 +105,10 @@ public class MenuManager : MonoBehaviour
         if (escenaConfiguraciones.isLoaded)
             return;
 
-        if (escenaNivel.isLoaded)
+        if (HayNivelCargado())
         {
+            // Si estamos dentro de cualquier nivel,
+            // abrir configuraciones sin cerrar el nivel.
             SceneManager.LoadSceneAsync(
                 "Configuraciones",
                 LoadSceneMode.Additive
@@ -81,17 +116,34 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            // Si estamos en el menú principal.
             SceneManager.LoadScene("Configuraciones");
         }
     }
 
+    // =========================
+    // VOLVER DESDE CONFIGURACIONES
+    // =========================
+
     public void VolverConfiguraciones()
     {
-        Scene escenaNivel =
-            SceneManager.GetSceneByName("Nivel");
-
-        if (escenaNivel.isLoaded)
+        if (HayNivelCargado())
         {
+            // Estamos dentro de un nivel.
+            // Cerrar configuraciones y regresar a la pausa.
+
+            Scene escenaConfiguraciones =
+                SceneManager.GetSceneByName("Configuraciones");
+
+            if (!escenaConfiguraciones.isLoaded)
+            {
+                Debug.LogWarning(
+                    "MenuManager: La escena Configuraciones no está cargada."
+                );
+
+                return;
+            }
+
             SceneManager.UnloadSceneAsync(
                 "Configuraciones"
             ).completed += _ =>
@@ -103,20 +155,35 @@ public class MenuManager : MonoBehaviour
                 {
                     menuPausa.ReanudarDesdeConfiguraciones();
                 }
+                else
+                {
+                    Debug.LogWarning(
+                        "MenuManager: No se encontró MenuPausa."
+                    );
+                }
             };
         }
         else
         {
+            // Estamos en configuraciones del menú principal.
             Time.timeScale = 1f;
 
             SceneManager.LoadScene("MenuPrincipal");
         }
     }
 
+    // =========================
+    // CREDITOS
+    // =========================
+
     public void Creditos()
     {
         SceneManager.LoadScene("Creditos");
     }
+
+    // =========================
+    // SALIR DEL JUEGO
+    // =========================
 
     public void Salir()
     {
