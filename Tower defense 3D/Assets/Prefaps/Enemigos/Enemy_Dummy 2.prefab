@@ -165,6 +165,8 @@ MonoBehaviour:
   duracionColor: 0.15
   duracionMuerte: 0.3
   sfxManager: {fileID: 0}
+  sonidoMuerte: {fileID: 8300000, guid: fd452f8c3f3fe92439a50a21628572f5, type: 3}
+  volumenSonidoMuerte: 3
   dropsMunicion:
   - tipoMunicion: 0
     probabilidad: 40
@@ -198,10 +200,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   data: {fileID: 11400000, guid: b980deeb7e0c44846b9df6e7f9cf8292, type: 2}
+  modeloVisual: {fileID: 0}
+  rotacionYModelo: 0
+  velocidadRotacionModelo: 12
   tipoAtaque: 1
   tipoObjetivo: 0
   objetivo: {fileID: 0}
   radioDeteccionJugador: 12
+  tagTorreta: Torreta
   proyectilPrefab: {fileID: 8162292602104240015, guid: 70e29eff4179a914288cdeef265c7f79, type: 3}
   puntoDisparo: {fileID: 7422942116917783793}
   radioDisparo: 10

@@ -9,6 +9,10 @@ public class MenuPausa : MonoBehaviour
     [Header("Panel de pausa")]
     [SerializeField] private GameObject panelPausa;
 
+    [Header("Paneles finales: no permitir pausa mientras estén abiertos")]
+    [SerializeField] private GameObject panelVictoria;
+    [SerializeField] private GameObject panelDerrota;
+
     [Header("Orden visual")]
     [SerializeField] private bool ponerPanelAlFrente = true;
 
@@ -48,6 +52,10 @@ public class MenuPausa : MonoBehaviour
 
     private void Update()
     {
+        // No abrir ni cerrar la pausa mientras se muestra victoria o derrota.
+        if (HayPanelFinalActivo())
+            return;
+
         if (Keyboard.current == null)
             return;
 
@@ -64,12 +72,24 @@ public class MenuPausa : MonoBehaviour
         }
     }
 
+
+    private bool HayPanelFinalActivo()
+    {
+        bool victoriaActiva = panelVictoria != null && panelVictoria.activeInHierarchy;
+        bool derrotaActiva = panelDerrota != null && panelDerrota.activeInHierarchy;
+
+        return victoriaActiva || derrotaActiva;
+    }
+
     // =========================
     // PAUSAR JUEGO
     // =========================
 
     private void Pausar()
     {
+        if (HayPanelFinalActivo())
+            return;
+
         juegoPausado = true;
 
         Time.timeScale = 0f;
@@ -133,6 +153,9 @@ public class MenuPausa : MonoBehaviour
 
     private void Continuar()
     {
+        if (HayPanelFinalActivo())
+            return;
+
         // Si Configuración se abrió desde Pausa,
         // se cierra antes de reanudar el nivel.
         if (configuracionesAbiertasDesdePausa)
@@ -226,12 +249,6 @@ public class MenuPausa : MonoBehaviour
 
     public void VolverAlMenuPrincipal()
     {
-        // Salir desde pausa NO debe conservar las monedas ganadas en este nivel.
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.AbandonarNivel();
-        }
-
         Time.timeScale = 1f;
 
         Cursor.visible = true;
