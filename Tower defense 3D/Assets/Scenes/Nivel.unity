@@ -10789,7 +10789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95308790388705406, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.75
+      value: 9.71
       objectReference: {fileID: 0}
     - target: {fileID: 95308790388705406, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23702,6 +23702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPausa
   panelPausa: {fileID: 733021618}
+  panelVictoria: {fileID: 0}
+  panelDerrota: {fileID: 0}
   ponerPanelAlFrente: 1
   botonContinuar: {fileID: 787433917}
   botonConfiguraciones: {fileID: 1112872507}
