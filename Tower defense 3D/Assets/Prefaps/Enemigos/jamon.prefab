@@ -145,6 +145,8 @@ MonoBehaviour:
   sfxManager: {fileID: 0}
   sonidoMuerte: {fileID: 8300000, guid: fd452f8c3f3fe92439a50a21628572f5, type: 3}
   volumenSonidoMuerte: 3
+  distanciaMinimaAudio: 2
+  distanciaMaximaAudio: 25
   dropsMunicion:
   - tipoMunicion: 0
     probabilidad: 60
@@ -165,6 +167,7 @@ MonoBehaviour:
     probabilidad: 10
     prefab: {fileID: 5979671794525995343, guid: ac23fb3e6b31eba4ba51986d8a1df1ae, type: 3}
   dineroAlMorir: 50
+  retrasoEntreSonidos: 0.12
 --- !u!114 &910785105736560584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +185,7 @@ MonoBehaviour:
   rotacionYModelo: -90
   velocidadRotacionModelo: 120
   tipoAtaque: 0
-  tipoObjetivo: 2
+  tipoObjetivo: 0
   objetivo: {fileID: 0}
   radioDeteccionJugador: 0
   tagTorreta: Torreta
@@ -230,7 +233,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -93,6 +93,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8646367953686987796}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4028594831253660695}
   m_SourcePrefab: {fileID: 100100000, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
 --- !u!1 &1661233089544553151 stripped
 GameObject:
@@ -140,6 +143,8 @@ MonoBehaviour:
   sfxManager: {fileID: 0}
   sonidoMuerte: {fileID: 8300000, guid: fd452f8c3f3fe92439a50a21628572f5, type: 3}
   volumenSonidoMuerte: 3
+  distanciaMinimaAudio: 2
+  distanciaMaximaAudio: 25
   dropsMunicion:
   - tipoMunicion: 0
     probabilidad: 40
@@ -160,6 +165,7 @@ MonoBehaviour:
     probabilidad: 20
     prefab: {fileID: 5979671794525995343, guid: ac23fb3e6b31eba4ba51986d8a1df1ae, type: 3}
   dineroAlMorir: 5
+  retrasoEntreSonidos: 0.12
 --- !u!114 &1218004560831353623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +243,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4028594831253660695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661233089544553151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a0eb6e189d31f47a4d2bb853424397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CebollitaDamage
+  dano: 5
+  intervaloDanio: 1
+  radioAtaque: 3
+  tagJugador: Player
 --- !u!4 &2037370985423689733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ee4a2da1bc721d46af11f058ab1650c, type: 3}
