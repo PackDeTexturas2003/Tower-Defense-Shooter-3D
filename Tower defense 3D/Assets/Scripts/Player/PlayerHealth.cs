@@ -17,7 +17,12 @@ public class PlayerHealth : Health
     [SerializeField, Min(0.05f)] private float duracionEstatica = 0.35f;
     [SerializeField, Min(0.01f)] private float intervaloRuido = 0.04f;
     [SerializeField, Range(16, 256)] private int resolucionRuido = 128;
+    [Header("Colores de estática según el daño")]
+    [SerializeField] private Color colorDanioNormal = Color.red;
+    [SerializeField] private Color colorDanioCebollita = new Color(0.65f, 1f, 0.65f, 1f);
 
+    private bool recibiendoDanioCebollita;
+    private Color colorEstaticaActual = Color.red;
     private bool yaMurio;
     private Coroutine rutinaEstatica;
     private Texture2D texturaEstatica;
@@ -80,12 +85,27 @@ public class PlayerHealth : Health
             return;
 
         float vidaAntes = vidaActual;
+        colorEstaticaActual = recibiendoDanioCebollita
+            ? colorDanioCebollita
+            : colorDanioNormal;
+
         base.RecibirDanio(cantidad);
 
         if (vidaActual < vidaAntes && !yaMurio)
             ActivarEstatica();
 
         ActualizarValores();
+    }
+
+    // Este método se utiliza exclusivamente para el daño de CebollitaDamage.
+    public void RecibirDanioCebollita(float cantidad)
+    {
+        if (yaMurio || cantidad <= 0f)
+            return;
+
+        recibiendoDanioCebollita = true;
+        RecibirDanio(cantidad);
+        recibiendoDanioCebollita = false;
     }
 
     private void ActivarEstatica()
@@ -104,7 +124,7 @@ public class PlayerHealth : Health
     {
         float tiempo = 0f;
         float tiempoRuido = intervaloRuido;
-        Color color = imagenEstatica.color;
+        Color color = colorEstaticaActual;
         color.a = intensidadEstatica;
         imagenEstatica.color = color;
 

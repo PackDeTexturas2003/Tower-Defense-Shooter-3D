@@ -1,18 +1,40 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PanelVictoriaManager : MonoBehaviour
 {
-    [Header("Panel de victoria")]
+    [Header("Paneles")]
     [SerializeField] private GameObject panelVictoria;
+    [SerializeField] private GameObject panelResultado;
+
+    [Header("Textos del resultado")]
+    [SerializeField] private TMP_Text textoVidaRestante;
+    [SerializeField] private TMP_Text textoTorretasColocadas;
+    [SerializeField] private TMP_Text textoTorretasSupervivientes;
+    [SerializeField] private TMP_Text textoRecompensaVida;
+    [SerializeField] private TMP_Text textoDevolucionTorretas;
+    [SerializeField] private TMP_Text textoTotalRecompensa;
+
+    [Header("Boton del resultado")]
+    [SerializeField] private Button botonContinuarResultado;
+
+    [Header("Recompensas")]
+    [Tooltip("Dinero que se entrega si el jugador termina con toda su vida.")]
+    [SerializeField, Min(0)] private int recompensaVidaCompleta = 500;
+    [Tooltip("Porcentaje del precio original que se devuelve por cada torreta superviviente.")]
+    [SerializeField, Range(0f, 100f)] private float porcentajeDevolucionTorretas = 50f;
+
+    [Header("Referencias")]
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private DineroJugador dineroJugador;
+    [SerializeField] private WeaponManager weaponManager;
 
     [Header("Elementos del HUD que se ocultan al ganar")]
     [SerializeField] private GameObject[] elementosHudAOcultar;
 
-    [Header("Control de armas")]
-    [SerializeField] private WeaponManager weaponManager;
-
-    [Header("Música")]
+    [Header("Musica")]
     [SerializeField] private AmbientMusicManager ambientMusicManager;
     [SerializeField] private AudioClip musicaVictoria;
 
@@ -25,22 +47,29 @@ public class PanelVictoriaManager : MonoBehaviour
     private void Awake()
     {
         if (panelVictoria != null)
-        {
             panelVictoria.SetActive(false);
-        }
         else
-        {
             Debug.LogWarning("PanelVictoriaManager: Asigna el panel de victoria.");
-        }
+
+        if (panelResultado != null)
+            panelResultado.SetActive(false);
 
         if (ambientMusicManager == null)
-        {
             ambientMusicManager = FindFirstObjectByType<AmbientMusicManager>();
-        }
 
         if (weaponManager == null)
-        {
             weaponManager = FindFirstObjectByType<WeaponManager>();
+
+        if (playerHealth == null)
+            playerHealth = FindFirstObjectByType<PlayerHealth>();
+
+        if (dineroJugador == null)
+            dineroJugador = FindFirstObjectByType<DineroJugador>();
+
+        if (botonContinuarResultado != null)
+        {
+            botonContinuarResultado.onClick.RemoveListener(CerrarPanelResultado);
+            botonContinuarResultado.onClick.AddListener(CerrarPanelResultado);
         }
     }
 
@@ -49,27 +78,11 @@ public class PanelVictoriaManager : MonoBehaviour
         if (victoriaMostrada)
             return;
 
-        // Evita que la victoria se procese más de una vez.
         victoriaMostrada = true;
 
-        // Bloquear inmediatamente el control de disparo y cambio de armas.
         if (weaponManager != null)
-        {
             weaponManager.enabled = false;
-        }
-        else
-        {
-            Debug.LogWarning("PanelVictoriaManager: No se encontró WeaponManager. Asigna la referencia en el Inspector.");
-        }
 
-        // Confirmar el progreso del nivel únicamente al ganar.
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.ConfirmarVictoria();
-            SaveManager.Instance.GuardarNivelContinuar(siguienteNivel);
-        }
-
-        // Ocultar elementos del HUD.
         if (elementosHudAOcultar != null)
         {
             foreach (GameObject elemento in elementosHudAOcultar)
@@ -81,34 +94,150 @@ public class PanelVictoriaManager : MonoBehaviour
 
         ReproducirMusicaVictoria();
 
-        // Mostrar el panel de victoria.
-        if (panelVictoria != null)
+        // Calcular y entregar las recompensas antes de confirmar el guardado.
+        CalcularYEntregarRecompensas();
+
+        if (SaveManager.Instance != null)
         {
-            panelVictoria.SetActive(true);
+            SaveManager.Instance.ConfirmarVictoria();
+            SaveManager.Instance.GuardarNivelContinuar(siguienteNivel);
         }
 
-        // Congelar el juego y liberar el cursor.
+        if (panelVictoria != null)
+            panelVictoria.SetActive(true);
+
+        // El panel de resultado se muestra encima del panel de victoria.
+        if (panelResultado != null)
+        {
+            panelResultado.SetActive(true);
+            panelResultado.transform.SetAsLastSibling();
+        }
+        else
+        {
+            Debug.LogWarning("PanelVictoriaManager: No asignaste Panel Resultado.");
+        }
+
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Debug.Log("Victoria: progreso confirmado y disparos bloqueados.");
+        Debug.Log("Victoria: resultado calculado, recompensas entregadas y progreso guardado.");
+    }
+
+    private void CalcularYEntregarRecompensas()
+    {
+        if (playerHealth == null)
+            playerHealth = FindFirstObjectByType<PlayerHealth>();
+
+        if (dineroJugador == null)
+            dineroJugador = FindFirstObjectByType<DineroJugador>();
+
+        float vidaActual = 0f;
+        float vidaMaxima = 0f;
+        float porcentajeVida = 0f;
+
+        if (playerHealth != null)
+        {
+            vidaActual = playerHealth.VidaActual;
+            vidaMaxima = playerHealth.VidaMaxima;
+
+            if (vidaMaxima > 0f)
+                porcentajeVida = Mathf.Clamp01(vidaActual / vidaMaxima);
+        }
+        else
+        {
+            Debug.LogWarning("PanelVictoriaManager: No se encontró PlayerHealth; la recompensa por vida será 0.");
+        }
+
+        int recompensaPorVida = Mathf.RoundToInt(
+            recompensaVidaCompleta * porcentajeVida
+        );
+
+        RegistroTorretasNivel.ObtenerResumen(
+            porcentajeDevolucionTorretas,
+            out int torretasColocadas,
+            out int torretasSupervivientes,
+            out int devolucionTorretas
+        );
+
+        int recompensaTotal = recompensaPorVida + devolucionTorretas;
+
+        ActualizarTextosResultado(
+            vidaActual,
+            vidaMaxima,
+            torretasColocadas,
+            torretasSupervivientes,
+            recompensaPorVida,
+            devolucionTorretas,
+            recompensaTotal
+        );
+
+        if (dineroJugador != null && recompensaTotal > 0)
+        {
+            dineroJugador.AgregarDinero(recompensaTotal);
+        }
+        else if (dineroJugador == null)
+        {
+            Debug.LogWarning("PanelVictoriaManager: No se encontró DineroJugador. No se pudo entregar la recompensa.");
+        }
+
+        Debug.Log(
+            "Resultado de victoria | Vida: " + vidaActual + "/" + vidaMaxima +
+            " | Torretas: " + torretasSupervivientes + "/" + torretasColocadas +
+            " | Recompensa vida: $" + recompensaPorVida +
+            " | Devolución torretas: $" + devolucionTorretas +
+            " | Total: $" + recompensaTotal
+        );
+    }
+
+    private void ActualizarTextosResultado(
+        float vidaActual,
+        float vidaMaxima,
+        int torretasColocadas,
+        int torretasSupervivientes,
+        int recompensaPorVida,
+        int devolucionTorretas,
+        int recompensaTotal)
+    {
+        if (textoVidaRestante != null)
+            textoVidaRestante.text = "Vida restante: " + Mathf.CeilToInt(vidaActual) + " / " + Mathf.CeilToInt(vidaMaxima);
+
+        if (textoTorretasColocadas != null)
+            textoTorretasColocadas.text = "Torretas colocadas: " + torretasColocadas;
+
+        if (textoTorretasSupervivientes != null)
+            textoTorretasSupervivientes.text = "Torretas supervivientes: " + torretasSupervivientes;
+
+        if (textoRecompensaVida != null)
+            textoRecompensaVida.text = "Recompensa por vida: $" + recompensaPorVida;
+
+        if (textoDevolucionTorretas != null)
+            textoDevolucionTorretas.text = "Devolucion de torretas: $" + devolucionTorretas;
+
+        if (textoTotalRecompensa != null)
+            textoTotalRecompensa.text = "TOTAL GANADO: $" + recompensaTotal;
+    }
+
+    // El boton Continuar del panel Resultado llama a este metodo.
+    // Oculta el resumen y deja visible el panel de victoria que esta debajo.
+    public void CerrarPanelResultado()
+    {
+        if (panelResultado != null)
+            panelResultado.SetActive(false);
     }
 
     private void ReproducirMusicaVictoria()
     {
         if (ambientMusicManager == null)
         {
-            Debug.LogWarning("PanelVictoriaManager: No se encontró AmbientMusicManager.");
+            Debug.LogWarning("PanelVictoriaManager: No se encontro AmbientMusicManager.");
             return;
         }
 
         ambientMusicManager.DetenerMusica();
 
         if (musicaVictoria != null)
-        {
             ambientMusicManager.ReproducirMusica(musicaVictoria, true);
-        }
     }
 
     public void ReiniciarNivel()
@@ -117,7 +246,6 @@ public class PanelVictoriaManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // Salir al menú desde victoria conservando el progreso confirmado.
     public void IrAlMenu()
     {
         Time.timeScale = 1f;
@@ -127,7 +255,6 @@ public class PanelVictoriaManager : MonoBehaviour
     public void SalirDelJuego()
     {
         Time.timeScale = 1f;
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -135,12 +262,11 @@ public class PanelVictoriaManager : MonoBehaviour
 #endif
     }
 
-    // Pasar directamente al siguiente nivel.
     public void SiguienteNivel()
     {
         if (string.IsNullOrWhiteSpace(siguienteNivel))
         {
-            Debug.LogWarning("PanelVictoriaManager: No se asignó el siguiente nivel.");
+            Debug.LogWarning("PanelVictoriaManager: No se asigno el siguiente nivel.");
             return;
         }
 

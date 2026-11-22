@@ -5,35 +5,19 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     private Vector3 direccion;
-
     private float velocidad;
-
     private float dano;
-
     private float tiempoVida;
 
     private Rigidbody rb;
-
     private bool impacto;
-
-    // =========================================
-    // AWAKE
-    // =========================================
 
     private void Awake()
     {
-        rb =
-            GetComponent<Rigidbody>();
-
+        rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-
-        rb.collisionDetectionMode =
-            CollisionDetectionMode.Continuous;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
-
-    // =========================================
-    // CONFIGURAR
-    // =========================================
 
     public void Configurar(
         Vector3 nuevaDireccion,
@@ -41,156 +25,102 @@ public class EnemyProjectile : MonoBehaviour
         float nuevoDano,
         float nuevoTiempoVida)
     {
-        direccion =
-            nuevaDireccion.normalized;
+        direccion = nuevaDireccion.normalized;
+        velocidad = nuevaVelocidad;
+        dano = nuevoDano;
+        tiempoVida = nuevoTiempoVida;
 
-        velocidad =
-            nuevaVelocidad;
+        if (direccion.sqrMagnitude > 0.0001f)
+            transform.rotation = Quaternion.LookRotation(direccion);
 
-        dano =
-            nuevoDano;
-
-        tiempoVida =
-            nuevoTiempoVida;
-
-        transform.rotation =
-            Quaternion.LookRotation(
-                direccion
-            );
-
-        Destroy(
-            gameObject,
-            tiempoVida
-        );
+        Destroy(gameObject, tiempoVida);
     }
-
-    // =========================================
-    // UPDATE
-    // =========================================
 
     private void FixedUpdate()
     {
-        if (impacto)
+        if (impacto || rb == null)
             return;
 
-        rb.linearVelocity =
-            direccion *
-            velocidad;
+        rb.linearVelocity = direccion * velocidad;
     }
 
-    // =========================================
-    // COLISION
-    // =========================================
-
-    private void OnCollisionEnter(
-        Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        ProcesarImpacto(
-            collision.collider
+        if (collision != null)
+            ProcesarImpacto(collision.collider);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ProcesarImpacto(other);
+    }
+
+    private void ProcesarImpacto(Collider objetivo)
+    {
+        if (impacto || objetivo == null)
+            return;
+
+        Debug.Log(
+            "PROYECTIL ENEMIGO CHOCO CON: " + objetivo.name +
+            " | Objeto padre: " + objetivo.transform.root.name
         );
-    }
 
-    // =========================================
-    // TRIGGER
-    // =========================================
-
-    private void OnTriggerEnter(
-        Collider other)
-    {
-        ProcesarImpacto(
-            other
-        );
-    }
-
-    // =========================================
-    // PROCESAR IMPACTO
-    // =========================================
-
-    private void ProcesarImpacto(
-        Collider objetivo)
-    {
-        if (impacto)
+        // Ignorar cualquier parte de un enemigo.
+        if (objetivo.GetComponentInParent<EnemyController>() != null)
             return;
 
-        if (objetivo == null)
-            return;
-
-        // -------------------------------------
-        // EVITAR QUE GOLPEE AL PROPIO ENEMIGO
-        // -------------------------------------
-
-        EnemyController enemigo =
-            objetivo.GetComponentInParent<EnemyController>();
-
-        if (enemigo != null)
+        // Ignorar las zonas de colocacion de torretas.
+        Transform actual = objetivo.transform;
+        while (actual != null)
         {
-            return;
+            if (actual.name.StartsWith("ZonaTorre"))
+            {
+                Debug.Log("PROYECTIL IGNORO ZONA DE COLOCACION: " + actual.name);
+                return;
+            }
+
+            actual = actual.parent;
         }
 
-        // -------------------------------------
-        // JUGADOR
-        // -------------------------------------
-
-        PlayerHealth vidaJugador =
-            objetivo.GetComponentInParent<PlayerHealth>();
-
+        // Dañar al jugador.
+        PlayerHealth vidaJugador = objetivo.GetComponentInParent<PlayerHealth>();
         if (vidaJugador != null)
         {
             impacto = true;
-
-            vidaJugador.RecibirDanio(
-                dano
-            );
-
-            Debug.Log(
-                "Proyectil enemigo impactó " +
-                "al jugador | Daño: " +
-                dano
-            );
-
-            Destroy(
-                gameObject
-            );
-
+            vidaJugador.RecibirDanio(dano);
+            Debug.Log("PROYECTIL ENEMIGO IMPACTO AL JUGADOR | Dano: " + dano);
+            Destroy(gameObject);
             return;
         }
 
-        // -------------------------------------
-        // OBJETIVO / NUCLEO
-        // -------------------------------------
+        // Dañar torretas.
+        TurretHealth vidaTorreta = objetivo.GetComponentInParent<TurretHealth>();
+        if (vidaTorreta != null)
+        {
+            impacto = true;
+            vidaTorreta.RecibirDanio(dano);
+            Debug.Log(
+                "PROYECTIL ENEMIGO IMPACTO UNA TORRETA: " +
+                vidaTorreta.gameObject.name + " | Dano: " + dano
+            );
+            Destroy(gameObject);
+            return;
+        }
 
-        ObjectiveHealth vidaObjetivo =
-            objetivo.GetComponentInParent<ObjectiveHealth>();
-
+        // Dañar el nucleo/objetivo.
+        ObjectiveHealth vidaObjetivo = objetivo.GetComponentInParent<ObjectiveHealth>();
         if (vidaObjetivo != null)
         {
             impacto = true;
-
-            vidaObjetivo.RecibirDanio(
-                dano
-            );
-
-            Debug.Log(
-                "Proyectil enemigo impactó " +
-                "al objetivo | Daño: " +
-                dano
-            );
-
-            Destroy(
-                gameObject
-            );
-
+            vidaObjetivo.RecibirDanio(dano);
+            Debug.Log("PROYECTIL ENEMIGO IMPACTO AL OBJETIVO | Dano: " + dano);
+            Destroy(gameObject);
             return;
         }
 
-        // -------------------------------------
-        // PARED / SUELO / OBSTACULO
-        // -------------------------------------
-
+        // Cualquier otro collider es un obstaculo.
         impacto = true;
-
-        Destroy(
-            gameObject
-        );
+        Debug.Log("PROYECTIL ENEMIGO IMPACTO UN OBSTACULO: " + objetivo.name);
+        Destroy(gameObject);
     }
 }

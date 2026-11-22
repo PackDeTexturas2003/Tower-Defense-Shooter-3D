@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class CebollitaDamage : MonoBehaviour
@@ -17,55 +16,42 @@ public class CebollitaDamage : MonoBehaviour
     private void Update()
     {
         BuscarJugador();
+        if (jugador == null) return;
 
-        if (jugador == null)
-            return;
-
-        float distancia = Vector3.Distance(
-            transform.position,
-            jugador.position
-        );
-
-        if (distancia <= radioAtaque)
+        float distancia = Vector3.Distance(transform.position, jugador.position);
+        if (distancia <= radioAtaque && Time.time >= siguienteDanio)
         {
-            if (Time.time >= siguienteDanio)
-            {
-                HacerDanio();
-                siguienteDanio = Time.time + intervaloDanio;
-            }
+            HacerDanio();
+            siguienteDanio = Time.time + Mathf.Max(0.01f, intervaloDanio);
         }
     }
 
     private void BuscarJugador()
     {
-        if (jugador != null)
-            return;
+        if (jugador != null) return;
 
-        GameObject objetoJugador =
-            GameObject.FindGameObjectWithTag(tagJugador);
-
+        GameObject objetoJugador = GameObject.FindGameObjectWithTag(tagJugador);
         if (objetoJugador != null)
             jugador = objetoJugador.transform;
     }
 
     private void HacerDanio()
     {
-        PlayerHealth vida =
-            jugador.GetComponentInParent<PlayerHealth>();
-
+        PlayerHealth vida = jugador.GetComponentInParent<PlayerHealth>();
         if (vida == null)
             vida = jugador.GetComponent<PlayerHealth>();
 
         if (vida != null)
         {
-            vida.RecibirDanio(dano);
-            Debug.Log("La cebollita hizo " + dano + " de daño.");
+            // Llama al método especial para que la estática sea verde claro.
+            vida.RecibirDanioCebollita(dano);
+            Debug.Log("Cebollita hizo " + dano + " de daño.");
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, radioAtaque);
     }
 }

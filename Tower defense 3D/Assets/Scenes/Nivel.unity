@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2695096}
   - component: {fileID: 2695095}
   - component: {fileID: 2695094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,6 +294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -367,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -442,6 +450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -460,9 +472,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -589,6 +609,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -745,7 +769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 20135782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ5.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -858,6 +886,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -1258,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1276,9 +1316,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -1477,6 +1525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1562,6 +1614,14 @@ PrefabInstance:
     - target: {fileID: 8735248015580524440, guid: 1f1566de7a53c5f4facd67dedcd9f994, type: 3}
       propertyPath: m_Name
       value: hornococin con espejo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735248015580524440, guid: 1f1566de7a53c5f4facd67dedcd9f994, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112153773095248045, guid: 1f1566de7a53c5f4facd67dedcd9f994, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1840,6 +1900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1912,7 +1976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 76354855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2025,6 +2089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2098,6 +2166,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2301,6 +2373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2456,7 +2532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 102276204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2500,6 +2576,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -2763,6 +2847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2910,6 +2998,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muebleconespejo1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2931,6 +3027,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -3058,6 +3162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3132,6 +3240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3205,6 +3317,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3360,6 +3476,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -3888,7 +4012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 200888298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ6.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3977,6 +4101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4050,6 +4178,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4170,6 +4302,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -4297,6 +4437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4370,6 +4514,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4445,6 +4593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4518,6 +4670,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4776,6 +4932,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4849,6 +5009,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4933,6 +5097,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2af79575da13b342a9e355e4f8a9c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZonaColocacionTorre
+--- !u!1 &272904126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272904127}
+  - component: {fileID: 272904130}
+  - component: {fileID: 272904129}
+  - component: {fileID: 272904128}
+  m_Layer: 5
+  m_Name: BotonContinuar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &272904127
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272904126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2096315078}
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -442}
+  m_SizeDelta: {x: 640, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &272904128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272904126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 272904129}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &272904129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272904126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &272904130
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272904126}
+  m_CullTransparentMesh: 1
 --- !u!1001 &283674297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4996,6 +5281,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5594,6 +5883,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muebleconespejo1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5961,6 +6258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6112,9 +6413,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -6242,6 +6551,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6316,6 +6629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6326,6 +6643,144 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5827727509184385452, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
   m_PrefabInstance: {fileID: 352303377}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &354093821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 354093822}
+  - component: {fileID: 354093824}
+  - component: {fileID: 354093823}
+  m_Layer: 5
+  m_Name: TextoVidaRestante
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &354093822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354093821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -531, y: 209}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &354093823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354093821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'TextoVidaRestante
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &354093824
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354093821}
+  m_CullTransparentMesh: 1
 --- !u!1001 &363307409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6389,6 +6844,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6464,6 +6923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6485,6 +6948,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -6612,6 +7083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6685,6 +7160,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7066,6 +7545,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7588,6 +8071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7609,6 +8096,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -7736,6 +8231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7757,6 +8256,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -7883,6 +8390,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8085,6 +8596,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8296,6 +8811,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muebleconespejo1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8317,6 +8840,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -8444,6 +8975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8517,6 +9052,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9103,6 +9642,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -9290,9 +9837,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -9541,6 +10096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9559,9 +10118,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -9861,6 +10428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9934,6 +10505,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10009,6 +10584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10083,6 +10662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10156,6 +10739,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10367,6 +10954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10440,6 +11031,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10515,6 +11110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10588,6 +11187,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10739,6 +11342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10758,7 +11365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632319442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10924,7 +11531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639000498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11092,6 +11699,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -11298,9 +11913,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -11428,6 +12051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11447,7 +12074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 681297525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11620,6 +12247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11694,6 +12325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11712,9 +12347,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102276204}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -11970,6 +12613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12121,6 +12768,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12280,6 +12931,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -12350,9 +13009,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -12555,6 +13222,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.19438429
@@ -12629,7 +13304,7 @@ GameObject:
   - component: {fileID: 784258004}
   - component: {fileID: 784258003}
   - component: {fileID: 784258002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13211,6 +13886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13597,6 +14276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13671,6 +14354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13692,6 +14379,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -13903,6 +14598,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99315864
@@ -14113,6 +14816,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -14314,6 +15025,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -14452,6 +15171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: hornococin con espejo (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8735248015580524440, guid: 1f1566de7a53c5f4facd67dedcd9f994, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9112153773095248045, guid: 1f1566de7a53c5f4facd67dedcd9f994, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14526,6 +15253,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14545,7 +15276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 907553423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14639,6 +15370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14660,6 +15395,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -14787,6 +15530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14860,6 +15607,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15071,6 +15822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15281,6 +16036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15302,6 +16061,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -15646,6 +16413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15720,6 +16491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15742,7 +16517,7 @@ GameObject:
   - component: {fileID: 943902027}
   - component: {fileID: 943902026}
   - component: {fileID: 943902025}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15905,6 +16680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15978,6 +16757,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16180,6 +16963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16198,9 +16985,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -16273,7 +17068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957924662}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ContenedorObjEscenarios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16438,6 +17233,142 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6a68e7d16b889446a0be282784b873c, type: 3}
+--- !u!1 &966330105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966330106}
+  - component: {fileID: 966330108}
+  - component: {fileID: 966330107}
+  m_Layer: 5
+  m_Name: TextoRecompensaVida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &966330106
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966330105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -531, y: 101}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &966330107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966330105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TextoRecompensaVida
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &966330108
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966330105}
+  m_CullTransparentMesh: 1
 --- !u!1001 &967142599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16501,6 +17432,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16733,6 +17668,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17017,7 +17956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990923728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17359,6 +18298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17637,6 +18580,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75251
@@ -17711,6 +18662,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75251
@@ -17773,6 +18732,142 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
   m_PrefabInstance: {fileID: 1023029472}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1023554962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023554963}
+  - component: {fileID: 1023554965}
+  - component: {fileID: 1023554964}
+  m_Layer: 5
+  m_Name: TextoDevolucionTorretas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1023554963
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023554962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -528, y: -211}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1023554964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023554962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TextoDevolucionTorretas
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1023554965
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023554962}
+  m_CullTransparentMesh: 1
 --- !u!1 &1028259265
 GameObject:
   m_ObjectHideFlags: 0
@@ -17782,7 +18877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1028259266}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17961,6 +19056,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99315864
@@ -18087,6 +19190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18105,9 +19212,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -18235,6 +19350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18253,9 +19372,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -18519,6 +19646,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18757,6 +19888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18959,6 +20094,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19033,6 +20172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19106,6 +20249,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19578,6 +20725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19599,6 +20750,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -19726,6 +20885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19800,6 +20963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19810,6 +20977,142 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5827727509184385452, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
   m_PrefabInstance: {fileID: 1147675352}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149403196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1149403197}
+  - component: {fileID: 1149403199}
+  - component: {fileID: 1149403198}
+  m_Layer: 5
+  m_Name: TextoTotalRecompensa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1149403197
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149403196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -328}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1149403198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149403196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TextoTotalRecompensa
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1149403199
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149403196}
+  m_CullTransparentMesh: 1
 --- !u!1 &1153062951
 GameObject:
   m_ObjectHideFlags: 0
@@ -20107,6 +21410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20180,6 +21487,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20482,6 +21793,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -20555,6 +21874,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -20890,6 +22217,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muebleconespejo1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21099,6 +22434,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21312,6 +22651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21437,6 +22780,8 @@ RectTransform:
   - {fileID: 1773058735}
   - {fileID: 1254059608}
   - {fileID: 871059129}
+  - {fileID: 2060760096}
+  - {fileID: 1670301110}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -21499,6 +22844,9 @@ MonoBehaviour:
   textoNotificacion: {fileID: 871059130}
   mensaje: "\xA1Est\xE1n atacando el objetivo!"
   duracionNotificacion: 1.3
+  duracionCrecimiento: 0.2
+  escalaRebote: 1.15
+  duracionRebote: 0.12
 --- !u!1001 &1223460665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21562,6 +22910,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21637,6 +22989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21711,6 +23067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21784,6 +23144,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22072,6 +23436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22093,6 +23461,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -22384,6 +23760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22494,6 +23874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22515,6 +23899,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -22641,6 +24033,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23060,6 +24456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23081,6 +24481,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -23208,6 +24616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23281,6 +24693,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23377,6 +24793,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -23504,6 +24928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23578,6 +25006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23651,6 +25083,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23862,6 +25298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24057,6 +25497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24131,6 +25575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24204,6 +25652,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24411,6 +25863,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24649,6 +26105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24791,7 +26251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1369231701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24851,6 +26311,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -25191,7 +26659,7 @@ GameObject:
   - component: {fileID: 1377709597}
   - component: {fileID: 1377709596}
   - component: {fileID: 1377709595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25354,6 +26822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25375,6 +26847,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -25501,6 +26981,14 @@ PrefabInstance:
     - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
       propertyPath: m_Name
       value: Muebleconespejo1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25631,6 +27119,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25868,6 +27360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25942,6 +27438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25960,9 +27460,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 102276204}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -26038,6 +27546,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -26111,6 +27627,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -26238,6 +27762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26311,6 +27839,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26605,6 +28137,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -26730,6 +28270,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26943,6 +28487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26953,6 +28501,144 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
   m_PrefabInstance: {fileID: 1484763714}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1489110501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489110502}
+  - component: {fileID: 1489110504}
+  - component: {fileID: 1489110503}
+  m_Layer: 5
+  m_Name: TextoTorretasSupervivientes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1489110502
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489110501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -531, y: -105}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1489110503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489110501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'TextoTorretasSupervivientes
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1489110504
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489110501}
+  m_CullTransparentMesh: 1
 --- !u!1 &1496248862
 GameObject:
   m_ObjectHideFlags: 0
@@ -27144,6 +28830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27217,6 +28907,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27428,6 +29122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27501,6 +29199,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
       propertyPath: m_Name
       value: repis4 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27783,6 +29485,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -28310,6 +30020,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28603,6 +30317,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2af79575da13b342a9e355e4f8a9c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZonaColocacionTorre
+--- !u!1 &1564395670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564395671}
+  - component: {fileID: 1564395673}
+  - component: {fileID: 1564395672}
+  m_Layer: 5
+  m_Name: TituloResultado
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1564395671
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564395670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 373}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1564395672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564395670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Resultado
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 120
+  m_fontSizeBase: 120
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1564395673
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564395670}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1580867827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28611,9 +30461,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -28688,6 +30546,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -28815,6 +30681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28888,6 +30758,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29251,6 +31125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29285,6 +31163,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelVictoriaManager
   panelVictoria: {fileID: 2129992886}
+  panelResultado: {fileID: 1670301109}
+  textoVidaRestante: {fileID: 354093823}
+  textoTorretasColocadas: {fileID: 1774909598}
+  textoTorretasSupervivientes: {fileID: 1489110503}
+  textoRecompensaVida: {fileID: 966330107}
+  textoDevolucionTorretas: {fileID: 1023554964}
+  textoTotalRecompensa: {fileID: 1149403198}
+  botonContinuarResultado: {fileID: 272904128}
+  recompensaVidaCompleta: 100
+  porcentajeDevolucionTorretas: 50
+  playerHealth: {fileID: 2116711675}
+  dineroJugador: {fileID: 2101963525}
+  weaponManager: {fileID: 1356236384}
   elementosHudAOcultar:
   - {fileID: 1517376583}
   - {fileID: 1266718291}
@@ -29293,9 +31184,8 @@ MonoBehaviour:
   - {fileID: 1207616351}
   - {fileID: 915642838}
   - {fileID: 2019624466}
-  weaponManager: {fileID: 0}
   ambientMusicManager: {fileID: 1168413571}
-  musicaVictoria: {fileID: 8300000, guid: 87cd6881891f42347aa9f82bc17407ce, type: 3}
+  musicaVictoria: {fileID: 8300000, guid: 77abf3d556c2f534eb1773d77cf957f2, type: 3}
   escenaMenu: MenuPrincipal
   siguienteNivel: Nivel2
 --- !u!4 &1627921634 stripped
@@ -29526,6 +31416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29544,9 +31438,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -29673,6 +31575,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29815,6 +31721,89 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2934580545045494797, guid: e6a68e7d16b889446a0be282784b873c, type: 3}
   m_PrefabInstance: {fileID: 1183843219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1670301109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670301110}
+  - component: {fileID: 1670301112}
+  - component: {fileID: 1670301111}
+  m_Layer: 5
+  m_Name: PanelResultado
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1670301110
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670301109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1564395671}
+  - {fileID: 354093822}
+  - {fileID: 966330106}
+  - {fileID: 1774909597}
+  - {fileID: 1489110502}
+  - {fileID: 1023554963}
+  - {fileID: 1149403197}
+  - {fileID: 272904127}
+  m_Father: {fileID: 1221626748}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1670301111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670301109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.111320674, b: 0.84010017, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1670301112
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670301109}
+  m_CullTransparentMesh: 1
 --- !u!1 &1674547782
 GameObject:
   m_ObjectHideFlags: 0
@@ -29824,7 +31813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1674547783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ6.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29866,6 +31855,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -30049,6 +32046,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -30539,6 +32544,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99315864
@@ -30664,6 +32677,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30820,7 +32837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1707966866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30866,6 +32883,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -30993,6 +33018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31014,6 +33043,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -31201,6 +33238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31275,6 +33316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31296,6 +33341,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -31422,6 +33475,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31625,6 +33682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31698,6 +33759,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31792,9 +33857,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -31922,6 +33995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32040,7 +34117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.07642937, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32064,6 +34141,142 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773058734}
+  m_CullTransparentMesh: 1
+--- !u!1 &1774909596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1774909597}
+  - component: {fileID: 1774909599}
+  - component: {fileID: 1774909598}
+  m_Layer: 5
+  m_Name: TextoTorretasColocadas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1774909597
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774909596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1670301110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -531, y: -2}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1774909598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774909596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TextoTorretasColocadas
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 80
+  m_fontSizeBase: 80
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 40
+  m_fontSizeMax: 100
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1774909599
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774909596}
   m_CullTransparentMesh: 1
 --- !u!1 &1776615581
 GameObject:
@@ -32194,9 +34407,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -32324,6 +34545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32425,6 +34650,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -32688,6 +34921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32854,6 +35091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32927,6 +35168,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33042,6 +35287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33115,6 +35364,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33190,6 +35443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33209,7 +35466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832888273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33394,6 +35651,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -33519,6 +35784,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33675,7 +35944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848161809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ7.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33762,6 +36031,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33973,6 +36246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34123,6 +36400,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -34248,6 +36533,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34681,6 +36970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34754,6 +37047,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34829,6 +37126,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muebleconespejo1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4147620483758103738, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522252323451704207, guid: a4b2744e2ea4bf84da2a453e533246ff, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34848,7 +37153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928434787}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ6.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35012,6 +37317,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja Fragil de suministros (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75251
@@ -35123,9 +37436,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1028259266}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -35232,7 +37553,7 @@ GameObject:
   - component: {fileID: 1976928372}
   - component: {fileID: 1976928371}
   - component: {fileID: 1976928370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35342,6 +37663,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -35837,6 +38166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35910,6 +38243,10 @@ PrefabInstance:
     - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
       propertyPath: m_Name
       value: RefriSuper (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36560,6 +38897,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -36631,7 +38976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2028970809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36688,6 +39033,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -36762,6 +39115,14 @@ PrefabInstance:
     - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_Name
       value: Caja Fragil de suministros (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338479481536260558, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575751495063774971, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1862497190563181428, guid: 7495d94ca61972b49a96ee11e0252e73, type: 3}
       propertyPath: m_LocalScale.x
@@ -36889,6 +39250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36962,6 +39327,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37370,6 +39739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37380,6 +39753,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 95308790388705406, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
   m_PrefabInstance: {fileID: 2057357534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2060760095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060760096}
+  - component: {fileID: 2060760098}
+  - component: {fileID: 2060760097}
+  m_Layer: 5
+  m_Name: "da\xF1o"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2060760096
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060760095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1221626748}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2000, y: 1100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2060760097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060760095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 97192c0bbb919ef4290801ad91736830, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2060760098
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060760095}
+  m_CullTransparentMesh: 1
 --- !u!1 &2062720853
 GameObject:
   m_ObjectHideFlags: 0
@@ -37648,7 +40093,7 @@ GameObject:
   - component: {fileID: 2085510843}
   - component: {fileID: 2085510842}
   - component: {fileID: 2085510841}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37811,6 +40256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: repis4 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37821,6 +40270,142 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90350bf6792615a4ba8eb25c9041898d, type: 3}
   m_PrefabInstance: {fileID: 2091999890}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2096315077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096315078}
+  - component: {fileID: 2096315080}
+  - component: {fileID: 2096315079}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2096315078
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096315077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 272904127}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2096315079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096315077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Continuar
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2096315080
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096315077}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2098436570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37884,6 +40469,10 @@ PrefabInstance:
     - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
       propertyPath: m_Name
       value: cajadecomida (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37949,9 +40538,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1674547783}
     m_Modifications:
+    - target: {fileID: 8311673256630625173, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_Name
       value: Mueble1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364860815762402464, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177812927886554650, guid: 5e8f5bce06880c14dbcc44c766c6a632, type: 3}
       propertyPath: m_LocalScale.x
@@ -38255,6 +40852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RefriSuper (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 6605637056469486358, guid: 88cf63b980e6de143bc112b9c0a2267b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38329,6 +40930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cajadecomida (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 727694709516341956, guid: cab33c1ac1e3e6e45a90e9b68326de92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38350,6 +40955,14 @@ PrefabInstance:
     - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_Name
       value: congl1 (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
@@ -38505,6 +41118,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: congl1 (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 7030946991303052968, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412919852466651549, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7699222034303685650, guid: a9e60a1d29e0a9d47b7b2470f42875e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31331825
@@ -38576,7 +41197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2137927141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjetosEscenarioZ4.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38699,6 +41320,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 526954738001581961, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+      propertyPath: imagenEstatica
+      value: 
+      objectReference: {fileID: 2060760097}
+    - target: {fileID: 526954738001581961, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
+      propertyPath: gameOverManager
+      value: 
+      objectReference: {fileID: 1627921635}
     - target: {fileID: 1758945951028898283, guid: 2411b3a1be63239429cebe6640ab9d64, type: 3}
       propertyPath: m_Name
       value: Player

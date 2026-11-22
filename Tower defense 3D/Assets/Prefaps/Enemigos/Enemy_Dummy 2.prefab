@@ -209,7 +209,7 @@ MonoBehaviour:
   tipoAtaque: 1
   tipoObjetivo: 2
   objetivo: {fileID: 0}
-  radioDeteccionJugador: 5
+  radioDeteccionJugador: 10
   tagTorreta: Torreta
   proyectilPrefab: {fileID: 8162292602104240015, guid: 70e29eff4179a914288cdeef265c7f79, type: 3}
   puntoDisparo: {fileID: 7422942116917783793}

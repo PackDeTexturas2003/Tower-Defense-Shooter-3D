@@ -1,4 +1,4 @@
-
+ï»¿
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -95,6 +95,22 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     private float precisionParaDisparar = 0.90f;
+
+    // =========================================
+    // BUSQUEDA DE POSICION DE DISPARO
+    // =========================================
+
+    [Header("Buscar posicion de disparo")]
+    [SerializeField] private LayerMask capasObstaculos;
+    [SerializeField] private float distanciaBusqueda = 5f;
+    [SerializeField] private int cantidadPosicionesBusqueda = 16;
+    [SerializeField] private float alturaRaycast = 1.2f;
+    [SerializeField] private float intervaloBusqueda = 0.5f;
+    [SerializeField] private float distanciaLlegadaPosicion = 0.8f;
+
+    private Vector3 posicionDisparoAlternativa;
+    private bool tienePosicionAlternativa;
+    private float siguienteBusqueda;
 
     // =========================================
     // PROYECTIL
@@ -221,14 +237,14 @@ public class EnemyController : MonoBehaviour
         if (puntosRuta == null || puntosRuta.Length == 0)
         {
             Debug.LogWarning(
-                gameObject.name + " recibió una ruta vacía."
+                gameObject.name + " recibiï¿½ una ruta vacï¿½a."
             );
             puntosRuta = null;
             return;
         }
 
         Debug.Log(
-            gameObject.name + " recibió una ruta de " +
+            gameObject.name + " recibiï¿½ una ruta de " +
             puntosRuta.Length + " puntos."
         );
     }
@@ -261,7 +277,7 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogWarning(
                 gameObject.name +
-                " no está colocado sobre el NavMesh."
+                " no estï¿½ colocado sobre el NavMesh."
             );
 
             return;
@@ -371,7 +387,7 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log(
                 gameObject.name +
-                " encontró al jugador."
+                " encontrï¿½ al jugador."
             );
         }
     }
@@ -382,9 +398,9 @@ public class EnemyController : MonoBehaviour
 
     private void BuscarObjetivo()
     {
-        // El objetivo principal de respaldo es siempre el núcleo.
+        // El objetivo principal de respaldo es siempre el nï¿½cleo.
         // Las torretas se buscan por separado para poder comprobar
-        // si todavía existen torretas activas.
+        // si todavï¿½a existen torretas activas.
         GameObject objetoEncontrado =
             GameObject.FindGameObjectWithTag("Objetivo");
 
@@ -395,7 +411,7 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log(
                 gameObject.name +
-                " encontró al objetivo principal: " +
+                " encontrï¿½ al objetivo principal: " +
                 objetoEncontrado.name
             );
         }
@@ -426,44 +442,40 @@ public class EnemyController : MonoBehaviour
 
     private void ActualizarObjetivoActual()
     {
-        // Los enemigos configurados para perseguir al jugador
-        // mantienen su comportamiento original.
+        // Enemigos que persiguen al jugador.
         if (tipoObjetivo == TipoObjetivo.Jugador)
         {
             objetivoActual = jugador;
             return;
         }
 
-        // La nueva prioridad se aplica exclusivamente a los
-        // enemigos configurados con TipoObjetivo.Torreta.
+        // Enemigos que priorizan torretas,
+        // pero atacan al jugador si se acerca.
         if (tipoObjetivo == TipoObjetivo.Torreta)
         {
-            torretaObjetivoActual = BuscarTorretaVivaMasCercana();
-
-            // Mientras exista una torreta viva, el enemigo
-            // debe priorizarla. El radio del jugador no aplica.
-            if (torretaObjetivoActual != null)
-            {
-                objetivoActual = torretaObjetivoActual;
-                return;
-            }
-
-            // El radio del jugador solo se activa cuando no
-            // quedan torretas vivas.
+            // PRIORIDAD 1: JUGADOR
             if (jugador != null && JugadorDentroDelRadio())
             {
                 objetivoActual = jugador;
                 return;
             }
 
-            // Sin torretas y con el jugador fuera del radio,
-            // avanzar hacia el núcleo.
+            // PRIORIDAD 2: TORRETA
+            torretaObjetivoActual = BuscarTorretaVivaMasCercana();
+
+            if (torretaObjetivoActual != null)
+            {
+                objetivoActual = torretaObjetivoActual;
+                return;
+            }
+
+            // PRIORIDAD 3: NÃšCLEO
             objetivoActual = objetivoPrincipal;
             return;
         }
 
-        // Se conserva el comportamiento anterior para
-        // TipoObjetivo.Objetivo.
+        // Enemigos que protegen el objetivo principal,
+        // pero atacan al jugador si se acerca.
         if (jugador != null && JugadorDentroDelRadio())
         {
             objetivoActual = jugador;
@@ -473,7 +485,7 @@ public class EnemyController : MonoBehaviour
         objetivoActual = objetivoPrincipal;
     }
 
-    // Busca la torreta activa más cercana al enemigo.
+    // Busca la torreta activa mï¿½s cercana al enemigo.
     // Los objetos inactivos no se consideran torretas vivas.
     private Transform BuscarTorretaVivaMasCercana()
     {
@@ -487,7 +499,7 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError(
                 "El tag '" + tagTorreta +
-                "' no está definido en Unity."
+                "' no estï¿½ definido en Unity."
             );
 
             return null;
@@ -668,8 +680,8 @@ public class EnemyController : MonoBehaviour
             tiempo;
 
         Debug.Log(
-            "ENEMIGO ATACÓ AL JUGADOR | " +
-            "Daño: " +
+            "ENEMIGO ATACï¿½ AL JUGADOR | " +
+            "Daï¿½o: " +
             dano
         );
     }
@@ -742,8 +754,8 @@ public class EnemyController : MonoBehaviour
             tiempo;
 
         Debug.Log(
-            "ENEMIGO ATACÓ A LA TORRETA | " +
-            "Daño: " +
+            "ENEMIGO ATACï¿½ A LA TORRETA | " +
+            "Daï¿½o: " +
             dano
         );
     }
@@ -795,8 +807,8 @@ public class EnemyController : MonoBehaviour
             tiempo;
 
         Debug.Log(
-            "ENEMIGO ATACÓ AL OBJETIVO | " +
-            "Daño: " +
+            "ENEMIGO ATACï¿½ AL OBJETIVO | " +
+            "Daï¿½o: " +
             dano +
             " | Vida restante: " +
             vidaObjetivo.VidaActual
@@ -812,34 +824,218 @@ public class EnemyController : MonoBehaviour
         if (objetivoActual == null)
             return;
 
-        float distancia =
-            Vector3.Distance(
+        // La busqueda de posiciones alternativas se aplica al atacar torretas.
+        // Contra jugador o nucleo se conserva el comportamiento habitual.
+        if (!EsTorreta(objetivoActual))
+        {
+            tienePosicionAlternativa = false;
+
+            float distanciaNormal = Vector3.Distance(
                 transform.position,
                 objetivoActual.position
             );
 
-        // Fuera del radio de disparo:
-        // acercarse.
-        if (distancia > radioDisparo)
-        {
-            PerseguirObjetivo();
+            if (distanciaNormal > radioDisparo)
+            {
+                PerseguirObjetivo();
+                return;
+            }
+
+            DetenerMovimiento();
+            MirarObjetivo();
+
+            if (EstaMirandoAlObjetivo() && TieneLineaDeVision())
+                DispararProyectil();
 
             return;
         }
 
-        // Dentro del radio:
-        // detenerse.
-        DetenerMovimiento();
+        float distanciaTorreta = Vector3.Distance(
+            transform.position,
+            objetivoActual.position
+        );
 
-        // Girar hacia el objetivo.
-        MirarObjetivo();
+        bool visionDespejada = TieneLineaDeVision();
 
-        // Cuando está correctamente apuntado,
-        // disparar.
-        if (EstaMirandoAlObjetivo())
+        // Si la torreta esta despejada y dentro del alcance, disparar.
+        if (visionDespejada && distanciaTorreta <= radioDisparo)
         {
-            DispararProyectil();
+            tienePosicionAlternativa = false;
+            DetenerMovimiento();
+            MirarObjetivo();
+
+            if (EstaMirandoAlObjetivo())
+                DispararProyectil();
+
+            return;
         }
+
+        // Si no hay vision o esta fuera del alcance, buscar un punto
+        // cercano, navegable y con linea de tiro libre.
+        if (Time.time >= siguienteBusqueda)
+        {
+            siguienteBusqueda = Time.time + intervaloBusqueda;
+
+            tienePosicionAlternativa = BuscarPosicionDeDisparo(
+                out posicionDisparoAlternativa
+            );
+        }
+
+        if (tienePosicionAlternativa)
+        {
+            if (agent != null && agent.isOnNavMesh)
+            {
+                float distanciaAlPunto = Vector3.Distance(
+                    transform.position,
+                    posicionDisparoAlternativa
+                );
+
+                if (distanciaAlPunto > distanciaLlegadaPosicion)
+                {
+                    agent.isStopped = false;
+                    agent.stoppingDistance = 0.2f;
+                    agent.SetDestination(posicionDisparoAlternativa);
+                }
+                else
+                {
+                    // Al llegar, validar desde el punto real de disparo.
+                    if (TieneLineaDeVision() &&
+                        Vector3.Distance(transform.position, objetivoActual.position) <= radioDisparo)
+                    {
+                        DetenerMovimiento();
+                        MirarObjetivo();
+
+                        if (EstaMirandoAlObjetivo())
+                            DispararProyectil();
+                    }
+                    else
+                    {
+                        tienePosicionAlternativa = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Si no encuentra un punto valido, avanzar hacia la torreta
+            // y volver a buscar en el siguiente intervalo.
+            PerseguirObjetivo();
+        }
+    }
+
+    // =========================================
+    // COMPROBAR LINEA DE VISION
+    // =========================================
+
+    private bool TieneLineaDeVision()
+    {
+        if (objetivoActual == null || puntoDisparo == null)
+            return false;
+
+        Vector3 origen = puntoDisparo.position;
+        Vector3 destino = objetivoActual.position + Vector3.up * 0.8f;
+        Vector3 direccion = destino - origen;
+        float distancia = direccion.magnitude;
+
+        if (distancia <= 0.01f)
+            return true;
+
+        return !Physics.Raycast(
+            origen,
+            direccion.normalized,
+            distancia,
+            capasObstaculos,
+            QueryTriggerInteraction.Ignore
+        );
+    }
+
+    // =========================================
+    // BUSCAR POSICION DE DISPARO
+    // =========================================
+
+    private bool BuscarPosicionDeDisparo(out Vector3 posicionEncontrada)
+    {
+        posicionEncontrada = transform.position;
+
+        if (objetivoActual == null || agent == null || !agent.isOnNavMesh)
+            return false;
+
+        int cantidad = Mathf.Max(4, cantidadPosicionesBusqueda);
+        float radio = Mathf.Clamp(distanciaBusqueda, 1f, radioDisparo);
+
+        // Probar posiciones alrededor de la torreta.
+        for (int i = 0; i < cantidad; i++)
+        {
+            float angulo = i * (360f / cantidad) * Mathf.Deg2Rad;
+            Vector3 direccion = new Vector3(
+                Mathf.Cos(angulo),
+                0f,
+                Mathf.Sin(angulo)
+            );
+
+            Vector3 candidata = objetivoActual.position + direccion * radio;
+            NavMeshHit hit;
+
+            if (!NavMesh.SamplePosition(
+                candidata,
+                out hit,
+                2f,
+                NavMesh.AllAreas))
+                continue;
+
+            float distanciaObjetivo = Vector3.Distance(
+                hit.position,
+                objetivoActual.position
+            );
+
+            if (distanciaObjetivo > radioDisparo)
+                continue;
+
+            // Confirmar que el agente realmente puede llegar al punto.
+            NavMeshPath ruta = new NavMeshPath();
+
+            if (!agent.CalculatePath(hit.position, ruta) ||
+                ruta.status != NavMeshPathStatus.PathComplete)
+                continue;
+
+            // Simular el punto de disparo a la altura del arma.
+            Vector3 origen = hit.position + Vector3.up * alturaRaycast;
+            Vector3 destino = objetivoActual.position + Vector3.up * 0.8f;
+            Vector3 direccionVision = destino - origen;
+            float distanciaVision = direccionVision.magnitude;
+
+            if (distanciaVision <= 0.01f)
+                continue;
+
+            bool bloqueado = Physics.Raycast(
+                origen,
+                direccionVision.normalized,
+                distanciaVision,
+                capasObstaculos,
+                QueryTriggerInteraction.Ignore
+            );
+
+            if (bloqueado)
+                continue;
+
+            posicionEncontrada = hit.position;
+
+            Debug.Log(
+                gameObject.name +
+                " encontro una posicion despejada para atacar a " +
+                objetivoActual.name
+            );
+
+            return true;
+        }
+
+        Debug.Log(
+            gameObject.name +
+            " no encontro una posicion despejada para atacar a " +
+            objetivoActual.name
+        );
+
+        return false;
     }
 
     // =========================================
@@ -917,7 +1113,7 @@ public class EnemyController : MonoBehaviour
 
         Debug.Log(
             gameObject.name +
-            " DISPARÓ A " +
+            " DISPARï¿½ A " +
             objetivoActual.name
         );
     }
@@ -985,14 +1181,14 @@ public class EnemyController : MonoBehaviour
             // (por ejemplo 1.5), el agente puede detenerse lejos del punto.
             agent.stoppingDistance = 0.3f;
 
-            // Saltar puntos que hayan sido eliminados o estén vacíos.
+            // Saltar puntos que hayan sido eliminados o estï¿½n vacï¿½os.
             while (indicePuntoRuta < puntosRuta.Length &&
                    puntosRuta[indicePuntoRuta] == null)
             {
                 indicePuntoRuta++;
             }
 
-            // Si ya hay una ruta calculada y el agente llegó al punto,
+            // Si ya hay una ruta calculada y el agente llegï¿½ al punto,
             // avanzar al siguiente.
             if (indicePuntoRuta < puntosRuta.Length &&
                 !agent.pathPending &&
@@ -1001,7 +1197,7 @@ public class EnemyController : MonoBehaviour
             {
                 indicePuntoRuta++;
 
-                // Saltar posibles referencias vacías siguientes.
+                // Saltar posibles referencias vacï¿½as siguientes.
                 while (indicePuntoRuta < puntosRuta.Length &&
                        puntosRuta[indicePuntoRuta] == null)
                 {
@@ -1016,14 +1212,14 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                // Terminó la ruta alternativa: continuar al objetivo
+                // Terminï¿½ la ruta alternativa: continuar al objetivo
                 // con la distancia de parada habitual del enemigo.
                 agent.stoppingDistance = distanciaParadaObjetivo;
             }
         }
         else
         {
-            // Persecución normal del jugador, torretas u objetivo
+            // Persecuciï¿½n normal del jugador, torretas u objetivo
             // cuando no hay ruta alternativa activa.
             agent.stoppingDistance = distanciaParadaObjetivo;
         }
@@ -1133,7 +1329,7 @@ public class EnemyController : MonoBehaviour
             );
         }
 
-        // Amarillo = detección del jugador.
+        // Amarillo = detecciï¿½n del jugador.
         Gizmos.color =
             Color.yellow;
 

@@ -7,6 +7,11 @@ using System.Collections.Generic;
 
 public class ColocacionTorretas : MonoBehaviour
 {
+    private void Awake()
+    {
+        RegistroTorretasNivel.Reiniciar();
+    }
+
     [Header("Torres")]
     [SerializeField] private GameObject[] prefabsTorres;
     [SerializeField] private int[] preciosTorres;
@@ -266,6 +271,9 @@ public class ColocacionTorretas : MonoBehaviour
         );
 
         zonaSeleccionadaActual.RegistrarTorre(torre);
+
+        // Registrar el precio pagado para la devolución al ganar.
+        RegistroTorretasNivel.Registrar(torre, precio);
 
         Debug.Log(
             "Torre colocada en zona: " +
