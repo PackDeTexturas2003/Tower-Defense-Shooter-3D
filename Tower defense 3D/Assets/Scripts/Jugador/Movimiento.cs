@@ -1,4 +1,4 @@
-
+ï»¿
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +12,7 @@ public class Movimiento : MonoBehaviour
     [SerializeField] private bool sprintActivado = true;
     [SerializeField] private float velocidadSprint = 8f;
 
-    [Header("Cámara")]
+    [Header("Cï¿½mara")]
     [SerializeField] private float sensibilidadMouse = 2.5f;
 
     private Rigidbody rb;
@@ -50,7 +50,7 @@ public class Movimiento : MonoBehaviour
     }
 
     // =========================
-    // CARGAR CONFIGURACIÓN
+    // CARGAR CONFIGURACIï¿½N
     // =========================
 
     private void CargarConfiguracionControles()
@@ -113,7 +113,7 @@ public class Movimiento : MonoBehaviour
     }
 
     // =========================
-    // CÁMARA
+    // Cï¿½MARA
     // =========================
 
     private void Mirar()

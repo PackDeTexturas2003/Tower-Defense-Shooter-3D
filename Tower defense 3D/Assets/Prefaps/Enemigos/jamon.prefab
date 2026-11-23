@@ -199,6 +199,14 @@ MonoBehaviour:
   tiempoEntreDisparos: 2
   velocidadRotacion: 8
   precisionParaDisparar: 0.9
+  capasObstaculos:
+    serializedVersion: 2
+    m_Bits: 0
+  distanciaBusqueda: 5
+  cantidadPosicionesBusqueda: 16
+  alturaRaycast: 1.2
+  intervaloBusqueda: 0.5
+  distanciaLlegadaPosicion: 0.8
   tiempoVidaProyectil: 5
 --- !u!143 &1987266203940445488
 CharacterController:

@@ -34,9 +34,23 @@ public class AmbientMusicManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("AMBIENT MUSIC MANAGER: Iniciando...");
+
+        Debug.Log("Música asignada: " +
+            (musica != null ? musica.name : "NINGUNA"));
+
+        Debug.Log("AudioSource encontrado: " +
+            (audioSource != null));
+
+        Debug.Log("Reproducir al iniciar: " +
+            reproducirAlIniciar);
+
         if (reproducirAlIniciar)
         {
             ReproducirMusica();
+
+            Debug.Log("Estado del AudioSource: " +
+                audioSource.isPlaying);
         }
     }
 

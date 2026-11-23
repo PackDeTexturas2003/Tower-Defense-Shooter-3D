@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
-    [Header("Información de Vida")]
+    [Header("Informaciï¿½n de Vida")]
     [SerializeField] private float mostrarVidaMaxima;
     [SerializeField] private float mostrarVidaActual;
 
     [Header("Game Over")]
     [SerializeField] private GameOverManager gameOverManager;
 
-    [Header("Efecto de estática al recibir daño")]
+    [Header("Efecto de estï¿½tica al recibir daï¿½o")]
     [SerializeField] private RawImage imagenEstatica;
     [SerializeField, Range(0f, 1f)] private float intensidadEstatica = 0.8f;
     [SerializeField, Min(0.05f)] private float duracionEstatica = 0.35f;
     [SerializeField, Min(0.01f)] private float intervaloRuido = 0.04f;
     [SerializeField, Range(16, 256)] private int resolucionRuido = 128;
-    [Header("Colores de estática según el daño")]
+    [Header("Colores de estï¿½tica segï¿½n el daï¿½o")]
     [SerializeField] private Color colorDanioNormal = Color.red;
     [SerializeField] private Color colorDanioCebollita = new Color(0.65f, 1f, 0.65f, 1f);
 
@@ -43,7 +43,7 @@ public class PlayerHealth : Health
             gameOverManager = FindFirstObjectByType<GameOverManager>();
 
         if (gameOverManager == null)
-            Debug.LogError("PlayerHealth: No se encontró GameOverManager en la escena.", this);
+            Debug.LogError("PlayerHealth: No se encontrï¿½ GameOverManager en la escena.", this);
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class PlayerHealth : Health
     {
         if (imagenEstatica == null)
         {
-            Debug.LogWarning("PlayerHealth: Asigna la RawImage de estática en el Inspector.", this);
+            Debug.LogWarning("PlayerHealth: Asigna la RawImage de estï¿½tica en el Inspector.", this);
             return;
         }
 
@@ -97,7 +97,7 @@ public class PlayerHealth : Health
         ActualizarValores();
     }
 
-    // Este método se utiliza exclusivamente para el daño de CebollitaDamage.
+    // Este mï¿½todo se utiliza exclusivamente para el daï¿½o de CebollitaDamage.
     public void RecibirDanioCebollita(float cantidad)
     {
         if (yaMurio || cantidad <= 0f)
@@ -180,7 +180,7 @@ public class PlayerHealth : Health
         yaMurio = true;
         Debug.Log("PlayerHealth: El jugador ha muerto. Activando panel de derrota.", this);
 
-        // Detener y ocultar la estática al morir para que no interfiera con el panel.
+        // Detener y ocultar la estï¿½tica al morir para que no interfiera con el panel.
         if (rutinaEstatica != null)
         {
             StopCoroutine(rutinaEstatica);
