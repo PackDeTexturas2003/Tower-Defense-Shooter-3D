@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -32,6 +32,11 @@ public class ConfiguracionUI : MonoBehaviour
     [SerializeField] private Button botonAtras;
     [SerializeField] private Button botonDerecha;
 
+    [Header("Sensibilidad e inversión de cámara")]
+    [SerializeField] private Slider sliderSensibilidadMouse;
+    [SerializeField] private TMP_Text textoSensibilidadMouse;
+    [SerializeField] private Toggle toggleInvertirEjeY;
+
     [Header("Restaurar configuraciones")]
     [SerializeField] private Button botonRestaurarPredeterminados;
 
@@ -55,6 +60,7 @@ public class ConfiguracionUI : MonoBehaviour
     private void Start()
     {
         ActualizarTextos();
+        ConfigurarOpcionesMouse();
 
         botonDisparo.onClick.AddListener(
             () => EsperarTecla(ControlEsperando.Disparo)
@@ -106,6 +112,41 @@ public class ConfiguracionUI : MonoBehaviour
     }
 
     // =========================
+    private void ConfigurarOpcionesMouse()
+    {
+        if (sliderSensibilidadMouse != null)
+        {
+            sliderSensibilidadMouse.minValue = 0.1f;
+            sliderSensibilidadMouse.maxValue = 10f;
+            sliderSensibilidadMouse.value = ConfiguracionControles.ObtenerSensibilidadMouse();
+            sliderSensibilidadMouse.onValueChanged.AddListener(CambiarSensibilidadMouse);
+            ActualizarTextoSensibilidad(sliderSensibilidadMouse.value);
+        }
+
+        if (toggleInvertirEjeY != null)
+        {
+            toggleInvertirEjeY.isOn = ConfiguracionControles.ObtenerInvertirEjeY();
+            toggleInvertirEjeY.onValueChanged.AddListener(CambiarInvertirEjeY);
+        }
+    }
+
+    private void CambiarSensibilidadMouse(float valor)
+    {
+        ConfiguracionControles.GuardarSensibilidadMouse(valor);
+        ActualizarTextoSensibilidad(valor);
+    }
+
+    private void ActualizarTextoSensibilidad(float valor)
+    {
+        if (textoSensibilidadMouse != null)
+            textoSensibilidadMouse.text = "Sensibilidad: " + valor.ToString("0.0");
+    }
+
+    private void CambiarInvertirEjeY(bool invertir)
+    {
+        ConfiguracionControles.GuardarInvertirEjeY(invertir);
+    }
+
     // ESPERAR ENTRADA
     // =========================
 
@@ -289,7 +330,7 @@ public class ConfiguracionUI : MonoBehaviour
     }
 
     // =========================
-    // NOMBRE DEL BOT�N
+    // NOMBRE DEL BOT�N
     // =========================
 
     private string ObtenerNombreBotonMouse(
@@ -366,7 +407,15 @@ public class ConfiguracionUI : MonoBehaviour
     private void RestaurarPredeterminados()
     {
         ConfiguracionControles.RestaurarPredeterminados();
-
         ActualizarTextos();
+
+        if (sliderSensibilidadMouse != null)
+        {
+            sliderSensibilidadMouse.SetValueWithoutNotify(ConfiguracionControles.ObtenerSensibilidadMouse());
+            ActualizarTextoSensibilidad(sliderSensibilidadMouse.value);
+        }
+
+        if (toggleInvertirEjeY != null)
+            toggleInvertirEjeY.SetIsOnWithoutNotify(ConfiguracionControles.ObtenerInvertirEjeY());
     }
 }

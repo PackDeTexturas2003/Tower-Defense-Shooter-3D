@@ -124,6 +124,8 @@ public class Movimiento : MonoBehaviour
         Vector2 movimientoMouse =
             Mouse.current.delta.ReadValue();
 
+        sensibilidadMouse = ConfiguracionControles.ObtenerSensibilidadMouse();
+
         float mouseX =
             movimientoMouse.x * sensibilidadMouse;
 

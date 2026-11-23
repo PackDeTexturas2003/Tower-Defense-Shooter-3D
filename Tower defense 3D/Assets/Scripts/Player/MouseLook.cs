@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,17 +41,22 @@ public class MouseLook : MonoBehaviour
 
         Vector2 movimientoMouse = Mouse.current.delta.ReadValue();
 
-        // Acumulamos poco a poco el movimiento vertical
-        rotacionVertical -= movimientoMouse.y * sensibilidad;
+        float sensibilidadActual =
+            ConfiguracionControles.ObtenerSensibilidadMouse() * 0.04f;
 
-        // Limitamos únicamente cuando realmente alcanzamos el límite
+        float sentidoVertical =
+            ConfiguracionControles.ObtenerInvertirEjeY() ? 1f : -1f;
+
+        rotacionVertical += movimientoMouse.y *
+                            sensibilidadActual *
+                            sentidoVertical;
+
         rotacionVertical = Mathf.Clamp(
             rotacionVertical,
             -limiteVertical,
             limiteVertical
         );
 
-        // Aplicamos la rotación inicial + el movimiento acumulado
         transform.localRotation = Quaternion.Euler(
             rotacionInicialX + rotacionVertical,
             0f,
