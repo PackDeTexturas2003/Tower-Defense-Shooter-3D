@@ -117,7 +117,7 @@ public class ConfiguracionUI : MonoBehaviour
         if (sliderSensibilidadMouse != null)
         {
             sliderSensibilidadMouse.minValue = 0.1f;
-            sliderSensibilidadMouse.maxValue = 10f;
+            sliderSensibilidadMouse.maxValue = 5f;
             sliderSensibilidadMouse.value = ConfiguracionControles.ObtenerSensibilidadMouse();
             sliderSensibilidadMouse.onValueChanged.AddListener(CambiarSensibilidadMouse);
             ActualizarTextoSensibilidad(sliderSensibilidadMouse.value);

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private float sensibilidad = 0.1f;
+    [SerializeField] private float sensibilidad = 2.5f;
 
     [Header("Límite de visión vertical")]
     [Tooltip("Máximo de grados que puede mirar hacia arriba o abajo desde la posición inicial.")]
@@ -41,8 +41,9 @@ public class MouseLook : MonoBehaviour
 
         Vector2 movimientoMouse = Mouse.current.delta.ReadValue();
 
+        // Utiliza exactamente la misma sensibilidad que el giro horizontal.
         float sensibilidadActual =
-            ConfiguracionControles.ObtenerSensibilidadMouse() * 0.04f;
+            ConfiguracionControles.ObtenerSensibilidadMouse();
 
         float sentidoVertical =
             ConfiguracionControles.ObtenerInvertirEjeY() ? 1f : -1f;

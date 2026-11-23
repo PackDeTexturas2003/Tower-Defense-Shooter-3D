@@ -47,19 +47,29 @@ public static class ConfiguracionControles
     private const Key DERECHA_DEFAULT = Key.D;
 
     // =========================
+    // SENSIBILIDAD DEL MOUSE
+    // =========================
 
     private const string SENSIBILIDAD_MOUSE = "SensibilidadMouse";
     private const string INVERTIR_EJE_Y = "InvertirEjeY";
 
     public static void GuardarSensibilidadMouse(float valor)
     {
-        PlayerPrefs.SetFloat(SENSIBILIDAD_MOUSE, Mathf.Clamp(valor, 0.1f, 10f));
+        PlayerPrefs.SetFloat(
+            SENSIBILIDAD_MOUSE,
+            Mathf.Clamp(valor, 0.1f, 5f)
+        );
+
         PlayerPrefs.Save();
     }
 
     public static float ObtenerSensibilidadMouse()
     {
-        return PlayerPrefs.GetFloat(SENSIBILIDAD_MOUSE, 2.5f);
+        return Mathf.Clamp(
+            PlayerPrefs.GetFloat(SENSIBILIDAD_MOUSE, 2.5f),
+            0.1f,
+            5f
+        );
     }
 
     public static void GuardarInvertirEjeY(bool invertir)
@@ -73,6 +83,7 @@ public static class ConfiguracionControles
         return PlayerPrefs.GetInt(INVERTIR_EJE_Y, 0) == 1;
     }
 
+    // =========================
     // GUARDAR DISPARO
     // =========================
 

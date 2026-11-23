@@ -12,7 +12,7 @@ public class Movimiento : MonoBehaviour
     [SerializeField] private bool sprintActivado = true;
     [SerializeField] private float velocidadSprint = 8f;
 
-    [Header("C�mara")]
+    [Header("Cámara")]
     [SerializeField] private float sensibilidadMouse = 2.5f;
 
     private Rigidbody rb;
@@ -49,23 +49,14 @@ public class Movimiento : MonoBehaviour
         Mover();
     }
 
-    // =========================
-    // CARGAR CONFIGURACI�N
-    // =========================
-
     private void CargarConfiguracionControles()
     {
         teclaSprint = ConfiguracionControles.ObtenerSprint();
-
         teclaAdelante = ConfiguracionControles.ObtenerAdelante();
         teclaIzquierda = ConfiguracionControles.ObtenerIzquierda();
         teclaAtras = ConfiguracionControles.ObtenerAtras();
         teclaDerecha = ConfiguracionControles.ObtenerDerecha();
     }
-
-    // =========================
-    // MOVIMIENTO
-    // =========================
 
     private void Mover()
     {
@@ -104,33 +95,24 @@ public class Movimiento : MonoBehaviour
             velocidadActual = velocidadSprint;
         }
 
-        Vector3 nuevaVelocidad =
-            direccion * velocidadActual;
-
+        Vector3 nuevaVelocidad = direccion * velocidadActual;
         nuevaVelocidad.y = rb.linearVelocity.y;
 
         rb.linearVelocity = nuevaVelocidad;
     }
-
-    // =========================
-    // C�MARA
-    // =========================
 
     private void Mirar()
     {
         if (Mouse.current == null)
             return;
 
-        Vector2 movimientoMouse =
-            Mouse.current.delta.ReadValue();
+        Vector2 movimientoMouse = Mouse.current.delta.ReadValue();
 
-        sensibilidadMouse = ConfiguracionControles.ObtenerSensibilidadMouse();
+        sensibilidadMouse =
+            ConfiguracionControles.ObtenerSensibilidadMouse();
 
-        float mouseX =
-            movimientoMouse.x * sensibilidadMouse;
+        float mouseX = movimientoMouse.x * sensibilidadMouse;
 
-        transform.Rotate(
-            Vector3.up * mouseX
-        );
+        transform.Rotate(Vector3.up * mouseX);
     }
 }
