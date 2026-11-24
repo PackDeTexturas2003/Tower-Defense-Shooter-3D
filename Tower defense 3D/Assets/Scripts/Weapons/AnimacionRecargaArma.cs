@@ -84,27 +84,34 @@ public class AnimacionRecargaArma : MonoBehaviour
 
     private void Start()
     {
-        weaponManager = FindFirstObjectByType<WeaponManager>();
+        BuscarWeaponManager();
+    }
 
-        if (weaponManager == null)
-        {
-            Debug.LogError(
-                "AnimacionRecargaArma: No se encontró WeaponManager."
-            );
-        }
+    private void BuscarWeaponManager()
+    {
+        if (weaponManager != null)
+            return;
+
+        weaponManager =
+            FindFirstObjectByType<WeaponManager>();
     }
 
     private void Update()
     {
         if (weaponManager == null)
+        {
+            BuscarWeaponManager();
             return;
+        }
 
-        Weapon armaActual = weaponManager.GetArmaActual();
+        Weapon armaActual =
+            weaponManager.GetArmaActual();
 
         if (armaActual == null)
             return;
 
-        Quaternion rotacionObjetivo = rotacionOriginal;
+        Quaternion rotacionObjetivo =
+            rotacionOriginal;
 
         if (armaActual.EstaRecargando)
         {
@@ -118,21 +125,25 @@ public class AnimacionRecargaArma : MonoBehaviour
                         config.anguloZ
                     );
 
-                    rotacionObjetivo = rotacionOriginal * giro;
+                    rotacionObjetivo =
+                        rotacionOriginal * giro;
+
                     break;
                 }
             }
         }
 
-        transform.localRotation = Quaternion.Slerp(
-            transform.localRotation,
-            rotacionObjetivo,
-            Time.deltaTime * velocidadAnimacion
-        );
+        transform.localRotation =
+            Quaternion.Slerp(
+                transform.localRotation,
+                rotacionObjetivo,
+                Time.deltaTime * velocidadAnimacion
+            );
     }
 
     private void OnDisable()
     {
-        transform.localRotation = rotacionOriginal;
+        transform.localRotation =
+            rotacionOriginal;
     }
 }

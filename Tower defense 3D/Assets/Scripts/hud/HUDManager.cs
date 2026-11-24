@@ -1,6 +1,8 @@
+
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class HUDManager : MonoBehaviour
 
     [Header("Vida")]
     [SerializeField] private TMP_Text textoVida;
+
+    [SerializeField] private Image barraVida;
 
     [Header("Horda")]
     [SerializeField] private TMP_Text textoHorda;
@@ -101,8 +105,7 @@ public class HUDManager : MonoBehaviour
 
     private void ActualizarVida()
     {
-        if (playerHealth == null ||
-            textoVida == null)
+        if (playerHealth == null)
             return;
 
         float vidaActual =
@@ -111,31 +114,27 @@ public class HUDManager : MonoBehaviour
         float vidaMaxima =
             playerHealth.VidaMaxima;
 
-        textoVida.text =
-            Mathf.CeilToInt(vidaActual) +
-            " / " +
-            Mathf.CeilToInt(vidaMaxima);
-
-        if (vidaMaxima <= 0)
-            return;
-
-        float porcentaje =
-            (vidaActual / vidaMaxima) * 100f;
-
-        if (porcentaje >= 70f)
+        if (textoVida != null)
         {
+            textoVida.text =
+                Mathf.CeilToInt(vidaActual) +
+                " / " +
+                Mathf.CeilToInt(vidaMaxima);
+
             textoVida.color =
-                Color.green;
+                Color.black;
         }
-        else if (porcentaje >= 31f)
+
+        // =====================================
+        // ACTUALIZAR BARRA DE VIDA
+        // =====================================
+
+        if (barraVida != null && vidaMaxima > 0)
         {
-            textoVida.color =
-                Color.yellow;
-        }
-        else
-        {
-            textoVida.color =
-                Color.red;
+            barraVida.fillAmount =
+                Mathf.Clamp01(
+                    vidaActual / vidaMaxima
+                );
         }
     }
 
