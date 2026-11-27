@@ -188,6 +188,11 @@ public class GamePhaseManager : MonoBehaviour
         );
 
         IniciarPlanificacion();
+
+        // Cuando desaparece la selección de armas, continuar el tutorial
+        // mostrando el panel 5 encima de la fase de planificación.
+        if (tutorialManager != null)
+            tutorialManager.MostrarPanelDespuesSeleccionArmas();
     }
 
     private void IniciarPlanificacion()

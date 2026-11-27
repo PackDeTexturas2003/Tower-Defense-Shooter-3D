@@ -17,8 +17,8 @@ public class TutorialManager_Nivel : MonoBehaviour
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
 
-    [Header("Espera antes del panel 9")]
-    [SerializeField] private float esperaAntesPanelEnemigo = 7f;
+    [Header("Espera para mostrar el panel 9 después del primer enemigo")]
+    [SerializeField] private float esperaAntesPanel9 = 7f;
 
     [Header("Controles del jugador")]
     [SerializeField] private Movimiento movimiento;
@@ -33,6 +33,7 @@ public class TutorialManager_Nivel : MonoBehaviour
     private bool tutorialFinalizado;
     private bool esperandoPrimerEnemigo;
     private bool primerEnemigoDetectado;
+    private bool esperandoConfirmacionArmas;
     private bool controlesGuardados;
 
     private bool movimientoEstabaActivo;
@@ -239,17 +240,22 @@ public class TutorialManager_Nivel : MonoBehaviour
         paneles[indicePanelActual].SetActive(false);
         tutorialActivo = false;
 
-        // Paneles 1 al 7: avanzar.
-        if (indicePanelActual < 7)
+        // Después del panel 4, dejar que el jugador termine la selección
+        // de armas. El panel 5 se mostrará cuando se cierre esa selección.
+        if (indicePanelActual == 3)
         {
-            MostrarPanel(indicePanelActual + 1);
+            esperandoConfirmacionArmas = true;
+
+            Debug.Log(
+                "Tutorial: panel 4 terminado. Esperando confirmación de armas para mostrar el panel 5.");
+
             return;
         }
 
-        // Después del panel 8:
-        // devolver los controles, pero mantener pausada
-        // la selección de armas.
-        if (indicePanelActual == 7)
+        // Después del panel 7, permitir que el jugador avance
+        // hasta el combate y esperar al primer enemigo.
+        // El panel 9 aparecerá 7 segundos después de detectarlo.
+        if (indicePanelActual == 6)
         {
             ReanudarControlesManteniendoPausa();
 
@@ -259,12 +265,12 @@ public class TutorialManager_Nivel : MonoBehaviour
                 IniciarEsperaEnemigo();
 
             Debug.Log(
-                "Tutorial inicial terminado. Esperando primer enemigo.");
+                "Tutorial: panel 7 terminado. Esperando primer enemigo para mostrar el panel 9.");
 
             return;
         }
 
-        // Paneles 9, 10 y 11.
+        // Los demás paneles avanzan normalmente.
         if (indicePanelActual < 11)
         {
             MostrarPanel(indicePanelActual + 1);
@@ -273,6 +279,23 @@ public class TutorialManager_Nivel : MonoBehaviour
 
         // Panel 12: finalizar.
         FinalizarTutorial();
+    }
+
+    // =====================================
+    // MOSTRAR PANEL 5 DESPUÉS DE SELECCIONAR ARMAS
+    // =====================================
+
+    public void MostrarPanelDespuesSeleccionArmas()
+    {
+        if (tutorialFinalizado || !esperandoConfirmacionArmas)
+            return;
+
+        esperandoConfirmacionArmas = false;
+
+        Debug.Log(
+            "Tutorial: selección de armas cerrada. Mostrando panel 5.");
+
+        MostrarPanel(4);
     }
 
     // =====================================
@@ -309,7 +332,7 @@ public class TutorialManager_Nivel : MonoBehaviour
 
     private IEnumerator EsperarEnemigo()
     {
-        yield return new WaitForSeconds(esperaAntesPanelEnemigo);
+        yield return new WaitForSeconds(esperaAntesPanel9);
 
         corrutinaTutorialEnemigo = null;
 
