@@ -303,6 +303,13 @@ public class SeleccionArmas : MonoBehaviour
         if (seleccionConfirmada)
             return;
 
+        // No permitir confirmar mientras el tutorial inicial esta activo.
+        if (gamePhaseManager != null && gamePhaseManager.TutorialEnCurso)
+        {
+            MostrarMensaje("Primero completa el tutorial.");
+            return;
+        }
+
         if (armasSeleccionadas.Count == 0)
         {
             MostrarMensaje(

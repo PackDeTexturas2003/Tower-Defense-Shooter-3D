@@ -29,6 +29,9 @@ public class GamePhaseManager : MonoBehaviour
     [Header("Efectos de sonido")]
     [SerializeField] private SFXManager sfxManager;
 
+    [Header("Tutorial")]
+    [SerializeField] private TutorialManager_Nivel tutorialManager;
+
     [Header("Interfaz")]
     [SerializeField] private GameObject botonContinuar;
 
@@ -55,6 +58,9 @@ public class GamePhaseManager : MonoBehaviour
 
     private readonly HashSet<MonoBehaviour> scriptsCongelados =
         new HashSet<MonoBehaviour>();
+
+    public bool TutorialEnCurso =>
+        tutorialManager != null && tutorialManager.TutorialActivo;
 
     private void Start()
     {
@@ -142,6 +148,10 @@ public class GamePhaseManager : MonoBehaviour
 
         CongelarGameplay();
 
+        // Iniciar el tutorial al comenzar la selección de armas.
+        if (tutorialManager != null)
+            tutorialManager.IniciarTutorial();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -157,6 +167,14 @@ public class GamePhaseManager : MonoBehaviour
             Debug.LogWarning(
                 "GamePhaseManager: No estamos en la selección de armas."
             );
+            return;
+        }
+
+        // No permitir salir de la selección mientras se muestran
+        // los primeros ocho paneles del tutorial.
+        if (tutorialManager != null && tutorialManager.TutorialActivo)
+        {
+            Debug.Log("Termina el tutorial antes de confirmar las armas.");
             return;
         }
 
@@ -324,6 +342,10 @@ public class GamePhaseManager : MonoBehaviour
     private bool DebePermanecerActivoDurantePlanificacion(
         MonoBehaviour script)
     {
+        // El tutorial debe seguir activo durante la preparación.
+        if (tutorialManager != null && script == tutorialManager)
+            return true;
+
         if (script == this ||
             script is SeleccionArmas ||
             script == colocacionTorretas)
@@ -388,6 +410,12 @@ public class GamePhaseManager : MonoBehaviour
     {
         if (!fasePlanificacion || transicionRealizada)
             return;
+
+        if (tutorialManager != null && tutorialManager.TutorialActivo)
+        {
+            Debug.Log("Termina el panel del tutorial antes de iniciar el combate.");
+            return;
+        }
 
         transicionRealizada = true;
         fasePlanificacion = false;

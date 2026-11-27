@@ -41,6 +41,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Separación")]
     [SerializeField] private float radioSpawn = 1f;
 
+    [Header("Tutorial Nivel 1")]
+    [SerializeField] private TutorialManager_Nivel tutorialManager;
+
     private WaveManager manager;
 
     public void IniciarOleada(
@@ -63,8 +66,9 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator GenerarOleada(
         int indiceOleada)
     {
-        // No tiene esta oleada configurada
-        if (indiceOleada < 0 ||
+        // No tiene esta oleada configurada.
+        if (oleadas == null ||
+            indiceOleada < 0 ||
             indiceOleada >= oleadas.Length)
         {
             Debug.Log(
@@ -73,17 +77,13 @@ public class EnemySpawner : MonoBehaviour
                 indiceOleada
             );
 
-            manager.GeneradorTermino(
-                indiceOleada
-            );
-
+            manager.GeneradorTermino(indiceOleada);
             yield break;
         }
 
-        OleadaSpawner oleada =
-            oleadas[indiceOleada];
+        OleadaSpawner oleada = oleadas[indiceOleada];
 
-        // La oleada existe, pero no genera nada
+        // La oleada existe, pero no genera nada.
         if (oleada.grupos == null ||
             oleada.grupos.Length == 0)
         {
@@ -93,10 +93,7 @@ public class EnemySpawner : MonoBehaviour
                 (indiceOleada + 1)
             );
 
-            manager.GeneradorTermino(
-                indiceOleada
-            );
-
+            manager.GeneradorTermino(indiceOleada);
             yield break;
         }
 
@@ -108,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (GrupoEnemigos grupo in oleada.grupos)
         {
-            if (grupo.enemigoPrefab == null)
+            if (grupo == null || grupo.enemigoPrefab == null)
             {
                 Debug.LogWarning(
                     gameObject.name +
@@ -118,9 +115,7 @@ public class EnemySpawner : MonoBehaviour
                 continue;
             }
 
-            for (int i = 0;
-                 i < grupo.cantidad;
-                 i++)
+            for (int i = 0; i < grupo.cantidad; i++)
             {
                 CrearEnemigo(
                     grupo.enemigoPrefab,
@@ -129,16 +124,12 @@ public class EnemySpawner : MonoBehaviour
 
                 if (grupo.intervalo > 0f)
                 {
-                    yield return new WaitForSeconds(
-                        grupo.intervalo
-                    );
+                    yield return new WaitForSeconds(grupo.intervalo);
                 }
             }
         }
 
-        manager.GeneradorTermino(
-            indiceOleada
-        );
+        manager.GeneradorTermino(indiceOleada);
     }
 
     void CrearEnemigo(
@@ -151,8 +142,7 @@ public class EnemySpawner : MonoBehaviour
             : transform.position;
 
         Vector2 separacion =
-            Random.insideUnitCircle *
-            radioSpawn;
+            Random.insideUnitCircle * radioSpawn;
 
         Vector3 posicion =
             centro +
@@ -167,28 +157,29 @@ public class EnemySpawner : MonoBehaviour
             ? puntoSpawn.rotation
             : transform.rotation;
 
-        GameObject enemigo =
-            Instantiate(
-                prefab,
-                posicion,
-                rotacion
-            );
+        GameObject enemigo = Instantiate(
+            prefab,
+            posicion,
+            rotacion
+        );
+
+        // Avisar al tutorial cuando aparece el primer enemigo.
+        // El TutorialManager evita activar más de una vez el panel 9.
+        if (tutorialManager != null)
+        {
+            tutorialManager.NotificarPrimerEnemigo();
+        }
 
         AsignarRutaAleatoria(enemigo);
 
-        manager.RegistrarEnemigo(
-            indiceOleada
-        );
+        manager.RegistrarEnemigo(indiceOleada);
 
         WaveEnemyTracker tracker =
-            enemigo.GetComponent<
-                WaveEnemyTracker>();
+            enemigo.GetComponent<WaveEnemyTracker>();
 
         if (tracker == null)
         {
-            tracker =
-                enemigo.AddComponent<
-                    WaveEnemyTracker>();
+            tracker = enemigo.AddComponent<WaveEnemyTracker>();
         }
 
         tracker.Configurar(
@@ -227,8 +218,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // Construir una lista de rutas válidas para evitar
-        // seleccionar elementos sin puntos asignados.
+        // Construir una lista de rutas válidas.
         System.Collections.Generic.List<RutaAlternativa> rutasValidas =
             new System.Collections.Generic.List<RutaAlternativa>();
 

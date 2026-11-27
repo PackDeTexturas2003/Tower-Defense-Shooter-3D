@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,6 +29,9 @@ public class MenuPausa : MonoBehaviour
     [Header("Música")]
     [SerializeField] private AmbientMusicManager ambientMusicManager;
 
+    [Header("Tutorial Nivel 1")]
+    [SerializeField] private TutorialManager_Nivel tutorialManager;
+
     private bool juegoPausado = false;
     private bool configuracionesAbiertasDesdePausa = false;
 
@@ -52,6 +54,10 @@ public class MenuPausa : MonoBehaviour
 
     private void Update()
     {
+        // No permitir abrir/cerrar la pausa mientras el tutorial muestra un panel.
+        if (TutorialBloqueaPausa())
+            return;
+
         // No abrir ni cerrar la pausa mientras se muestra victoria o derrota.
         if (HayPanelFinalActivo())
             return;
@@ -63,20 +69,23 @@ public class MenuPausa : MonoBehaviour
             return;
 
         if (juegoPausado)
-        {
             Continuar();
-        }
         else
-        {
             Pausar();
-        }
     }
 
+    private bool TutorialBloqueaPausa()
+    {
+        return tutorialManager != null && tutorialManager.TutorialActivo;
+    }
 
     private bool HayPanelFinalActivo()
     {
-        bool victoriaActiva = panelVictoria != null && panelVictoria.activeInHierarchy;
-        bool derrotaActiva = panelDerrota != null && panelDerrota.activeInHierarchy;
+        bool victoriaActiva =
+            panelVictoria != null && panelVictoria.activeInHierarchy;
+
+        bool derrotaActiva =
+            panelDerrota != null && panelDerrota.activeInHierarchy;
 
         return victoriaActiva || derrotaActiva;
     }
@@ -87,11 +96,10 @@ public class MenuPausa : MonoBehaviour
 
     private void Pausar()
     {
-        if (HayPanelFinalActivo())
+        if (TutorialBloqueaPausa() || HayPanelFinalActivo())
             return;
 
         juegoPausado = true;
-
         Time.timeScale = 0f;
 
         if (ambientMusicManager != null)
@@ -137,7 +145,6 @@ public class MenuPausa : MonoBehaviour
             return;
 
         canvasPanel = canvasPanel.rootCanvas;
-
         panelPausa.transform.SetAsLastSibling();
 
         if (canvasPanel.renderMode != RenderMode.ScreenSpaceOverlay)
@@ -153,11 +160,9 @@ public class MenuPausa : MonoBehaviour
 
     private void Continuar()
     {
-        if (HayPanelFinalActivo())
+        if (TutorialBloqueaPausa() || HayPanelFinalActivo())
             return;
 
-        // Si Configuración se abrió desde Pausa,
-        // se cierra antes de reanudar el nivel.
         if (configuracionesAbiertasDesdePausa)
         {
             CerrarEscenaConfiguraciones();
@@ -165,7 +170,6 @@ public class MenuPausa : MonoBehaviour
         }
 
         juegoPausado = false;
-
         Time.timeScale = 1f;
 
         if (movimiento != null)
@@ -199,6 +203,9 @@ public class MenuPausa : MonoBehaviour
 
     private void IrAConfiguraciones()
     {
+        if (TutorialBloqueaPausa())
+            return;
+
         configuracionesAbiertasDesdePausa = true;
 
         if (panelPausa != null)
@@ -231,20 +238,17 @@ public class MenuPausa : MonoBehaviour
             SceneManager.GetSceneByName("Configuraciones");
 
         if (escenaConfiguraciones.isLoaded)
-        {
             SceneManager.UnloadSceneAsync("Configuraciones");
-        }
     }
 
-    // Este método puede seguir conectado
-    // al botón Volver de Configuración.
+    // Este método puede seguir conectado al botón Volver de Configuración.
     public void ReanudarDesdeConfiguraciones()
     {
         Continuar();
     }
 
     // =========================
-    // VOLVER AL MENU PRINCIPAL
+    // VOLVER AL MENÚ PRINCIPAL
     // =========================
 
     public void VolverAlMenuPrincipal()
